@@ -1,0 +1,15 @@
+data-curation-all/data_dependency_waste_project/latest_clones/
+.env
+.claude/
+__MACOSX/
+ollama.sif
+ollama_models/
+*.zip
+tem2/
+
+# Large data directories
+DC/
+PS/
+RQ1/test_coverage/picked-up/
+RQ1/test_coverage/step3_results_100row_each/
+RQ1/test_coverage/results_1-300k_step3.csv
