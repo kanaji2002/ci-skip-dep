@@ -1,0 +1,19 @@
+{
+  "language": "Python",
+  "package_manager": "pip",
+  "package_file": "requirements.txt or pyproject.toml",
+  "extra_dep_label": "optional_dependencies",
+  "subpath_example": "from os.path import join → os (built-in, ignore)",
+  "builtin_modules": "os, sys, re, json, math, time, datetime, pathlib, typing, collections, itertools, functools, io, abc, copy, enum, dataclasses, contextlib, logging, warnings, hashlib, base64, struct, socket, threading, multiprocessing, subprocess, shutil, tempfile, glob, fnmatch, configparser, argparse, unittest, ast, inspect, importlib, gc, weakref, string, textwrap, pprint, traceback",
+  "language_rules": [
+    "'import pkg' and 'from pkg import x' both count as usage",
+    "Side-effect imports count as usage: `import pkg` with no explicit use (e.g., monkey-patching, registering plugins)",
+    "Package name may differ from import name — apply mapping:\n  PIL → pillow\n  cv2 → opencv-python\n  sklearn → scikit-learn\n  bs4 → beautifulsoup4\n  yaml → pyyaml\n  dotenv → python-dotenv\n  Crypto → pycryptodome\n  usaddress → usaddress\n  magic → python-magic\n  gi → PyGObject\n  wx → wxPython\n  gtk → PyGTK\n  apt → python-apt\n  serial → pyserial\n  MySQLdb → mysqlclient\n  psycopg2 → psycopg2-binary or psycopg2\n  nacl → PyNaCl\n  jwt → PyJWT\n  jose → python-jose\n  toml → toml or tomllib (built-in ≥3.11)\n  dateutil → python-dateutil\n  attr, attrs → attrs\n  google.cloud.* → google-cloud-*\n  azure.* → azure-*",
+    "Dynamic patterns to flag:\n  importlib.import_module(var)\n  __import__(var)",
+    "test files: test_*.py, *_test.py, tests/ → dev/test usage",
+    "Config-referenced tools — these packages appear in config files, NOT in import statements:\n  pytest-* plugins → pyproject.toml [tool.pytest.ini_options] addopts/plugins, pytest.ini, setup.cfg [tool:pytest]\n  flake8-* plugins → .flake8, setup.cfg [flake8]\n  mypy extensions → mypy.ini, pyproject.toml [tool.mypy] plugins\n  pylint-* → .pylintrc\n  coverage, pytest-cov → .coveragerc, pyproject.toml [tool.coverage]\n  black, isort, autopep8, ruff → pyproject.toml [tool.black/isort/ruff]\n  pre-commit hooks → .pre-commit-config.yaml\n  sphinx-* → docs/conf.py extensions list",
+    "Django/Flask framework packages:\n  INSTALLED_APPS in settings.py counts as usage for django-* packages\n  Flask extensions registered via app.register_blueprint() or init_app() count as used",
+    "CLI tools declared in [project.scripts] or [tool.poetry.scripts] are used even without import statements"
+  ],
+  "missing_dep_rule": "Note: PyPI name and import name may differ; apply name mapping above"
+}

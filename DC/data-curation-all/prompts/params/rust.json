@@ -1,0 +1,21 @@
+{
+  "language": "Rust",
+  "package_manager": "cargo",
+  "package_file": "Cargo.toml",
+  "extra_dep_label": "build_dependencies",
+  "subpath_example": "use serde::Deserialize → serde",
+  "builtin_modules": "std::*, core::*, alloc::*, proc_macro::*",
+  "language_rules": [
+    "'use crate_name::' and 'extern crate crate_name' count as usage",
+    "Crate name normalization:\n  Cargo.toml uses hyphens: my-crate\n  Rust source uses underscores: use my_crate::\n  → normalize hyphens to underscores when comparing",
+    "Procedural macro crates are used via attribute syntax, NOT 'use' statements:\n  #[derive(Serialize, Deserialize)] → serde (with features=[\"derive\"]) or serde_derive\n  #[derive(Debug, Clone, ...)] → built-in, ignore\n  Custom #[proc_macro_attribute] or #[derive(CustomTrait)] → check which crate provides it",
+    "build-dependencies: only check build.rs for usage; never flag as unused if build.rs exists and uses the crate",
+    "dev-dependencies: only check #[cfg(test)] blocks, tests/ directory, examples/ directory, benches/ directory",
+    "Optional dependencies (optional = true in Cargo.toml):\n  These are gated behind feature flags — they are 'used' if the feature is declared in [features]\n  Do NOT flag optional deps as unused without checking the [features] table",
+    "Conditional platform deps [target.'cfg(...)'.dependencies]: treat as used (platform-specific, conservative)",
+    "Workspace Cargo.toml: if [workspace] is present, member crates may use deps declared at workspace level — be conservative",
+    "Feature flags are not separate packages: serde/features=[\"derive\"] is still just serde",
+    "Re-exported items: if crate A re-exports crate B's types publicly, B may appear nowhere in source but is still needed"
+  ],
+  "missing_dep_rule": "Normalize hyphens(-) to underscores(_) for comparison; check both forms"
+}

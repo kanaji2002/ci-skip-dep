@@ -1,0 +1,19 @@
+{
+  "language": "C#/.NET",
+  "package_manager": "NuGet",
+  "package_file": "*.csproj or packages.config",
+  "extra_dep_label": "analyzer_packages (build-time only)",
+  "subpath_example": "using Newtonsoft.Json.Linq → Newtonsoft.Json",
+  "builtin_modules": "System, System.Collections, System.Collections.Generic, System.IO, System.Linq, System.Text, System.Threading, System.Threading.Tasks, System.Net, System.Net.Http, System.Reflection, System.Runtime, System.Diagnostics, System.ComponentModel, System.Security, Microsoft.CSharp, Microsoft.VisualBasic",
+  "language_rules": [
+    "'using Namespace' and 'using static Class' both count as usage",
+    "Package-to-namespace mapping (NuGet ID → root namespace):\n  Newtonsoft.Json → Newtonsoft.Json\n  Microsoft.Extensions.* → Microsoft.Extensions.*\n  Microsoft.AspNetCore.* → Microsoft.AspNetCore.*\n  Microsoft.EntityFrameworkCore → Microsoft.EntityFrameworkCore\n  Serilog.* → Serilog\n  NLog → NLog\n  log4net → log4net\n  AutoMapper → AutoMapper\n  FluentValidation → FluentValidation\n  MediatR → MediatR\n  Polly → Polly\n  BouncyCastle.Cryptography → Org.BouncyCastle\n  System.Text.Json → System.Text.Json (built-in ≥.NET 5, check TFM)\n  Azure.* → Azure.*\n  AWSSDK.* → Amazon.*",
+    "Implicit usings (.NET 6+): System, System.Collections.Generic, System.Linq, System.Text, System.Threading.Tasks, System.IO, System.Net.Http are auto-included — do NOT flag them as missing",
+    "Packages that require NO 'using' statement — treat as used if referenced in .csproj:\n  Analyzer / CodeFix packages (*.Analyzers, *.CodeFix, StyleCop.Analyzers, SonarAnalyzer.*)\n  Source generator packages (*.Generator, Microsoft.Extensions.Logging.Abstractions)\n  MSBuild integration packages (Microsoft.Build.*, Nerdbank.GitVersioning, MinVer)\n  Runtime packs and targeting packs (Microsoft.AspNetCore.App, Microsoft.NETCore.App)\n  PrivateAssets=\"all\" packages are build-time tools — never flag as unused",
+    "Entity Framework Core: EF migration commands use the package even without direct 'using' in app code:\n  Microsoft.EntityFrameworkCore.Design → used if migrations/ directory exists\n  Database provider packages (Npgsql.EntityFrameworkCore.*, Pomelo.*) → used via DbContextOptionsBuilder extension methods",
+    "ASP.NET Core extension methods: packages like Microsoft.AspNetCore.Authentication.* are used via\n  services.AddAuthentication() / app.UseAuthentication() with no 'using' for the package namespace\n  Check Startup.cs / Program.cs for Add*/Use* patterns",
+    "Condition-gated PackageReference (Condition=\"'$(TargetFramework)'=='...'\"): treat as used",
+    "Dynamic patterns to flag:\n  Assembly.LoadFrom(variable)\n  Activator.CreateInstance(Type.GetType(var))\n  AppDomain.CurrentDomain.Load(var)"
+  ],
+  "missing_dep_rule": "NuGet package ID is case-insensitive; normalize to lowercase for comparison"
+}

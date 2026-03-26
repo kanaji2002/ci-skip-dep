@@ -1,0 +1,19 @@
+{
+  "language": "JavaScript/Node.js",
+  "package_manager": "npm",
+  "package_file": "package.json",
+  "extra_dep_label": "peer_dependencies (reference only)",
+  "subpath_example": "lodash/get → lodash",
+  "builtin_modules": "fs, path, os, http, https, crypto, stream, events, child_process, util, url, buffer, assert, zlib, net, tls, dns, readline, cluster, worker_threads, v8, vm",
+  "language_rules": [
+    "require() and import both count as usage",
+    "Side-effect imports count as usage: `import 'dotenv/config'` means dotenv IS used",
+    "Dynamic patterns to flag:\n  require(`${var}`)\n  import(variable)\n  require(array[i])",
+    "devDependencies: used in *.config.{js,ts} or test*/ or __tests__/ → devDependency usage",
+    "peerDependencies: do not flag as unused",
+    "Plugin packages are used via config file string references, NOT import statements:\n  babel-plugin-*, @babel/plugin-*, @babel/preset-* → babel.config.js / .babelrc\n  eslint-plugin-*, eslint-config-* → .eslintrc / eslint.config.js\n  webpack loaders (*-loader) → webpack.config.js\n  jest-*,  @jest/* → jest.config.js\n  vite-plugin-*, rollup-plugin-* → vite.config.js / rollup.config.js",
+    "@types/* packages are used implicitly by TypeScript and never appear in import statements — check tsconfig.json compilerOptions.types or the presence of .ts files; if the project has TypeScript source files, treat @types/* as potentially used unless tsconfig explicitly excludes it",
+    "Packages listed in the 'scripts' field of package.json (e.g. 'jest', 'eslint', 'ts-node') are used as CLI tools and should be considered used even without an import statement"
+  ],
+  "missing_dep_rule": "Scoped packages must match exactly: @scope/pkg"
+}
