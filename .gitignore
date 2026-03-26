@@ -8,10 +8,15 @@ ollama_models/
 tem2/
 
 # Large data directories
-DC/
-DC/batch
-!DC/data-curation-all
+DC/*
+# 除外対象：フォルダを明示的に追跡
+!DC/data-curation-all/
+
+
+# さらにその中の不要なものを無視
+DC/data-curation-all/batch/
 DC/data-curation-all/data_dependency_waste_project/
+
 
 
 PS/js/batch
