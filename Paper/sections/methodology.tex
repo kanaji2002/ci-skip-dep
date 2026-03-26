@@ -1,0 +1,171 @@
+\section{Methodology}
+\label{sec:methodology}
+
+Figure~\ref{fig:overview} shows an overview of our study pipeline,
+which consists of three stages:
+(1) Project Selection (PS),
+(2) Data Curation (DC), and
+(3) Skip Analysis.
+
+% TODO: Add pipeline overview figure
+% \begin{figure}[t]
+%   \centering
+%   \includegraphics[width=\linewidth]{figures/pipeline_overview.pdf}
+%   \caption{Overview of the study pipeline.}
+%   \label{fig:overview}
+% \end{figure}
+
+% ----------------------------------------------------------------
+\subsection{Project Selection}
+\label{sec:ps}
+
+We collected JavaScript projects from GitHub using the SEART GitHub Search
+tool~\cite{seart}, applying a series of filters to obtain projects with
+sufficient activity and CI usage.
+Table~\ref{tab:ps} summarises each filter step and the resulting project counts.
+
+\begin{table}[t]
+  \centering
+  \caption{Project selection pipeline.}
+  \label{tab:ps}
+  \begin{tabular}{llr}
+    \toprule
+    Step & Criterion & \#Projects \\
+    \midrule
+    PS1 & JavaScript, $\geq$10 stars (SEART) & 261{,}739 \\
+    PS2 & $\geq$10 commits during 2024-03-01 -- 2026-03-01 & 100{,}811 \\
+    PS3 & GitHub Actions adopted (\texttt{.github/workflows/*.yml}) & 16{,}226 \\
+    PS4 & $\geq$10 GitHub Actions executions & \textit{(TBD)} \\
+    PS5 & npm adopted (\texttt{package.json} exists) & 13{,}991 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\paragraph{PS1 -- Initial Collection.}
+We queried the SEART GitHub Search API for JavaScript repositories with at
+least 10 stars, yielding 261{,}739 candidates.
+
+\paragraph{PS2 -- Activity Filter.}
+We retained only projects with at least 10 commits in the study period
+(2024-03-01 to 2026-03-01), reducing the set to 100{,}811 projects.
+This filter ensures that the project was actively maintained during the
+analysis window.
+
+\paragraph{PS3 -- GitHub Actions Adoption.}
+We checked each project for the presence of at least one GitHub Actions
+workflow file under \texttt{.github/workflows/}.
+Projects without CI automation were excluded, leaving 16{,}226 projects.
+
+\paragraph{PS4 -- CI Execution History.}
+To confirm that GitHub Actions had actually been \emph{executed} (not merely
+configured), we required at least 10 recorded workflow runs per project.
+This step is a novel addition over the original Dep-sCImitar work, which did
+not explicitly verify CI activity.
+
+\paragraph{PS5 -- npm Adoption.}
+Finally, we filtered for projects containing a \texttt{package.json} file at
+the repository root, confirming use of the npm package manager and yielding
+13{,}991 projects.
+
+% ----------------------------------------------------------------
+\subsection{Data Curation}
+\label{sec:dc}
+
+\subsubsection{DC1 -- Dependency-Update Commit Extraction}
+\label{sec:dc1}
+
+From the 13{,}991 selected projects, we extracted commits that represent
+\emph{pure dependency updates}, defined as commits that modify
+\emph{only} \texttt{package.json} and/or \texttt{package-lock.json} and
+change \emph{exactly one} dependency version.
+Commits that also modified source files, test files, documentation, or
+any other file were excluded.
+This strict criterion ensures that each extracted commit can be attributed
+to a single dependency version bump, making the skip decision unambiguous.
+
+The extraction yielded \textbf{121{,}453 commits} from \textbf{1{,}854 projects}.
+
+\subsubsection{DC2 -- Unused Dependency Detection}
+\label{sec:dc2}
+
+For each commit identified in DC1, we checked whether the updated dependency
+was actually \emph{used} in the project source code at the time of that commit.
+We evaluated four detection approaches, spanning static analysis and
+large language model (LLM) based methods:
+
+\paragraph{depcheck.}
+\texttt{depcheck}~\cite{depcheck} is an AST-based static analyser that
+inspects all JavaScript/TypeScript files in a project and reports packages
+listed in \texttt{package.json} that are not imported or required anywhere.
+We invoked it as:
+\begin{verbatim}
+  npx depcheck --specials=...
+\end{verbatim}
+\texttt{depcheck} has been shown to achieve a precision of 94\% and recall of
+83\% in prior evaluation~\cite{depcheck_eval}.
+
+\paragraph{knip.}
+\texttt{knip}~\cite{knip} is a newer AST-based tool that reports unused
+exports, files, and dependencies in JSON format:
+\begin{verbatim}
+  npx knip --reporter json
+\end{verbatim}
+knip performs project-level cross-file analysis, potentially capturing
+indirect usage patterns that single-file tools miss.
+
+\paragraph{LLM-based detection (llama3.2 and qwen2.5).}
+As an alternative to traditional static analysis, we explored LLM-based
+detection using two open-source models served locally via
+Ollama~\cite{ollama}: \texttt{llama3.2} and \texttt{qwen2.5}.
+For each commit, we extracted all \texttt{import}/\texttt{require} statements
+from the project source using regular expressions, then prompted the LLM to
+classify whether each dependency listed in \texttt{package.json} was
+referenced.
+GPU-accelerated inference was performed on an HPC cluster.
+
+\paragraph{Comparison rationale.}
+We include multiple tools to assess how the choice of detection method
+affects the downstream skip analysis results.
+Static tools are deterministic and widely used in practice;
+LLM-based tools represent an emerging alternative that may handle
+dynamic usage patterns or non-standard import syntax more gracefully.
+
+\subsubsection{DC3 -- CI Build Data Collection}
+\label{sec:dc3}
+
+For each dependency-update commit identified in DC1, we retrieved its
+CI build outcomes via the GitHub Check Runs API:
+\begin{itemize}
+  \item \textbf{Build status} of the commit itself (\texttt{success} / \texttt{failure} / unknown).
+  \item \textbf{Build status} of the commit's parent (i.e., the build result
+        immediately before the dependency update).
+  \item \textbf{Build duration} (in seconds) of the commit's CI run.
+\end{itemize}
+After filtering commits for which CI data was available,
+we obtained \textbf{20{,}743 commits} from \textbf{1{,}487 projects}.
+
+% ----------------------------------------------------------------
+\subsection{Skip Analysis}
+\label{sec:skip}
+
+We applied the Dep-sCImitar skip logic~\cite{depscimitar} to each curated
+commit.
+A commit is classified as \emph{skippable} if and only if:
+
+\begin{equation}
+  \label{eq:skip}
+  \textit{skippable} \;\Leftrightarrow\;
+  \bigl(\textit{dep} \in \textit{unused} \cup \textit{unused\_dev}\bigr)
+  \;\wedge\;
+  \bigl(\textit{parent\_status} = \texttt{success}\bigr)
+\end{equation}
+
+\noindent where $\textit{dep}$ is the updated dependency and
+$\textit{unused}$ / $\textit{unused\_dev}$ are the sets of unused
+runtime and development dependencies reported by the detection tool.
+The parent-build condition ensures that we only skip builds whose
+pre-update state was already passing; skipping after a failing parent
+would risk masking an ongoing breakage.
+
+For every skippable commit, the build duration recorded in DC3 is counted
+as \emph{wasted CI time} that could have been avoided.

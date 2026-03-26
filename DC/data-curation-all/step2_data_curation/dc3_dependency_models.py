@@ -103,6 +103,18 @@ def run_knip(repo_path: str) -> Tuple[List[str], List[str], bool]:
         (unused_dep, unused_dev_dep, success)
     """
     try:
+        # .prettierrc.cjs 等が require() を使う場合、node_modules がないと
+        # knip が設定ファイルのロードに失敗して JSON を出力できない。
+        # --ignore-scripts でポストインストールスクリプトをスキップしてインストール。
+        node_modules_path = os.path.join(repo_path, "node_modules")
+        if not os.path.isdir(node_modules_path):
+            subprocess.run(
+                ["npm", "install", "--ignore-scripts", "--prefer-offline"],
+                cwd=repo_path,
+                capture_output=True,
+                timeout=TOOL_TIMEOUT,
+            )
+
         result = subprocess.run(
             ["npx", "--yes", "knip", "--reporter", "json"],
             cwd=repo_path,
@@ -380,7 +392,7 @@ def run_llm(repo_path: str, model: str) -> Tuple[List[str], List[str], List[str]
                 "model": model,
                 "prompt": prompt,
                 "stream": False,
-                "think": False,
+                **({"think": False} if model.startswith("qwen3") else {}),
                 "options": {
                     "temperature": 0,
                     "num_predict": 8000,

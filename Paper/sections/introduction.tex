@@ -1,0 +1,17 @@
+\section{Introduction}
+\label{sec:introduction}
+% TODO: Write introduction
+% Points to cover:
+% - CI/CD is widely adopted; every commit triggers a build
+% - Dependency updates (package.json / package-lock.json only) are frequent
+%   in npm-based projects (Dependabot, Renovate, manual bumps)
+% - Problem: if the updated package is not imported anywhere in the project,
+%   the CI build cannot fail due to that change -- it is wasted compute
+% - Motivation: energy consumption, build queue latency, cost
+% - Approach overview: extend Dep-sCImitar (Haiduc et al.) to the modern
+%   JS ecosystem, compare static vs LLM-based detection tools
+% - Contributions:
+%   1. Large-scale dataset of X dependency-update commits (2024--2026)
+%   2. Comparison of depcheck, knip, llama3.2, qwen2.5 for unused-dep detection
+%   3. Quantification of skippable builds and wasted CI time
+%   4. Answers to RQ1--RQ3
