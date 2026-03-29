@@ -145,7 +145,7 @@ singularity exec --nv \
 
 singularity exec --nv \
     --bind "${OLLAMA_MODELS}:${OLLAMA_MODELS}" \
-    "${OLLAMA_SIF}" ollama pull deepseek-coder-v2:16b || true
+    "${OLLAMA_SIF}" ollama pull deepseek-coder:6.7b-instruct || true
 
 # ============================================
 # Job Info
@@ -160,7 +160,7 @@ echo "Repo list:  ${REPO_LIST_PATH}"
 echo "Python:     $(which python3) ($(python3 --version))"
 echo "Node:       $(node --version 2>/dev/null || echo 'not available')"
 echo "depcheck:   $(depcheck --version 2>/dev/null || echo 'not found')"
-echo "Ollama:     llama3.1:8b + qwen3.5:4b + deepseek-coder-v2:16b"
+echo "Ollama:     llama3.1:8b + qwen3.5:4b + deepseek-coder:6.7b-instruct"
 echo "Working dir: $(pwd)"
 echo "GPU:        $(nvidia-smi --query-gpu=name --format=csv,noheader 2>/dev/null || echo 'not available')"
 echo "================"

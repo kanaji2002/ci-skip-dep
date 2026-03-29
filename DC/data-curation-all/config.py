@@ -51,7 +51,7 @@ NOT_PACKAGES = [
 OLLAMA_URL = "http://localhost:11434"
 OLLAMA_MODEL_LLAMA = "llama3.1:8b"
 OLLAMA_MODEL_QWEN = "qwen3.5:4b"
-OLLAMA_MODEL_DEEPSEEK = "deepseek-coder-v2:16b"
+OLLAMA_MODEL_DEEPSEEK = "deepseek-coder:6.7b-instruct"
 
 # --- API設定 ---
 API_RETRY_MAX = 5
