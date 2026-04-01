@@ -1,0 +1,177 @@
+Now using node v20.20.0 (npm v10.8.2)
+=== Job Info ===
+Job ID:   4211742
+Node:     cc21gpu00
+Python:   Python 3.10.19
+Node.js:  v20.20.0
+Args:     --limit 5
+================
+step1 results loaded: 67 repos
+Target: 5 repos  |  Output: /work/rintaro-k/research/RQ1/output/step2_results.csv
+
+============================================================
+[netreconlab/parse-server-any-analytics-adapter]  test_cmd: nyc --reporter=lcov jasmine
+  Cloning ...
+  npm install (baseline) ...
+  Running baseline test ...
+  baseline: ERROR  (0.0s)
+
+  --- model: depcheck ---
+  to_remove: ['@babel/cli', '@babel/core', '@babel/preset-typescript', '@types/jasmine', 'eslint', 'jasmine', 'madge', 'nyc', 'typescript']
+  post_removal: SKIP (baseline ERROR)
+
+  --- model: knip ---
+  to_remove: ['@babel/preset-typescript', '@types/jasmine', 'jasmine']
+  post_removal: SKIP (baseline ERROR)
+
+  --- model: llama ---
+  to_remove: ['analytics', '@babel/cli', '@babel/core', '@babel/eslint-parser', '@babel/preset-env', '@babel/preset-typescript', '@types/jasmine', 'eslint', 'eslint-plugin-flowtype', 'jasmine', 'madge', 'nyc', 'typescript']
+  post_removal: SKIP (baseline ERROR)
+
+  --- model: qwen ---
+  to_remove: ['analytics', '@babel/cli', '@babel/core', '@babel/eslint-parser', '@babel/preset-env', '@babel/preset-typescript', '@types/jasmine', 'eslint-plugin-flowtype', 'madge', 'nyc']
+  post_removal: SKIP (baseline ERROR)
+
+  --- model: deepseek ---
+  to_remove: ['analytics', '@babel/cli', '@babel/core', '@babel/eslint-parser', '@babel/preset-env', '@babel/preset-typescript', '@types/jasmine', 'eslint', 'eslint-plugin-flowtype', 'jasmine', 'madge', 'nyc', 'typescript']
+  post_removal: SKIP (baseline ERROR)
+  Saved (1 repos done)
+
+============================================================
+[nodeshift/faas-js-runtime]  test_cmd: npm run test:source && npm run test:types
+  Cloning ...
+  npm install (baseline) ...
+  Running baseline test ...
+  baseline: PASS  (10.5s)
+
+  --- model: depcheck ---
+  to_remove: ['@cyclonedx/cyclonedx-npm', '@typescript-eslint/eslint-plugin', 'colortape', 'eslint', 'nyc', 'typescript']
+  npm install (restore) ...
+  npm uninstall ['@cyclonedx/cyclonedx-npm', '@typescript-eslint/eslint-plugin', 'colortape', 'eslint', 'nyc', 'typescript'] ...
+  Running test after removal ...
+  post_removal: FAIL  (0.2s)
+
+  --- model: knip ---
+  to_remove: ['@typescript-eslint/eslint-plugin', 'supertest', 'tape']
+  npm install (restore) ...
+  npm uninstall ['@typescript-eslint/eslint-plugin', 'supertest', 'tape'] ...
+  Running test after removal ...
+  post_removal: PASS  (3.9s)
+
+  --- model: llama ---
+  to_remove: ['death', 'overload-protection', 'prom-client', 'qs', '@cyclonedx/cyclonedx-npm', 'colortape', 'nyc', 'tape', 'tsd']
+  npm install (restore) ...
+  npm uninstall ['death', 'overload-protection', 'prom-client', 'qs', '@cyclonedx/cyclonedx-npm', 'colortape', 'nyc', 'tape', 'tsd'] ...
+  Running test after removal ...
+  post_removal: FAIL  (0.2s)
+
+  --- model: qwen ---
+  to_remove: ['cloudevents', 'commander', 'death', 'fastify-raw-body', 'js-yaml', 'node-os-utils', 'overload-protection', 'prom-client', 'qs', '@cyclonedx/cyclonedx-npm', '@types/node', '@typescript-eslint/eslint-plugin', '@typescript-eslint/parser', 'colortape', 'eslint', 'eslint-config-prettier', 'nyc', 'supertest', 'tape', 'tsd', 'typescript']
+  npm install (restore) ...
+  npm uninstall ['cloudevents', 'commander', 'death', 'fastify-raw-body', 'js-yaml', 'node-os-utils', 'overload-protection', 'prom-client', 'qs', '@cyclonedx/cyclonedx-npm', '@types/node', '@typescript-eslint/eslint-plugin', '@typescript-eslint/parser', 'colortape', 'eslint', 'eslint-config-prettier', 'nyc', 'supertest', 'tape', 'tsd', 'typescript'] ...
+  Running test after removal ...
+  post_removal: FAIL  (0.2s)
+
+  --- model: deepseek ---
+  to_remove: ['fastify-raw-body', 'node-os-utils', 'overload-protection', 'prom-client', '@cyclonedx/cyclonedx-npm', 'colortape', 'tsd']
+  npm install (restore) ...
+  npm uninstall ['fastify-raw-body', 'node-os-utils', 'overload-protection', 'prom-client', '@cyclonedx/cyclonedx-npm', 'colortape', 'tsd'] ...
+  Running test after removal ...
+  post_removal: FAIL  (3.2s)
+  Saved (2 repos done)
+
+============================================================
+[nodeshift/kube-service-bindings]  test_cmd: nyc mocha --recursive
+  Cloning ...
+  npm install (baseline) ...
+  Running baseline test ...
+  baseline: ERROR  (0.0s)
+
+  --- model: depcheck ---
+  to_remove: ['eslint', 'eslint-plugin-import', 'eslint-plugin-n', 'eslint-plugin-promise', 'nyc', 'standard-version']
+  post_removal: SKIP (baseline ERROR)
+
+  --- model: knip ---
+  to_remove: ['mocha']
+  post_removal: SKIP (baseline ERROR)
+
+  --- model: llama ---
+  to_remove: ['kafkajs', 'node-rdkafka', 'pg-connection-string', 'redis', 'ioredis', 'mongodb', 'mongoose', 'rhea', 'mysql2', 'odbc']
+  post_removal: SKIP (baseline ERROR)
+
+  --- model: qwen ---
+  to_remove: ['eslint-config-standard', 'eslint-plugin-import', 'eslint-plugin-n', 'eslint-plugin-promise']
+  post_removal: SKIP (baseline ERROR)
+
+  --- model: deepseek ---
+  to_remove: ['kafkajs', 'node-rdkafka', 'pg-connection-string', 'redis', 'ioredis', 'mongodb', 'mongoose', 'rhea', 'mysql2', 'odbc']
+  post_removal: SKIP (baseline ERROR)
+  Saved (3 repos done)
+
+============================================================
+[jojoee/leo-profanity]  test_cmd: mocha test test/**/*.spec.js
+  Cloning ...
+  npm install (baseline) ...
+  Running baseline test ...
+  baseline: ERROR  (0.0s)
+
+  --- model: depcheck ---
+  to_remove: ['@stryker-mutator/core', '@stryker-mutator/mocha-runner', 'codecov', 'mocha', 'nyc', 'standard', 'ts-standard', 'typescript']
+  post_removal: SKIP (baseline ERROR)
+
+  --- model: knip ---
+  to_remove: []
+  post_removal: SKIP (baseline ERROR)
+
+  --- model: llama ---
+  to_remove: []
+  post_removal: SKIP (baseline ERROR)
+
+  --- model: qwen ---
+  to_remove: ['@stryker-mutator/core', '@stryker-mutator/mocha-runner', 'codecov', 'nyc', 'standard', 'ts-standard']
+  post_removal: SKIP (baseline ERROR)
+
+  --- model: deepseek ---
+  to_remove: []
+  post_removal: SKIP (baseline ERROR)
+  Saved (4 repos done)
+
+============================================================
+[nvuillam/markdown-table-formatter]  test_cmd: mocha "test/**/*.test.js"
+  Cloning ...
+  npm install (baseline) ...
+  Running baseline test ...
+  baseline: ERROR  (0.0s)
+
+  --- model: depcheck ---
+  to_remove: ['eslint', 'mega-linter-runner', 'mocha', 'nyc', 'which']
+  post_removal: SKIP (baseline ERROR)
+
+  --- model: knip ---
+  to_remove: ['mega-linter-runner', 'which']
+  post_removal: SKIP (baseline ERROR)
+
+  --- model: llama ---
+  to_remove: ['find-package-json', 'markdown-table-prettify', 'optionator', '@babel/eslint-parser', 'eslint', 'mega-linter-runner', 'mocha', 'nyc', 'which']
+  post_removal: SKIP (baseline ERROR)
+
+  --- model: qwen ---
+  to_remove: ['debug', 'find-package-json', 'glob', 'markdown-table-prettify', 'optionator']
+  post_removal: SKIP (baseline ERROR)
+
+  --- model: deepseek ---
+  to_remove: ['debug', 'find-package-json', 'glob', 'optionator', '@babel/eslint-parser', 'mega-linter-runner', 'which']
+  post_removal: SKIP (baseline ERROR)
+  Saved (5 repos done)
+
+Finished. Results: /work/rintaro-k/research/RQ1/output/step2_results.csv
+
+=== Summary ===
+post_removal_result  FAIL  PASS  SKIP
+model                                
+deepseek                1     0     4
+depcheck                1     0     4
+knip                    0     1     4
+llama                   1     0     4
+qwen                    1     0     4
+=== Done (165s) ===

@@ -68,7 +68,7 @@ is_skippable = (upgraded_dep ∈ unused_dep ∪ unused_dev_dep) AND (parent_buil
 | **knip** | `npx --yes knip --reporter json` (サブプロセス) | `knip_unused_dep`, `knip_unused_dev_dep` |
 | **llama** | Ollama HTTP API (`llama3.1:8b`) | `llama_unused_dep`, `llama_unused_dev_dep`, `llama_missing_dep` |
 | **qwen** | Ollama HTTP API (`qwen3.5:4b`) | `qwen_unused_dep`, `qwen_unused_dev_dep`, `qwen_missing_dep` |
-| **deepseek** | Ollama HTTP API (`deepseek-coder-v2:16b`) | `deepseek_unused_dep`, `deepseek_unused_dev_dep`, `deepseek_missing_dep` |
+| **deepseek** | Ollama HTTP API (`deepseek-coder:6.7b-instruct`) | `deepseek_unused_dep`, `deepseek_unused_dev_dep`, `deepseek_missing_dep` |
 
 各モデルに対して独立に `{model}_dep_status` と `{model}_is_skippable` が計算される。
 
@@ -110,7 +110,7 @@ data-curation-all/
 - Slurm クラスタ (`isgpu4h200_week` パーティション, GPU x2)
 - Python 3.10 (pyenv, 仮想環境 `py3`)
 - Node.js 20 (nvm) + depcheck 1.4.7 + npx knip (都度インストール)
-- Ollama (Singularity コンテナ) — llama3.1:8b + qwen3.5:4b + deepseek-coder-v2:16b
+- Ollama (Singularity コンテナ) — llama3.1:8b + qwen3.5:4b + deepseek-coder:6.7b-instruct
 
 ## 実行方法
 

@@ -68,7 +68,7 @@ is_skippable = (upgraded_dep ∈ unused_dep ∪ unused_dev_dep) AND (parent_buil
 | **knip** | `npx --yes knip --reporter json` (サブプロセス) | `knip_unused_dep`, `knip_unused_dev_dep` |
 | **llama** | Ollama HTTP API (`llama3.1:8b`) | `llama_unused_dep`, `llama_unused_dev_dep`, `llama_missing_dep` |
 | **qwen** | Ollama HTTP API (`qwen3.5:4b`) | `qwen_unused_dep`, `qwen_unused_dev_dep`, `qwen_missing_dep` |
-| **deepseek** | Ollama HTTP API (`deepseek-coder-v2:16b`) | `deepseek_unused_dep`, `deepseek_unused_dev_dep`, `deepseek_missing_dep` |
+| **deepseek** | Ollama HTTP API (`deepseek-coder:6.7b-instruct`) | `deepseek_unused_dep`, `deepseek_unused_dev_dep`, `deepseek_missing_dep` |
 
 各モデルに対して独立に `{model}_dep_status` と `{model}_is_skippable` が計算される。
 
@@ -135,12 +135,6 @@ python3 pipeline_main.py --repo-list /path/to/repos.csv --final-only
 ```
 
 ## ジョブ結果の解析プロトコル
-
-ユーザーがジョブID（数字）を提示して「解析して」「結果を見て」等と依頼した場合、**必ず以下のコマンドを実行**してその出力をそのまま提示する。
-
-```bash
-python3 /work/rintaro-k/research/analyze_job.py <job_id>
-```
 
 - 出力フォーマットは `analyze_job.py` が固定しているため、追加の要約・整形・補足は不要
 - ただし出力の後に「注意点」や「考察」がある場合は簡潔に追記してよい

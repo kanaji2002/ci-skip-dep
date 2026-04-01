@@ -381,28 +381,31 @@ def run_llm(repo_path: str, model: str) -> Tuple[List[str], List[str], List[str]
 
     prompt = _build_prompt(template, variables)
 
-    # Qwen3系のthinkingモードを無効化 (/no_think トークンをプロンプト末尾に付加)
-    if model.startswith("qwen3"):
-        prompt = prompt + "\n/no_think"
-
     try:
-        response = requests.post(
-            f"{config.OLLAMA_URL}/api/generate",
-            json={
-                "model": model,
-                "prompt": prompt,
-                "stream": False,
-                **({"think": False} if model.startswith("qwen3") else {}),
-                "options": {
-                    "temperature": 0,
-                    "num_predict": 8000,
-                    "num_ctx": 16384,
-                },
+        chat_payload = {
+            "model": model,
+            "messages": [{"role": "user", "content": prompt}],
+            "stream": False,
+            "options": {
+                "temperature": 0,
+                "num_predict": 8000,
+                "num_ctx": 16384,
             },
+        }
+        # Qwen3系のthinkingモードを無効化
+        if model.startswith("qwen3"):
+            chat_payload["think"] = False
+        # deepseek-coderはJSONを返さないことがあるため、constrained decodingを強制
+        if "deepseek" in model:
+            chat_payload["format"] = "json"
+
+        response = requests.post(
+            f"{config.OLLAMA_URL}/api/chat",
+            json=chat_payload,
             timeout=LLM_TIMEOUT,
         )
         response.raise_for_status()
-        response_text = response.json().get("response", "")
+        response_text = response.json().get("message", {}).get("content", "")
     except Exception as e:
         print(f"  Ollama ({model}) API error: {e}")
         return [], [], [], False
