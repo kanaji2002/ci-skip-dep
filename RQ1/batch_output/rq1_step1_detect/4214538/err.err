@@ -1,0 +1,58 @@
+time=2026-04-03T10:44:51.636+09:00 level=INFO source=routes.go:1665 msg="server config" env="map[CUDA_VISIBLE_DEVICES:0 GGML_VK_VISIBLE_DEVICES: GPU_DEVICE_ORDINAL:0 HIP_VISIBLE_DEVICES: HSA_OVERRIDE_GFX_VERSION: HTTPS_PROXY: HTTP_PROXY: NO_PROXY: OLLAMA_CONTEXT_LENGTH:0 OLLAMA_DEBUG:INFO OLLAMA_EDITOR: OLLAMA_FLASH_ATTENTION:false OLLAMA_GPU_OVERHEAD:0 OLLAMA_HOST:http://0.0.0.0:11434 OLLAMA_KEEP_ALIVE:5m0s OLLAMA_KV_CACHE_TYPE: OLLAMA_LLM_LIBRARY: OLLAMA_LOAD_TIMEOUT:5m0s OLLAMA_MAX_LOADED_MODELS:0 OLLAMA_MAX_QUEUE:512 OLLAMA_MODELS:/work/rintaro-k/research/ollama_models OLLAMA_MULTIUSER_CACHE:false OLLAMA_NEW_ENGINE:false OLLAMA_NOHISTORY:false OLLAMA_NOPRUNE:false OLLAMA_NO_CLOUD:false OLLAMA_NUM_PARALLEL:1 OLLAMA_ORIGINS:[http://localhost https://localhost http://localhost:* https://localhost:* http://127.0.0.1 https://127.0.0.1 http://127.0.0.1:* https://127.0.0.1:* http://0.0.0.0 https://0.0.0.0 http://0.0.0.0:* https://0.0.0.0:* app://* file://* tauri://* vscode-webview://* vscode-file://*] OLLAMA_REMOTES:[ollama.com] OLLAMA_SCHED_SPREAD:false OLLAMA_VULKAN:false ROCR_VISIBLE_DEVICES:0 http_proxy: https_proxy: no_proxy:]"
+time=2026-04-03T10:44:51.637+09:00 level=INFO source=routes.go:1667 msg="Ollama cloud disabled: false"
+time=2026-04-03T10:44:51.649+09:00 level=INFO source=images.go:477 msg="total blobs: 30"
+time=2026-04-03T10:44:51.655+09:00 level=INFO source=images.go:484 msg="total unused blobs removed: 0"
+time=2026-04-03T10:44:51.667+09:00 level=INFO source=routes.go:1720 msg="Listening on [::]:11434 (version 0.17.5)"
+time=2026-04-03T10:44:51.669+09:00 level=INFO source=runner.go:67 msg="discovering available GPUs..."
+time=2026-04-03T10:44:51.669+09:00 level=WARN source=runner.go:485 msg="user overrode visible devices" CUDA_VISIBLE_DEVICES=0
+time=2026-04-03T10:44:51.669+09:00 level=WARN source=runner.go:485 msg="user overrode visible devices" ROCR_VISIBLE_DEVICES=0
+time=2026-04-03T10:44:51.669+09:00 level=WARN source=runner.go:485 msg="user overrode visible devices" GPU_DEVICE_ORDINAL=0
+time=2026-04-03T10:44:51.669+09:00 level=WARN source=runner.go:489 msg="if GPUs are not correctly discovered, unset and try again"
+time=2026-04-03T10:44:51.669+09:00 level=INFO source=runner.go:106 msg="experimental Vulkan support disabled.  To enable, set OLLAMA_VULKAN=1"
+time=2026-04-03T10:44:51.672+09:00 level=INFO source=server.go:430 msg="starting runner" cmd="/usr/bin/ollama runner --ollama-engine --port 45867"
+time=2026-04-03T10:44:52.487+09:00 level=INFO source=server.go:430 msg="starting runner" cmd="/usr/bin/ollama runner --ollama-engine --port 33249"
+time=2026-04-03T10:44:53.175+09:00 level=INFO source=server.go:430 msg="starting runner" cmd="/usr/bin/ollama runner --ollama-engine --port 41533"
+time=2026-04-03T10:44:53.428+09:00 level=INFO source=types.go:42 msg="inference compute" id=GPU-a83cabb1-d5b5-6cb4-fe2c-3f03b5ccba70 filter_id="" library=CUDA compute=8.0 name=CUDA0 description="NVIDIA A100-PCIE-40GB" libdirs=ollama,cuda_v12 driver=12.2 pci_id=0000:3b:00.0 type=discrete total="40.0 GiB" available="39.4 GiB"
+time=2026-04-03T10:44:53.428+09:00 level=INFO source=routes.go:1770 msg="vram-based default context" total_vram="40.0 GiB" default_num_ctx=32768
+[?2026h[?25l[1Gpulling manifest ⠋ [K[?25h[?2026l[?2026h[?25l[1Gpulling manifest ⠙ [K[?25h[?2026l[?2026h[?25l[1Gpulling manifest ⠹ [K[?25h[?2026l[?2026h[?25l[1Gpulling manifest ⠸ [K[?25h[?2026l[?2026h[?25l[1Gpulling manifest ⠼ [K[?25h[?2026l[?2026h[?25l[1Gpulling manifest ⠴ [K[?25h[?2026l[?2026h[?25l[1Gpulling manifest ⠦ [K[?25h[?2026l[?2026h[?25l[1Gpulling manifest ⠧ [K[?25h[?2026l[?2026h[?25l[1Gpulling manifest [K
+pulling 667b0c1932bc: 100% ▕██████████████████▏ 4.9 GB                         [K
+pulling 948af2743fc7: 100% ▕██████████████████▏ 1.5 KB                         [K
+pulling 0ba8f0e314b4: 100% ▕██████████████████▏  12 KB                         [K
+pulling 56bb8bd477a5: 100% ▕██████████████████▏   96 B                         [K
+pulling 455f34728c9b: 100% ▕██████████████████▏  487 B                         [K
+verifying sha256 digest [K
+writing manifest [K
+success [K[?25h[?2026l
+[?2026h[?25l[1Gpulling manifest ⠋ [K[?25h[?2026l[?2026h[?25l[1Gpulling manifest ⠙ [K[?25h[?2026l[?2026h[?25l[1Gpulling manifest ⠹ [K[?25h[?2026l[?2026h[?25l[1Gpulling manifest ⠸ [K[?25h[?2026l[?2026h[?25l[1Gpulling manifest ⠼ [K[?25h[?2026l[?2026h[?25l[1Gpulling manifest ⠴ [K[?25h[?2026l[?2026h[?25l[1Gpulling manifest ⠦ [K[?25h[?2026l[?2026h[?25l[1Gpulling manifest [K
+pulling 81fb60c7daa8: 100% ▕██████████████████▏ 3.4 GB                         [K
+pulling 7339fa418c9a: 100% ▕██████████████████▏  11 KB                         [K
+pulling 9371364b27a5: 100% ▕██████████████████▏   65 B                         [K
+pulling de9fed2251b3: 100% ▕██████████████████▏  475 B                         [K
+verifying sha256 digest [K
+writing manifest [K
+success [K[?25h[?2026l
+[?2026h[?25l[1Gpulling manifest ⠋ [K[?25h[?2026l[?2026h[?25l[1Gpulling manifest ⠙ [K[?25h[?2026l[?2026h[?25l[1Gpulling manifest ⠹ [K[?25h[?2026l[?2026h[?25l[1Gpulling manifest ⠸ [K[?25h[?2026l[?2026h[?25l[1Gpulling manifest ⠼ [K[?25h[?2026l[?2026h[?25l[1Gpulling manifest ⠴ [K[?25h[?2026l[?2026h[?25l[1Gpulling manifest ⠦ [K[?25h[?2026l[?2026h[?25l[1Gpulling manifest ⠧ [K[?25h[?2026l[?2026h[?25l[1Gpulling manifest ⠇ [K[?25h[?2026l[?2026h[?25l[1Gpulling manifest [K
+pulling 59bb50d8116b: 100% ▕██████████████████▏ 3.8 GB                         [K
+pulling a3a0e9449cb6: 100% ▕██████████████████▏  13 KB                         [K
+pulling 8893e08fa9f9: 100% ▕██████████████████▏   59 B                         [K
+pulling 8972a96b8ff1: 100% ▕██████████████████▏  297 B                         [K
+pulling 772f510b9558: 100% ▕██████████████████▏  483 B                         [K
+verifying sha256 digest [K
+writing manifest [K
+success [K[?25h[?2026l
+Traceback (most recent call last):
+  File "/work/rintaro-k/research/RQ1/step1_detect/run.py", line 409, in <module>
+    main()
+  File "/work/rintaro-k/research/RQ1/step1_detect/run.py", line 370, in main
+    df = pd.read_csv(args.repo_list)
+  File "/work/rintaro-k/.pyenv/versions/py3/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/work/rintaro-k/.pyenv/versions/py3/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "/work/rintaro-k/.pyenv/versions/py3/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+  File "/work/rintaro-k/.pyenv/versions/py3/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+  File "/work/rintaro-k/.pyenv/versions/py3/lib/python3.10/site-packages/pandas/io/common.py", line 873, in get_handle
+    handle = open(
+FileNotFoundError: [Errno 2] No such file or directory: '/work/rintaro-k/research/PS/js/ps8/ps8_filtered_more_than_70%_linecoverage.csv'

@@ -1,0 +1,20 @@
+Now using node v20.20.0 (npm v10.8.2)
+=== Starting Ollama ===
+[GIN] 2026/04/03 - 10:44:56 | 200 |   19.791869ms |       127.0.0.1 | GET      "/api/tags"
+Ollama ready.
+[GIN] 2026/04/03 - 10:44:56 | 200 |      28.611µs |       127.0.0.1 | HEAD     "/"
+[GIN] 2026/04/03 - 10:44:57 | 200 |  802.488202ms |       127.0.0.1 | POST     "/api/pull"
+[GIN] 2026/04/03 - 10:44:57 | 200 |      48.001µs |       127.0.0.1 | HEAD     "/"
+[GIN] 2026/04/03 - 10:44:58 | 200 |  711.328699ms |       127.0.0.1 | POST     "/api/pull"
+[GIN] 2026/04/03 - 10:44:59 | 200 |      69.354µs |       127.0.0.1 | HEAD     "/"
+[GIN] 2026/04/03 - 10:45:00 | 200 |  915.419389ms |       127.0.0.1 | POST     "/api/pull"
+=== Job Info ===
+Job ID:   4214538
+Node:     cc21gpu05
+Python:   Python 3.10.19
+Node.js:  v20.20.0
+depcheck: 1.4.7
+GPU:      NVIDIA A100-PCIE-40GB
+Args:     '(none)'
+================
+=== Stopping Ollama (PID: 1866023) ===

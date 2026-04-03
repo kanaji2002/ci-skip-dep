@@ -258,6 +258,12 @@ def main():
             failed += 1
             continue
 
+        if cov["lines"] < 70:
+            print(f"  => SKIP (nyc_lines={cov['lines']}% < 70)")
+            save_progress(repo, f"fail_low_coverage(lines={cov['lines']}%)")
+            failed += 1
+            continue
+
         row_out = dict(row)
         row_out["nyc_lines"]      = cov["lines"]
         row_out["nyc_branches"]   = cov["branches"]

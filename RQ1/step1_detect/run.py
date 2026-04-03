@@ -1,6 +1,6 @@
 """
 Step 1: 未使用依存検知
-PS8 CSV に記載の各リポジトリを clone し、5モデルで未使用依存を検知する。
+PS7 CSV に記載の各リポジトリを clone し、5モデルで未使用依存を検知する。
 出力: RQ1/output/step1_results.csv
 
 使い方:
@@ -36,8 +36,8 @@ OUTPUT_DIR  = os.path.join(RQ1_DIR, "output")
 CLONES_DIR  = os.path.join(OUTPUT_DIR, "clones")
 RESULTS_CSV = os.path.join(OUTPUT_DIR, "step1_results.csv")
 
-PS8_CSV = os.path.join(_ROOT, "PS", "js", "ps8",
-                       "ps8_filtered_more_than_70%_linecoverage.csv")
+PS7_CSV = os.path.join(_ROOT, "PS", "js", "ps7",
+                       "ps7_filtered_more_than_70%_linecoverage.csv")
 
 PROMPTS_BASE = os.path.join(_ROOT, "DC", "data-curation-all", "prompts")
 
@@ -358,7 +358,7 @@ def analyze_repo(owner: str, repo: str) -> Dict[str, Any]:
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--repo-list", default=PS8_CSV)
+    parser.add_argument("--repo-list", default=PS7_CSV)
     parser.add_argument("--limit", type=int, default=None)
     parser.add_argument("--skip",  type=int, default=0)
     parser.add_argument("--output", default=RESULTS_CSV)
