@@ -20,6 +20,7 @@ import argparse
 import ast
 import json
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -131,6 +132,31 @@ def npm_uninstall(repo_path: str, packages: List[str]) -> bool:
         print(f"  [npm uninstall] error: {e}")
         return False
 
+def get_packages_used_in_scripts(repo_path: str, candidates: List[str]) -> List[str]:
+    """package.json の scripts で直接実行されているパッケージ名を返す。
+    テストランナー等のCLIツール (nyc, mocha, jasmine, etc.) が誤って削除されないようにする。
+    """
+    pkg_json_path = os.path.join(repo_path, "package.json")
+    if not os.path.exists(pkg_json_path):
+        return []
+    try:
+        with open(pkg_json_path) as f:
+            pkg = json.load(f)
+        scripts = pkg.get("scripts", {})
+        script_text = " ".join(str(v) for v in scripts.values())
+        used = []
+        for p in candidates:
+            # 通常呼び出し (例: "nyc mocha") または node_modules/.bin/ 経由の呼び出し
+            pattern = (
+                r'(?:(?<![/@\w])' + re.escape(p) + r'(?![\w/-])'
+                + r'|node_modules/\.bin/' + re.escape(p) + r'(?![\w/-]))'
+            )
+            if re.search(pattern, script_text):
+                used.append(p)
+        return used
+    except Exception:
+        return []
+
 def git_restore_package_json(repo_path: str) -> bool:
     """package.json を git で元の状態に戻す"""
     try:
@@ -194,16 +220,20 @@ def verify_repo(
     for model in MODELS:
         unused_dep     = parse_list_col(step1_row.get(f"{model}_unused_dep"))
         unused_dev_dep = parse_list_col(step1_row.get(f"{model}_unused_dev_dep"))
-        to_remove = list(dict.fromkeys(unused_dep + unused_dev_dep))  # 重複除去
+        # devDependencies は CLIツール等が scripts で使われている可能性を検知しきれないため除外
+        to_remove = list(dict.fromkeys(unused_dep))  # runtime dependencies のみ・重複除去
 
         print(f"\n  --- model: {model} ---")
-        print(f"  to_remove: {to_remove}")
+        print(f"  to_remove (runtime deps only): {to_remove}")
+
+        actually_removed_dep     = [d for d in unused_dep     if d in to_remove]
+        actually_removed_dev_dep: List[str] = []
 
         row: Dict[str, Any] = {
             "repo":                    full_name,
             "model":                   model,
-            "removed_deps":            unused_dep,
-            "removed_dev_deps":        unused_dev_dep,
+            "removed_deps":            actually_removed_dep,
+            "removed_dev_deps":        actually_removed_dev_dep,
             "baseline_result":         baseline_result,
             "baseline_duration_sec":   round(baseline_dur, 2),
             "post_removal_result":     None,

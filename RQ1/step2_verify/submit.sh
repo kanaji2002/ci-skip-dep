@@ -1,7 +1,7 @@
 #!/bin/bash -l
 #SBATCH --job-name=rq1_step2_verify
-#SBATCH --time=04:00:00
-#SBATCH --partition=gpu_short
+#SBATCH --time=4-04:00:00
+#SBATCH --partition=gpu_long
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=4
 #SBATCH --mem=64G
