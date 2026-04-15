@@ -56,6 +56,12 @@ Count these as usage even if the package never appears in an import.
 4. Identify unused and missing packages
 
 ## Output
+Bucket assignment rules (strict):
+- `unused_dependencies`: packages from `### dependencies` only
+- `unused_dev_dependencies`: packages from `### dev_dependencies` only
+- `unused_extra_dependencies`: packages from `### {extra_dep_label}` only
+- Never put a package in a bucket it does not belong to in the input
+
 Return ONLY valid JSON:
 {
   "unused_dependencies": [],

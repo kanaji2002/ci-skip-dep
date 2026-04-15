@@ -37,7 +37,7 @@ CLONES_DIR  = os.path.join(OUTPUT_DIR, "clones")
 RESULTS_CSV = os.path.join(OUTPUT_DIR, "step1_results.csv")
 
 PS7_CSV = os.path.join(_ROOT, "PS", "js", "ps7",
-                       "ps7_filtered_more_than_70%_linecoverage.csv")
+                       "ps7_filtered.csv")
 
 PROMPTS_BASE = os.path.join(_ROOT, "DC", "data-curation-all", "prompts")
 
@@ -92,6 +92,7 @@ def run_depcheck(repo_path: str) -> Tuple[List[str], List[str], bool]:
 # ---------------------------------------------------------------------------
 # knip
 # ---------------------------------------------------------------------------
+
 
 def run_knip(repo_path: str) -> Tuple[List[str], List[str], bool]:
     try:
@@ -310,7 +311,7 @@ def analyze_repo(owner: str, repo: str) -> Dict[str, Any]:
 
     # clone
     if os.path.exists(repo_path):
-        shutil.rmtree(repo_path)
+        shutil.rmtree(repo_path, ignore_errors=True)
     try:
         print(f"  Cloning ...")
         Repo.clone_from(f"https://github.com/{owner}/{repo}", repo_path)

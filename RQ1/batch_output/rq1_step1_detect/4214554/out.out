@@ -1,0 +1,2508 @@
+Now using node v20.20.0 (npm v10.8.2)
+=== Starting Ollama ===
+Ollama ready.
+=== Job Info ===
+Job ID:   4214554
+Node:     cc21gpu05
+Python:   Python 3.10.19
+Node.js:  v20.20.0
+depcheck: 1.4.7
+GPU:      NVIDIA A100-PCIE-40GB
+Args:     '(none)'
+================
+Target: 191 repos  |  Output: /work/rintaro-k/research/RQ1/output/step1_results-2.csv
+
+============================================================
+[avoidwork/keysort]
+  Cloning ...
+  depcheck  : 0 unused_dep, 7 unused_dev_dep  (0.7s) ok=True
+  knip      : 0 unused_dep, 1 unused_dev_dep  (6.5s) ok=True
+  [llm:llama3.1:8b] eval_count=48 prompt_eval_count=2803
+  llama     : 0 unused_dep, 0 unused_dev_dep  (2.9s) ok=True
+  [llm:qwen3.5:4b] eval_count=100 prompt_eval_count=3029
+  qwen      : 0 unused_dep, 2 unused_dev_dep  (5.6s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=65 prompt_eval_count=3705
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (3.9s) ok=True
+  Saved (1 done)
+
+============================================================
+[crypto-browserify/ripemd160]
+  Cloning ...
+  depcheck  : 0 unused_dep, 5 unused_dev_dep  (0.7s) ok=True
+  knip      : 0 unused_dep, 0 unused_dev_dep  (3.5s) ok=False
+  [llm:llama3.1:8b] eval_count=59 prompt_eval_count=1210
+  llama     : 1 unused_dep, 2 unused_dev_dep  (2.7s) ok=True
+  [llm:qwen3.5:4b] eval_count=254 prompt_eval_count=1272
+  qwen      : 2 unused_dep, 6 unused_dev_dep  (5.3s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=116 prompt_eval_count=1667
+  deepseek  : 2 unused_dep, 7 unused_dev_dep  (2.0s) ok=True
+  Saved (2 done)
+
+============================================================
+[mafintosh/to-buffer]
+  Cloning ...
+  depcheck  : 0 unused_dep, 5 unused_dev_dep  (0.7s) ok=True
+  knip      : 0 unused_dep, 0 unused_dev_dep  (10.9s) ok=False
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  Saved (3 done)
+
+============================================================
+[raynos/for-each]
+  Cloning ...
+  depcheck  : 0 unused_dep, 8 unused_dev_dep  (0.7s) ok=True
+  knip      : 0 unused_dep, 2 unused_dev_dep  (11.1s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  Saved (4 done)
+
+============================================================
+[albertorestifo/node-dijkstra]
+  Cloning ...
+  depcheck  : 0 unused_dep, 5 unused_dev_dep  (0.7s) ok=True
+  knip      : 0 unused_dep, 8 unused_dev_dep  (9.3s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  Saved (5 done)
+
+============================================================
+[pokeapi/pokeapi-js-wrapper]
+  Cloning ...
+  depcheck  : 0 unused_dep, 6 unused_dev_dep  (1.1s) ok=True
+  knip      : 0 unused_dep, 2 unused_dev_dep  (9.3s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  Saved (6 done)
+
+============================================================
+[winstonjs/winston-transport]
+  Cloning ...
+  depcheck  : 0 unused_dep, 5 unused_dev_dep  (0.8s) ok=True
+  knip      : 0 unused_dep, 2 unused_dev_dep  (13.4s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  Saved (7 done)
+
+============================================================
+[vimeo/player.js]
+  Cloning ...
+  depcheck  : 0 unused_dep, 13 unused_dev_dep  (1.1s) ok=True
+  knip      : 0 unused_dep, 5 unused_dev_dep  (14.4s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  Saved (8 done)
+
+============================================================
+[jsonata-js/jsonata]
+  Cloning ...
+  depcheck  : 0 unused_dep, 12 unused_dev_dep  (1.8s) ok=True
+  knip      : 0 unused_dep, 5 unused_dev_dep  (14.4s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.1s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.1s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.1s) ok=False
+  Saved (9 done)
+
+============================================================
+[jonkemp/inline-css]
+  Cloning ...
+  depcheck  : 0 unused_dep, 7 unused_dev_dep  (0.8s) ok=True
+  knip      : 0 unused_dep, 2 unused_dev_dep  (7.9s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  Saved (10 done)
+
+============================================================
+[entrecode/shiro-trie]
+  Cloning ...
+  depcheck  : 0 unused_dep, 10 unused_dev_dep  (0.7s) ok=True
+  knip      : 0 unused_dep, 3 unused_dev_dep  (8.5s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  Saved (11 done)
+
+============================================================
+[tshino/compare]
+  Cloning ...
+  depcheck  : 0 unused_dep, 3 unused_dev_dep  (1.9s) ok=True
+  knip      : 0 unused_dep, 1 unused_dev_dep  (6.0s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.1s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  Saved (12 done)
+
+============================================================
+[inaturalist/inaturalistjs]
+  Cloning ...
+  depcheck  : 0 unused_dep, 13 unused_dev_dep  (1.6s) ok=True
+  knip      : 0 unused_dep, 3 unused_dev_dep  (10.5s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.1s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.1s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  Saved (13 done)
+
+============================================================
+[firebase/superstatic]
+  Cloning ...
+  depcheck  : 0 unused_dep, 6 unused_dev_dep  (1.0s) ok=True
+  knip      : 3 unused_dep, 11 unused_dev_dep  (9.4s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  Saved (14 done)
+
+============================================================
+[es-shims/array.prototype.at]
+  Cloning ...
+  depcheck  : 0 unused_dep, 8 unused_dev_dep  (0.7s) ok=True
+  knip      : 0 unused_dep, 4 unused_dev_dep  (9.6s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  Saved (15 done)
+
+============================================================
+[hexojs/hexo-html-minifier]
+  Cloning ...
+  depcheck  : 0 unused_dep, 3 unused_dev_dep  (0.6s) ok=True
+  knip      : 0 unused_dep, 0 unused_dev_dep  (11.8s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  Saved (16 done)
+
+============================================================
+[panva/oidc-token-hash]
+  Cloning ...
+  depcheck  : 0 unused_dep, 3 unused_dev_dep  (0.7s) ok=True
+  knip      : 0 unused_dep, 0 unused_dev_dep  (6.7s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  Saved (17 done)
+
+============================================================
+[howardabrams/node-mocks-http]
+  Cloning ...
+  depcheck  : 0 unused_dep, 8 unused_dev_dep  (0.9s) ok=True
+  knip      : 0 unused_dep, 6 unused_dev_dep  (10.0s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  Saved (18 done)
+
+============================================================
+[x-profiler/xtransit]
+  Cloning ...
+  depcheck  : 0 unused_dep, 4 unused_dev_dep  (0.9s) ok=True
+  knip      : 3 unused_dep, 0 unused_dev_dep  (13.8s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.1s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  Saved (19 done)
+
+============================================================
+[expressjs/multer]
+  Cloning ...
+  depcheck  : 0 unused_dep, 3 unused_dev_dep  (0.8s) ok=True
+  knip      : 0 unused_dep, 0 unused_dev_dep  (13.1s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  Saved (20 done)
+
+============================================================
+[proj4js/proj4js]
+  Cloning ...
+  depcheck  : 0 unused_dep, 7 unused_dev_dep  (1.4s) ok=True
+  knip      : 0 unused_dep, 1 unused_dev_dep  (8.5s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.1s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.1s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.1s) ok=False
+  Saved (21 done)
+
+============================================================
+[nodeshift/openshift-rest-client]
+  Cloning ...
+  depcheck  : 0 unused_dep, 10 unused_dev_dep  (0.8s) ok=True
+  knip      : 0 unused_dep, 4 unused_dev_dep  (9.6s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  Saved (22 done)
+
+============================================================
+[jpdias/node-red-contrib-self-healing]
+  Cloning ...
+  depcheck  : 6 unused_dep, 6 unused_dev_dep  (1.0s) ok=True
+  knip      : 8 unused_dep, 2 unused_dev_dep  (14.2s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  Saved (23 done)
+
+============================================================
+[expressjs/serve-static]
+  Cloning ...
+  depcheck  : 0 unused_dep, 7 unused_dev_dep  (0.7s) ok=True
+  knip      : 0 unused_dep, 0 unused_dev_dep  (10.2s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  Saved (24 done)
+
+============================================================
+[strongloop/loopback-datasource-juggler]
+  Cloning ...
+  depcheck  : 0 unused_dep, 8 unused_dev_dep  (2.8s) ok=True
+  knip      : 0 unused_dep, 4 unused_dev_dep  (8.3s) ok=True
+  [llm:llama3.1:8b] eval_count=142 prompt_eval_count=6572
+  llama     : 8 unused_dep, 8 unused_dev_dep  (11.9s) ok=True
+  [llm:qwen3.5:4b] eval_count=698 prompt_eval_count=7109
+  qwen      : 12 unused_dep, 11 unused_dev_dep  (24.2s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=201 prompt_eval_count=9383
+  deepseek  : 12 unused_dep, 13 unused_dev_dep  (9.1s) ok=True
+  Saved (25 done)
+
+============================================================
+[jshttp/accepts]
+  Cloning ...
+  depcheck  : 0 unused_dep, 7 unused_dev_dep  (0.7s) ok=True
+  knip      : 0 unused_dep, 0 unused_dev_dep  (9.7s) ok=True
+  [llm:llama3.1:8b] eval_count=77 prompt_eval_count=1181
+  llama     : 1 unused_dep, 5 unused_dev_dep  (3.6s) ok=True
+  [llm:qwen3.5:4b] eval_count=105 prompt_eval_count=1239
+  qwen      : 1 unused_dep, 0 unused_dev_dep  (3.6s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=149 prompt_eval_count=1619
+  deepseek  : 2 unused_dep, 10 unused_dev_dep  (3.6s) ok=True
+  Saved (26 done)
+
+============================================================
+[opentok/opentok-node]
+  Cloning ...
+  depcheck  : 0 unused_dep, 5 unused_dev_dep  (1.0s) ok=True
+  knip      : 0 unused_dep, 0 unused_dev_dep  (7.5s) ok=True
+  [llm:llama3.1:8b] eval_count=103 prompt_eval_count=2140
+  llama     : 5 unused_dep, 6 unused_dev_dep  (4.9s) ok=True
+  [llm:qwen3.5:4b] eval_count=366 prompt_eval_count=2292
+  qwen      : 7 unused_dep, 0 unused_dev_dep  (8.6s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=122 prompt_eval_count=3035
+  deepseek  : 4 unused_dep, 7 unused_dev_dep  (3.5s) ok=True
+  Saved (27 done)
+
+============================================================
+[recurly/recurly-client-node]
+  Cloning ...
+  depcheck  : 0 unused_dep, 8 unused_dev_dep  (1.3s) ok=True
+  knip      : 0 unused_dep, 6 unused_dev_dep  (11.7s) ok=True
+  [llm:llama3.1:8b] eval_count=67 prompt_eval_count=3766
+  llama     : 1 unused_dep, 3 unused_dev_dep  (9.1s) ok=True
+  [llm:qwen3.5:4b] eval_count=278 prompt_eval_count=3973
+  qwen      : 0 unused_dep, 9 unused_dev_dep  (18.3s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=65 prompt_eval_count=5354
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (2.2s) ok=True
+  Saved (28 done)
+
+============================================================
+[aliyun/darabonba-php-generator]
+  Cloning ...
+  depcheck  : 2 unused_dep, 11 unused_dev_dep  (1.1s) ok=True
+  knip      : 4 unused_dep, 7 unused_dev_dep  (11.0s) ok=True
+  [llm:llama3.1:8b] eval_count=92 prompt_eval_count=1669
+  llama     : 1 unused_dep, 8 unused_dev_dep  (7.0s) ok=True
+  [llm:qwen3.5:4b] eval_count=93 prompt_eval_count=1782
+  qwen      : 2 unused_dep, 5 unused_dev_dep  (11.8s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=108 prompt_eval_count=2251
+  deepseek  : 2 unused_dep, 4 unused_dev_dep  (2.4s) ok=True
+  Saved (29 done)
+
+============================================================
+[ljharb/html-element-map]
+  Cloning ...
+  depcheck  : 0 unused_dep, 7 unused_dev_dep  (0.7s) ok=True
+  knip      : 0 unused_dep, 1 unused_dev_dep  (10.5s) ok=True
+  [llm:llama3.1:8b] eval_count=129 prompt_eval_count=1711
+  llama     : 2 unused_dep, 13 unused_dev_dep  (10.3s) ok=True
+  [llm:qwen3.5:4b] eval_count=323 prompt_eval_count=1820
+  qwen      : 2 unused_dep, 12 unused_dev_dep  (7.1s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=131 prompt_eval_count=2390
+  deepseek  : 2 unused_dep, 11 unused_dev_dep  (2.3s) ok=True
+  Saved (30 done)
+
+============================================================
+[log4js-node/log4js-node]
+  Cloning ...
+  depcheck  : 0 unused_dep, 8 unused_dev_dep  (1.4s) ok=True
+  knip      : 5 unused_dep, 6 unused_dev_dep  (12.9s) ok=True
+  [llm:llama3.1:8b] eval_count=71 prompt_eval_count=5113
+  llama     : 1 unused_dep, 4 unused_dev_dep  (5.1s) ok=True
+  [llm:qwen3.5:4b] eval_count=678 prompt_eval_count=5478
+  qwen      : 5 unused_dep, 19 unused_dev_dep  (16.7s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=208 prompt_eval_count=7158
+  deepseek  : 4 unused_dep, 16 unused_dev_dep  (5.8s) ok=True
+  Saved (31 done)
+
+============================================================
+[pillarjs/router]
+  Cloning ...
+  depcheck  : 0 unused_dep, 2 unused_dev_dep  (0.8s) ok=True
+  knip      : 0 unused_dep, 0 unused_dev_dep  (10.5s) ok=True
+  [llm:llama3.1:8b] eval_count=60 prompt_eval_count=1499
+  llama     : 1 unused_dep, 2 unused_dev_dep  (2.8s) ok=True
+  [llm:qwen3.5:4b] eval_count=258 prompt_eval_count=1587
+  qwen      : 5 unused_dep, 0 unused_dev_dep  (6.5s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=98 prompt_eval_count=2068
+  deepseek  : 4 unused_dep, 4 unused_dev_dep  (1.9s) ok=True
+  Saved (32 done)
+
+============================================================
+[alallier/reload]
+  Cloning ...
+  depcheck  : 2 unused_dep, 3 unused_dev_dep  (0.7s) ok=True
+  knip      : 7 unused_dep, 2 unused_dev_dep  (8.4s) ok=True
+  [llm:llama3.1:8b] eval_count=103 prompt_eval_count=1407
+  llama     : 7 unused_dep, 5 unused_dev_dep  (5.1s) ok=True
+  [llm:qwen3.5:4b] eval_count=207 prompt_eval_count=1497
+  qwen      : 6 unused_dep, 0 unused_dev_dep  (6.1s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=110 prompt_eval_count=1924
+  deepseek  : 7 unused_dep, 5 unused_dev_dep  (1.9s) ok=True
+  Saved (33 done)
+
+============================================================
+[yahoo/fetchr]
+  Cloning ...
+  depcheck  : 0 unused_dep, 4 unused_dev_dep  (0.9s) ok=True
+  knip      : 0 unused_dep, 8 unused_dev_dep  (9.6s) ok=True
+  [llm:llama3.1:8b] eval_count=110 prompt_eval_count=2192
+  llama     : 13 unused_dep, 0 unused_dev_dep  (5.5s) ok=True
+  [llm:qwen3.5:4b] eval_count=535 prompt_eval_count=2342
+  qwen      : 1 unused_dep, 14 unused_dev_dep  (10.5s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=119 prompt_eval_count=3084
+  deepseek  : 1 unused_dep, 11 unused_dev_dep  (2.8s) ok=True
+  Saved (34 done)
+
+============================================================
+[lovell/limax]
+  Cloning ...
+  depcheck  : 0 unused_dep, 5 unused_dev_dep  (0.7s) ok=True
+  knip      : 0 unused_dep, 0 unused_dev_dep  (15.2s) ok=True
+  [llm:llama3.1:8b] eval_count=64 prompt_eval_count=1079
+  llama     : 1 unused_dep, 2 unused_dev_dep  (3.4s) ok=True
+  [llm:qwen3.5:4b] eval_count=65 prompt_eval_count=1130
+  qwen      : 2 unused_dep, 0 unused_dev_dep  (3.1s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=111 prompt_eval_count=1491
+  deepseek  : 3 unused_dep, 6 unused_dev_dep  (2.0s) ok=True
+  Saved (35 done)
+
+============================================================
+[twg/devour]
+  Cloning ...
+  depcheck  : 0 unused_dep, 6 unused_dev_dep  (0.9s) ok=True
+  knip      : 0 unused_dep, 4 unused_dev_dep  (9.7s) ok=True
+  [llm:llama3.1:8b] eval_count=76 prompt_eval_count=2172
+  llama     : 1 unused_dep, 4 unused_dev_dep  (3.6s) ok=True
+  [llm:qwen3.5:4b] eval_count=59 prompt_eval_count=2305
+  qwen      : 1 unused_dep, 0 unused_dev_dep  (4.4s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=111 prompt_eval_count=3202
+  deepseek  : 3 unused_dep, 5 unused_dev_dep  (2.2s) ok=True
+  Saved (36 done)
+
+============================================================
+[amqp/rhea]
+  Cloning ...
+  depcheck  : 0 unused_dep, 8 unused_dev_dep  (2.6s) ok=True
+  knip      : 0 unused_dep, 3 unused_dev_dep  (11.5s) ok=True
+  [llm:llama3.1:8b] eval_count=120 prompt_eval_count=4355
+  llama     : 3 unused_dep, 12 unused_dev_dep  (6.9s) ok=True
+  [llm:qwen3.5:4b] eval_count=298 prompt_eval_count=4739
+  qwen      : 1 unused_dep, 7 unused_dev_dep  (12.1s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=131 prompt_eval_count=6258
+  deepseek  : 1 unused_dep, 13 unused_dev_dep  (3.6s) ok=True
+  Saved (37 done)
+
+============================================================
+[sinonjs/nise]
+  Cloning ...
+  depcheck  : 0 unused_dep, 7 unused_dev_dep  (1.0s) ok=True
+  knip      : 0 unused_dep, 8 unused_dev_dep  (10.3s) ok=True
+  [llm:llama3.1:8b] eval_count=146 prompt_eval_count=2030
+  llama     : 3 unused_dep, 14 unused_dev_dep  (8.2s) ok=True
+  [llm:qwen3.5:4b] eval_count=73 prompt_eval_count=2142
+  qwen      : 3 unused_dep, 0 unused_dev_dep  (3.9s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=226 prompt_eval_count=2790
+  deepseek  : 4 unused_dep, 15 unused_dev_dep  (3.9s) ok=True
+  Saved (38 done)
+
+============================================================
+[eexit/ghost-storage-cloudinary]
+  Cloning ...
+  depcheck  : 1 unused_dep, 3 unused_dev_dep  (0.8s) ok=True
+  knip      : 4 unused_dep, 5 unused_dev_dep  (14.8s) ok=True
+  [llm:llama3.1:8b] eval_count=99 prompt_eval_count=2371
+  llama     : 5 unused_dep, 5 unused_dev_dep  (4.9s) ok=True
+  [llm:qwen3.5:4b] eval_count=211 prompt_eval_count=2546
+  qwen      : 8 unused_dep, 0 unused_dev_dep  (6.4s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=114 prompt_eval_count=3175
+  deepseek  : 5 unused_dep, 5 unused_dev_dep  (2.3s) ok=True
+  Saved (39 done)
+
+============================================================
+[fastify/secure-json-parse]
+  Cloning ...
+  depcheck  : 0 unused_dep, 5 unused_dev_dep  (0.7s) ok=True
+  knip      : 0 unused_dep, 1 unused_dev_dep  (19.1s) ok=True
+  [llm:llama3.1:8b] eval_count=55 prompt_eval_count=1176
+  llama     : 0 unused_dep, 2 unused_dev_dep  (2.7s) ok=True
+  [llm:qwen3.5:4b] eval_count=216 prompt_eval_count=1239
+  qwen      : 1 unused_dep, 8 unused_dev_dep  (4.8s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=66 prompt_eval_count=1638
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (1.4s) ok=True
+  Saved (40 done)
+
+============================================================
+[mabunixda/node-red-contrib-alexa-home]
+  Cloning ...
+  depcheck  : 0 unused_dep, 4 unused_dev_dep  (1.0s) ok=True
+  knip      : 0 unused_dep, 1 unused_dev_dep  (12.4s) ok=True
+  [llm:llama3.1:8b] eval_count=105 prompt_eval_count=2583
+  llama     : 1 unused_dep, 10 unused_dev_dep  (5.5s) ok=True
+  [llm:qwen3.5:4b] eval_count=246 prompt_eval_count=2760
+  qwen      : 2 unused_dep, 3 unused_dev_dep  (7.5s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=150 prompt_eval_count=3753
+  deepseek  : 4 unused_dep, 12 unused_dev_dep  (4.9s) ok=True
+  Saved (41 done)
+
+============================================================
+[solid/oidc-auth-manager]
+  Cloning ...
+  depcheck  : 2 unused_dep, 5 unused_dev_dep  (0.8s) ok=True
+  knip      : 2 unused_dep, 10 unused_dev_dep  (20.0s) ok=True
+  [llm:llama3.1:8b] eval_count=144 prompt_eval_count=2265
+  llama     : 7 unused_dep, 11 unused_dev_dep  (6.7s) ok=True
+  [llm:qwen3.5:4b] eval_count=287 prompt_eval_count=2409
+  qwen      : 11 unused_dep, 13 unused_dev_dep  (7.2s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=274 prompt_eval_count=3149
+  deepseek  : 12 unused_dep, 13 unused_dev_dep  (5.3s) ok=True
+  Saved (42 done)
+
+============================================================
+[aliyun/darabonba-go-generator]
+  Cloning ...
+  depcheck  : 0 unused_dep, 3 unused_dev_dep  (1.1s) ok=True
+  knip      : 0 unused_dep, 0 unused_dev_dep  (9.3s) ok=True
+  [llm:llama3.1:8b] eval_count=61 prompt_eval_count=1570
+  llama     : 1 unused_dep, 1 unused_dev_dep  (2.9s) ok=True
+  [llm:qwen3.5:4b] eval_count=71 prompt_eval_count=1680
+  qwen      : 1 unused_dep, 1 unused_dev_dep  (4.0s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=92 prompt_eval_count=2136
+  deepseek  : 2 unused_dep, 2 unused_dev_dep  (1.7s) ok=True
+  Saved (43 done)
+
+============================================================
+[mtth/avsc]
+  Cloning ...
+  depcheck  : 0 unused_dep, 6 unused_dev_dep  (1.3s) ok=True
+  knip      : 0 unused_dep, 1 unused_dev_dep  (6.1s) ok=True
+  [llm:llama3.1:8b] eval_count=47 prompt_eval_count=1668
+  llama     : 0 unused_dep, 1 unused_dev_dep  (2.8s) ok=True
+  [llm:qwen3.5:4b] eval_count=260 prompt_eval_count=1750
+  qwen      : 5 unused_dep, 0 unused_dev_dep  (6.2s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=101 prompt_eval_count=2320
+  deepseek  : 3 unused_dep, 6 unused_dev_dep  (2.0s) ok=True
+  Saved (44 done)
+
+============================================================
+[expressjs/compression]
+  Cloning ...
+  depcheck  : 0 unused_dep, 7 unused_dev_dep  (0.8s) ok=True
+  knip      : 0 unused_dep, 0 unused_dev_dep  (10.2s) ok=True
+  [llm:llama3.1:8b] eval_count=121 prompt_eval_count=1257
+  llama     : 5 unused_dep, 9 unused_dev_dep  (6.7s) ok=True
+  [llm:qwen3.5:4b] eval_count=63 prompt_eval_count=1318
+  qwen      : 2 unused_dep, 0 unused_dev_dep  (3.1s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=151 prompt_eval_count=1704
+  deepseek  : 3 unused_dep, 4 unused_dev_dep  (2.5s) ok=True
+  Saved (45 done)
+
+============================================================
+[jshttp/http-errors]
+  Cloning ...
+  depcheck  : 0 unused_dep, 7 unused_dev_dep  (0.7s) ok=True
+  knip      : 0 unused_dep, 0 unused_dev_dep  (10.2s) ok=True
+  [llm:llama3.1:8b] eval_count=98 prompt_eval_count=1225
+  llama     : 4 unused_dep, 5 unused_dev_dep  (4.4s) ok=True
+  [llm:qwen3.5:4b] eval_count=223 prompt_eval_count=1287
+  qwen      : 5 unused_dep, 0 unused_dev_dep  (6.3s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=110 prompt_eval_count=1685
+  deepseek  : 2 unused_dep, 4 unused_dev_dep  (2.3s) ok=True
+  Saved (46 done)
+
+============================================================
+[confuser/graphql-constraint-directive]
+  Cloning ...
+  depcheck  : 0 unused_dep, 5 unused_dev_dep  (1.1s) ok=True
+  knip      : 0 unused_dep, 2 unused_dev_dep  (11.0s) ok=True
+  [llm:llama3.1:8b] eval_count=73 prompt_eval_count=4657
+  llama     : 1 unused_dep, 5 unused_dev_dep  (4.1s) ok=True
+  [llm:qwen3.5:4b] eval_count=226 prompt_eval_count=4937
+  qwen      : 1 unused_dep, 8 unused_dev_dep  (10.0s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=110 prompt_eval_count=6637
+  deepseek  : 2 unused_dep, 7 unused_dev_dep  (3.3s) ok=True
+  Saved (47 done)
+
+============================================================
+[mattiasw/exifreader]
+  Cloning ...
+  depcheck  : 0 unused_dep, 14 unused_dev_dep  (2.2s) ok=True
+  knip      : 0 unused_dep, 4 unused_dev_dep  (13.7s) ok=True
+  [llm:llama3.1:8b] eval_count=35 prompt_eval_count=7895
+  llama     : 0 unused_dep, 0 unused_dev_dep  (3.5s) ok=True
+  [llm:qwen3.5:4b] eval_count=130 prompt_eval_count=8551
+  qwen      : 0 unused_dep, 2 unused_dev_dep  (12.5s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=295 prompt_eval_count=11576
+  deepseek  : 19 unused_dep, 22 unused_dev_dep  (10.7s) ok=True
+  Saved (48 done)
+
+============================================================
+[openntf/dojo-webpack-plugin]
+  Cloning ...
+  depcheck  : 0 unused_dep, 6 unused_dev_dep  (1.7s) ok=True
+  knip      : 2 unused_dep, 4 unused_dev_dep  (8.9s) ok=True
+  [llm:llama3.1:8b] eval_count=143 prompt_eval_count=7794
+  llama     : 4 unused_dep, 14 unused_dev_dep  (9.9s) ok=True
+  [llm:qwen3.5:4b] eval_count=75 prompt_eval_count=8287
+  qwen      : 4 unused_dep, 0 unused_dev_dep  (11.8s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=177 prompt_eval_count=10858
+  deepseek  : 4 unused_dep, 17 unused_dev_dep  (5.9s) ok=True
+  Saved (49 done)
+
+============================================================
+[pactumjs/pactum]
+  Cloning ...
+  depcheck  : 0 unused_dep, 2 unused_dev_dep  (1.6s) ok=True
+  knip      : 0 unused_dep, 2 unused_dev_dep  (5.9s) ok=True
+  [llm:llama3.1:8b] eval_count=107 prompt_eval_count=5957
+  llama     : 8 unused_dep, 4 unused_dev_dep  (6.1s) ok=True
+  [llm:qwen3.5:4b] eval_count=255 prompt_eval_count=6424
+  qwen      : 12 unused_dep, 4 unused_dev_dep  (12.3s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=122 prompt_eval_count=8802
+  deepseek  : 4 unused_dep, 2 unused_dev_dep  (4.5s) ok=True
+  Saved (50 done)
+
+============================================================
+[expressjs/session]
+  Cloning ...
+  depcheck  : 0 unused_dep, 3 unused_dev_dep  (0.9s) ok=True
+  knip      : 0 unused_dep, 0 unused_dev_dep  (9.3s) ok=True
+  [llm:llama3.1:8b] eval_count=86 prompt_eval_count=1629
+  llama     : 1 unused_dep, 7 unused_dev_dep  (4.0s) ok=True
+  [llm:qwen3.5:4b] eval_count=62 prompt_eval_count=1722
+  qwen      : 2 unused_dep, 0 unused_dev_dep  (3.4s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=139 prompt_eval_count=2234
+  deepseek  : 8 unused_dep, 8 unused_dev_dep  (2.5s) ok=True
+  Saved (51 done)
+
+============================================================
+[jshttp/basic-auth]
+  Cloning ...
+  depcheck  : 0 unused_dep, 8 unused_dev_dep  (0.7s) ok=True
+  knip      : 0 unused_dep, 1 unused_dev_dep  (11.2s) ok=True
+  [llm:llama3.1:8b] eval_count=55 prompt_eval_count=1026
+  llama     : 1 unused_dep, 2 unused_dev_dep  (3.4s) ok=True
+  [llm:qwen3.5:4b] eval_count=57 prompt_eval_count=1066
+  qwen      : 1 unused_dep, 0 unused_dev_dep  (11.4s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=137 prompt_eval_count=1412
+  deepseek  : 1 unused_dep, 9 unused_dev_dep  (3.3s) ok=True
+  Saved (52 done)
+
+============================================================
+[jshttp/vary]
+  Cloning ...
+  depcheck  : 0 unused_dep, 8 unused_dev_dep  (0.7s) ok=True
+  knip      : 0 unused_dep, 3 unused_dev_dep  (10.3s) ok=True
+  [llm:llama3.1:8b] eval_count=48 prompt_eval_count=1117
+  llama     : 0 unused_dep, 0 unused_dev_dep  (5.7s) ok=True
+  [llm:qwen3.5:4b] eval_count=209 prompt_eval_count=1168
+  qwen      : 0 unused_dep, 6 unused_dev_dep  (8.3s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=66 prompt_eval_count=1532
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (1.2s) ok=True
+  Saved (53 done)
+
+============================================================
+[expressjs/response-time]
+  Cloning ...
+  depcheck  : 0 unused_dep, 8 unused_dev_dep  (0.7s) ok=True
+  knip      : 0 unused_dep, 1 unused_dev_dep  (10.0s) ok=True
+  [llm:llama3.1:8b] eval_count=96 prompt_eval_count=1088
+  llama     : 1 unused_dep, 8 unused_dev_dep  (8.8s) ok=True
+  [llm:qwen3.5:4b] eval_count=715 prompt_eval_count=1136
+  [llm:qwen3.5:4b] JSON parse error: Expecting ',' delimiter: line 26 column 176 (char 1100)
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (12.2s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] eval_count=109 prompt_eval_count=1483
+  deepseek  : 1 unused_dep, 5 unused_dev_dep  (1.9s) ok=True
+  Saved (54 done)
+
+============================================================
+[jshttp/fresh]
+  Cloning ...
+  depcheck  : 0 unused_dep, 7 unused_dev_dep  (0.7s) ok=True
+  knip      : 0 unused_dep, 2 unused_dev_dep  (10.1s) ok=True
+  [llm:llama3.1:8b] eval_count=51 prompt_eval_count=1138
+  llama     : 0 unused_dep, 1 unused_dev_dep  (10.3s) ok=True
+  [llm:qwen3.5:4b] eval_count=191 prompt_eval_count=1193
+  qwen      : 0 unused_dep, 6 unused_dev_dep  (12.0s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=66 prompt_eval_count=1567
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (1.8s) ok=True
+  Saved (55 done)
+
+============================================================
+[jshttp/range-parser]
+  Cloning ...
+  depcheck  : 0 unused_dep, 8 unused_dev_dep  (0.7s) ok=True
+  knip      : 0 unused_dep, 1 unused_dev_dep  (10.5s) ok=True
+  [llm:llama3.1:8b] eval_count=49 prompt_eval_count=1020
+  llama     : 0 unused_dep, 1 unused_dev_dep  (6.5s) ok=True
+  [llm:qwen3.5:4b] eval_count=268 prompt_eval_count=1061
+  qwen      : 0 unused_dep, 6 unused_dev_dep  (8.9s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=66 prompt_eval_count=1398
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (1.2s) ok=True
+  Saved (56 done)
+
+============================================================
+[expressjs/serve-index]
+  Cloning ...
+  depcheck  : 0 unused_dep, 3 unused_dev_dep  (0.8s) ok=True
+  knip      : 0 unused_dep, 0 unused_dev_dep  (8.8s) ok=True
+  [llm:llama3.1:8b] eval_count=76 prompt_eval_count=1222
+  llama     : 3 unused_dep, 3 unused_dev_dep  (3.7s) ok=True
+  [llm:qwen3.5:4b] eval_count=62 prompt_eval_count=1285
+  qwen      : 2 unused_dep, 0 unused_dev_dep  (2.9s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=100 prompt_eval_count=1657
+  deepseek  : 4 unused_dep, 3 unused_dev_dep  (1.7s) ok=True
+  Saved (57 done)
+
+============================================================
+[nfischer/shelljs-exec-proxy]
+  Cloning ...
+  depcheck  : 0 unused_dep, 6 unused_dev_dep  (0.7s) ok=True
+  knip      : 0 unused_dep, 1 unused_dev_dep  (7.5s) ok=True
+  [llm:llama3.1:8b] eval_count=65 prompt_eval_count=1215
+  llama     : 2 unused_dep, 2 unused_dev_dep  (3.9s) ok=True
+  [llm:qwen3.5:4b] eval_count=294 prompt_eval_count=1291
+  qwen      : 1 unused_dep, 6 unused_dev_dep  (6.3s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=81 prompt_eval_count=1668
+  deepseek  : 1 unused_dep, 2 unused_dev_dep  (1.5s) ok=True
+  Saved (58 done)
+
+============================================================
+[macedigital/express-xml-bodyparser]
+  Cloning ...
+  depcheck  : 0 unused_dep, 4 unused_dev_dep  (0.7s) ok=True
+  knip      : 0 unused_dep, 1 unused_dev_dep  (6.3s) ok=True
+  [llm:llama3.1:8b] eval_count=54 prompt_eval_count=1012
+  llama     : 1 unused_dep, 1 unused_dev_dep  (2.6s) ok=True
+  [llm:qwen3.5:4b] eval_count=8000 prompt_eval_count=1059
+  [llm:qwen3.5:4b] JSON parse error: Extra data: line 15 column 1 (char 975)
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (113.1s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] eval_count=83 prompt_eval_count=1385
+  deepseek  : 1 unused_dep, 2 unused_dev_dep  (1.7s) ok=True
+  Saved (59 done)
+
+============================================================
+[expressjs/express]
+  Cloning ...
+  depcheck  : 0 unused_dep, 4 unused_dev_dep  (1.7s) ok=True
+  knip      : 0 unused_dep, 10 unused_dev_dep  (9.1s) ok=True
+  [llm:llama3.1:8b] eval_count=110 prompt_eval_count=5200
+  llama     : 13 unused_dep, 0 unused_dev_dep  (6.9s) ok=True
+  [llm:qwen3.5:4b] eval_count=1096 prompt_eval_count=5582
+  qwen      : 27 unused_dep, 16 unused_dev_dep  (23.9s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=262 prompt_eval_count=7242
+  deepseek  : 27 unused_dep, 16 unused_dev_dep  (5.9s) ok=True
+  Saved (60 done)
+
+============================================================
+[inspect-js/is-generator-function]
+  Cloning ...
+  depcheck  : 0 unused_dep, 12 unused_dev_dep  (0.7s) ok=True
+  knip      : 0 unused_dep, 0 unused_dev_dep  (12.4s) ok=False
+  [llm:llama3.1:8b] eval_count=179 prompt_eval_count=1622
+  llama     : 4 unused_dep, 18 unused_dev_dep  (8.7s) ok=True
+  [llm:qwen3.5:4b] eval_count=193 prompt_eval_count=1702
+  qwen      : 3 unused_dep, 7 unused_dev_dep  (5.7s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=206 prompt_eval_count=2193
+  deepseek  : 5 unused_dep, 16 unused_dev_dep  (3.3s) ok=True
+  Saved (61 done)
+
+============================================================
+[inspect-js/is-symbol]
+  Cloning ...
+  depcheck  : 0 unused_dep, 12 unused_dev_dep  (0.7s) ok=True
+  knip      : 0 unused_dep, 0 unused_dev_dep  (12.1s) ok=False
+  [llm:llama3.1:8b] eval_count=87 prompt_eval_count=1468
+  llama     : 1 unused_dep, 7 unused_dev_dep  (8.6s) ok=True
+  [llm:qwen3.5:4b] eval_count=72 prompt_eval_count=1549
+  qwen      : 3 unused_dep, 0 unused_dev_dep  (10.5s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=202 prompt_eval_count=2002
+  deepseek  : 3 unused_dep, 17 unused_dev_dep  (5.6s) ok=True
+  Saved (62 done)
+
+============================================================
+[mastercard/client-encryption-nodejs]
+  Cloning ...
+  depcheck  : 0 unused_dep, 6 unused_dev_dep  (3.1s) ok=True
+  knip      : 0 unused_dep, 2 unused_dev_dep  (7.0s) ok=True
+  [llm:llama3.1:8b] eval_count=79 prompt_eval_count=1945
+  llama     : 1 unused_dep, 4 unused_dev_dep  (10.5s) ok=True
+  [llm:qwen3.5:4b] eval_count=58 prompt_eval_count=2068
+  qwen      : 1 unused_dep, 0 unused_dev_dep  (8.1s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=109 prompt_eval_count=2732
+  deepseek  : 1 unused_dep, 6 unused_dev_dep  (2.1s) ok=True
+  Saved (63 done)
+
+============================================================
+[inspect-js/is-arguments]
+  Cloning ...
+  depcheck  : 0 unused_dep, 11 unused_dev_dep  (0.7s) ok=True
+  knip      : 0 unused_dep, 0 unused_dev_dep  (11.5s) ok=False
+  [llm:llama3.1:8b] eval_count=77 prompt_eval_count=1350
+  llama     : 2 unused_dep, 4 unused_dev_dep  (4.1s) ok=True
+  [llm:qwen3.5:4b] eval_count=226 prompt_eval_count=1423
+  qwen      : 1 unused_dep, 8 unused_dev_dep  (5.0s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=197 prompt_eval_count=1875
+  deepseek  : 2 unused_dep, 14 unused_dev_dep  (3.0s) ok=True
+  Saved (64 done)
+
+============================================================
+[grimmdude/midiwriterjs]
+  Cloning ...
+  depcheck  : 0 unused_dep, 20 unused_dev_dep  (1.1s) ok=True
+  knip      : 0 unused_dep, 12 unused_dev_dep  (10.1s) ok=True
+  [llm:llama3.1:8b] eval_count=161 prompt_eval_count=3282
+  llama     : 1 unused_dep, 18 unused_dev_dep  (7.6s) ok=True
+  [llm:qwen3.5:4b] eval_count=336 prompt_eval_count=3525
+  qwen      : 1 unused_dep, 18 unused_dev_dep  (9.6s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=314 prompt_eval_count=4785
+  deepseek  : 1 unused_dep, 25 unused_dev_dep  (6.4s) ok=True
+  Saved (65 done)
+
+============================================================
+[es-shims/aggregateerror]
+  Cloning ...
+  depcheck  : 0 unused_dep, 10 unused_dev_dep  (0.7s) ok=True
+  knip      : 0 unused_dep, 6 unused_dev_dep  (12.5s) ok=True
+  [llm:llama3.1:8b] eval_count=164 prompt_eval_count=1817
+  llama     : 8 unused_dep, 13 unused_dev_dep  (7.8s) ok=True
+  [llm:qwen3.5:4b] eval_count=464 prompt_eval_count=1932
+  qwen      : 3 unused_dep, 2 unused_dev_dep  (9.1s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=149 prompt_eval_count=2490
+  deepseek  : 4 unused_dep, 10 unused_dev_dep  (3.7s) ok=True
+  Saved (66 done)
+
+============================================================
+[cesiumgs/gltf-pipeline]
+  Cloning ...
+  depcheck  : 0 unused_dep, 8 unused_dev_dep  (1.3s) ok=True
+  knip      : 1 unused_dep, 5 unused_dev_dep  (15.9s) ok=True
+  [llm:llama3.1:8b] eval_count=107 prompt_eval_count=4452
+  llama     : 1 unused_dep, 9 unused_dev_dep  (5.9s) ok=True
+  [llm:qwen3.5:4b] eval_count=285 prompt_eval_count=4762
+  qwen      : 2 unused_dep, 14 unused_dev_dep  (10.0s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=182 prompt_eval_count=6234
+  deepseek  : 7 unused_dep, 14 unused_dev_dep  (4.2s) ok=True
+  Saved (67 done)
+
+============================================================
+[auth0/auth0.js]
+  Cloning ...
+  depcheck  : 1 unused_dep, 20 unused_dev_dep  (3.0s) ok=True
+  knip      : 1 unused_dep, 13 unused_dev_dep  (21.2s) ok=True
+  [llm:llama3.1:8b] eval_count=264 prompt_eval_count=5719
+  llama     : 8 unused_dep, 30 unused_dev_dep  (14.8s) ok=True
+  [llm:qwen3.5:4b] eval_count=654 prompt_eval_count=6196
+  qwen      : 8 unused_dep, 46 unused_dev_dep  (16.7s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=403 prompt_eval_count=8331
+  deepseek  : 6 unused_dep, 45 unused_dev_dep  (10.1s) ok=True
+  Saved (68 done)
+
+============================================================
+[zazoomauro/node-dependency-injection]
+  Cloning ...
+  depcheck  : 1 unused_dep, 15 unused_dev_dep  (1.4s) ok=True
+  knip      : 3 unused_dep, 6 unused_dev_dep  (10.3s) ok=True
+  [llm:llama3.1:8b] eval_count=106 prompt_eval_count=6283
+  llama     : 1 unused_dep, 10 unused_dev_dep  (6.3s) ok=True
+  [llm:qwen3.5:4b] eval_count=460 prompt_eval_count=6727
+  qwen      : 7 unused_dep, 27 unused_dev_dep  (15.1s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=583 prompt_eval_count=8894
+  deepseek  : 33 unused_dep, 27 unused_dev_dep  (13.9s) ok=True
+  Saved (69 done)
+
+============================================================
+[barzik/branch-name-lint]
+  Cloning ...
+  depcheck  : 2 unused_dep, 3 unused_dev_dep  (0.7s) ok=True
+  knip      : 2 unused_dep, 1 unused_dev_dep  (11.5s) ok=True
+  [llm:llama3.1:8b] eval_count=71 prompt_eval_count=1265
+  llama     : 1 unused_dep, 5 unused_dev_dep  (3.2s) ok=True
+  [llm:qwen3.5:4b] eval_count=63 prompt_eval_count=1349
+  qwen      : 2 unused_dep, 0 unused_dev_dep  (3.5s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=115 prompt_eval_count=1752
+  deepseek  : 2 unused_dep, 7 unused_dev_dep  (2.4s) ok=True
+  Saved (70 done)
+
+============================================================
+[sap/odata-library]
+  Cloning ...
+  depcheck  : 0 unused_dep, 8 unused_dev_dep  (2.0s) ok=True
+  knip      : 0 unused_dep, 4 unused_dev_dep  (7.9s) ok=True
+  [llm:llama3.1:8b] eval_count=77 prompt_eval_count=10074
+  llama     : 1 unused_dep, 5 unused_dev_dep  (5.9s) ok=True
+  [llm:qwen3.5:4b] eval_count=308 prompt_eval_count=10890
+  qwen      : 2 unused_dep, 0 unused_dev_dep  (19.0s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=121 prompt_eval_count=14271
+  deepseek  : 4 unused_dep, 8 unused_dev_dep  (6.1s) ok=True
+  Saved (71 done)
+
+============================================================
+[scurker/currency.js]
+  Cloning ...
+  depcheck  : 0 unused_dep, 14 unused_dev_dep  (0.8s) ok=True
+  knip      : 0 unused_dep, 6 unused_dev_dep  (23.4s) ok=True
+  [llm:llama3.1:8b] eval_count=132 prompt_eval_count=1983
+  llama     : 15 unused_dep, 0 unused_dev_dep  (6.1s) ok=True
+  [llm:qwen3.5:4b] eval_count=490 prompt_eval_count=2115
+  qwen      : 24 unused_dep, 24 unused_dev_dep  (10.7s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=65 prompt_eval_count=2725
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (2.2s) ok=True
+  Saved (72 done)
+
+============================================================
+[mcollina/fastq]
+  Cloning ...
+  depcheck  : 0 unused_dep, 4 unused_dev_dep  (0.7s) ok=True
+  knip      : 0 unused_dep, 3 unused_dev_dep  (15.2s) ok=True
+  [llm:llama3.1:8b] eval_count=68 prompt_eval_count=1348
+  llama     : 7 unused_dep, 0 unused_dev_dep  (4.0s) ok=True
+  [llm:qwen3.5:4b] eval_count=518 prompt_eval_count=1425
+  qwen      : 1 unused_dep, 7 unused_dev_dep  (14.9s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=105 prompt_eval_count=1884
+  deepseek  : 2 unused_dep, 6 unused_dev_dep  (1.9s) ok=True
+  Saved (73 done)
+
+============================================================
+[razorpay/razorpay-node]
+  Cloning ...
+  depcheck  : 0 unused_dep, 4 unused_dev_dep  (1.4s) ok=True
+  knip      : 0 unused_dep, 2 unused_dev_dep  (8.2s) ok=True
+  [llm:llama3.1:8b] eval_count=96 prompt_eval_count=4742
+  llama     : 6 unused_dep, 3 unused_dev_dep  (12.2s) ok=True
+  [llm:qwen3.5:4b] eval_count=146 prompt_eval_count=5054
+  qwen      : 1 unused_dep, 4 unused_dev_dep  (25.6s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=156 prompt_eval_count=6987
+  deepseek  : 1 unused_dep, 11 unused_dev_dep  (4.5s) ok=True
+  Saved (74 done)
+
+============================================================
+[parse-community/node-apn]
+  Cloning ...
+  depcheck  : 0 unused_dep, 12 unused_dev_dep  (1.1s) ok=True
+  [knip] JSON error: Expecting value: line 1 column 1 (char 0)
+  knip      : 0 unused_dep, 0 unused_dev_dep  (10.2s) ok=False
+  [llm:llama3.1:8b] eval_count=121 prompt_eval_count=2782
+  llama     : 1 unused_dep, 11 unused_dev_dep  (6.4s) ok=True
+  [llm:qwen3.5:4b] eval_count=74 prompt_eval_count=2970
+  qwen      : 4 unused_dep, 0 unused_dev_dep  (5.3s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=232 prompt_eval_count=3873
+  deepseek  : 2 unused_dep, 17 unused_dev_dep  (4.3s) ok=True
+  Saved (75 done)
+
+============================================================
+[hex-ci/vscode-stylelint-plus]
+  Cloning ...
+  depcheck  : 0 unused_dep, 4 unused_dev_dep  (1.2s) ok=True
+  knip      : 0 unused_dep, 16 unused_dev_dep  (15.0s) ok=True
+  [llm:llama3.1:8b] eval_count=150 prompt_eval_count=4446
+  llama     : 19 unused_dep, 0 unused_dev_dep  (8.8s) ok=True
+  [llm:qwen3.5:4b] eval_count=129 prompt_eval_count=4785
+  qwen      : 0 unused_dep, 2 unused_dev_dep  (8.4s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=65 prompt_eval_count=6350
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (2.6s) ok=True
+  Saved (76 done)
+
+============================================================
+[websockets/ws]
+  Cloning ...
+  depcheck  : 0 unused_dep, 5 unused_dev_dep  (1.3s) ok=True
+  knip      : 0 unused_dep, 1 unused_dev_dep  (7.9s) ok=True
+  [llm:llama3.1:8b] eval_count=98 prompt_eval_count=2872
+  llama     : 6 unused_dep, 3 unused_dev_dep  (9.0s) ok=True
+  [llm:qwen3.5:4b] eval_count=223 prompt_eval_count=3093
+  qwen      : 0 unused_dep, 11 unused_dev_dep  (11.6s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=65 prompt_eval_count=4168
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (1.9s) ok=True
+  Saved (77 done)
+
+============================================================
+[protobufjs/protobuf.js]
+  Cloning ...
+  depcheck  : 0 unused_dep, 9 unused_dev_dep  (2.4s) ok=True
+  knip      : 0 unused_dep, 16 unused_dev_dep  (14.6s) ok=True
+  [llm:llama3.1:8b] eval_count=289 prompt_eval_count=5782
+  llama     : 11 unused_dep, 30 unused_dev_dep  (14.5s) ok=True
+  [llm:qwen3.5:4b] eval_count=525 prompt_eval_count=6185
+  qwen      : 8 unused_dep, 30 unused_dev_dep  (16.1s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=8000 prompt_eval_count=8360
+  [llm:deepseek-coder:6.7b-instruct] no JSON found | full_response='{\n  "unused_dependencies": [\n    "long: 5.0.0",\n    "google-protobuf: 3.11.3"\n  ],\n  "unused_dev_dependencies": [\n    "benchmark: 2.1.4",\n    "browserify: 17.0.0",\n    "browserify-wrap: 1.0.2",\n    "bundle-collapser: 1.3.0",\n    "chalk: 4.0.0",\n    "escodegen: 1.13.0",\n    "eslint: 8.15.0",\n    "espree: 9.0.0",\n    "estraverse: 5.1.0",\n    "gh-pages: 4.0.0",\n    "git-raw-commits: 2.0.3",\n    "git-semver-tags: 4.0.0",\n    "gulp: 4.0.2",\n    "gulp-header: 2.0.9",\n    "gulp-if: 3.0.0",\n    "gulp-so'
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (165.9s) ok=False
+  Saved (78 done)
+
+============================================================
+[remy/nodemon]
+  Cloning ...
+  depcheck  : 0 unused_dep, 10 unused_dev_dep  (1.1s) ok=True
+  knip      : 1 unused_dep, 6 unused_dev_dep  (11.9s) ok=True
+  [llm:llama3.1:8b] eval_count=83 prompt_eval_count=3365
+  llama     : 5 unused_dep, 2 unused_dev_dep  (8.6s) ok=True
+  [llm:qwen3.5:4b] eval_count=297 prompt_eval_count=3642
+  qwen      : 6 unused_dep, 0 unused_dev_dep  (8.9s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=178 prompt_eval_count=4713
+  deepseek  : 10 unused_dep, 11 unused_dev_dep  (3.7s) ok=True
+  Saved (79 done)
+
+============================================================
+[sinonjs/sinon]
+  Cloning ...
+  depcheck  : 5 unused_dep, 13 unused_dev_dep  (0.9s) ok=True
+  knip      : 0 unused_dep, 11 unused_dev_dep  (11.4s) ok=True
+  [llm:llama3.1:8b] eval_count=159 prompt_eval_count=7644
+  llama     : 2 unused_dep, 14 unused_dev_dep  (9.6s) ok=True
+  [llm:qwen3.5:4b] eval_count=304 prompt_eval_count=8177
+  qwen      : 1 unused_dep, 23 unused_dev_dep  (13.8s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=302 prompt_eval_count=10967
+  deepseek  : 2 unused_dep, 23 unused_dev_dep  (10.2s) ok=True
+  Saved (80 done)
+
+============================================================
+[appfeel/node-pushnotifications]
+  Cloning ...
+  depcheck  : 0 unused_dep, 10 unused_dev_dep  (0.9s) ok=True
+  knip      : 0 unused_dep, 3 unused_dev_dep  (12.0s) ok=True
+  [llm:llama3.1:8b] eval_count=152 prompt_eval_count=2504
+  llama     : 1 unused_dep, 18 unused_dev_dep  (7.7s) ok=True
+  [llm:qwen3.5:4b] eval_count=247 prompt_eval_count=2710
+  qwen      : 5 unused_dep, 0 unused_dev_dep  (8.0s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=112 prompt_eval_count=3600
+  deepseek  : 2 unused_dep, 6 unused_dev_dep  (2.7s) ok=True
+  Saved (81 done)
+
+============================================================
+[gulpjs/gulp]
+  Cloning ...
+  depcheck  : 0 unused_dep, 4 unused_dev_dep  (0.8s) ok=True
+  knip      : 0 unused_dep, 2 unused_dev_dep  (9.9s) ok=True
+  [llm:llama3.1:8b] eval_count=75 prompt_eval_count=1226
+  llama     : 3 unused_dep, 2 unused_dev_dep  (3.4s) ok=True
+  [llm:qwen3.5:4b] eval_count=1217 prompt_eval_count=1293
+  [llm:qwen3.5:4b] JSON parse error: Expecting ',' delimiter: line 15 column 307 (char 777)
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (19.0s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] eval_count=130 prompt_eval_count=1701
+  deepseek  : 4 unused_dep, 8 unused_dev_dep  (3.1s) ok=True
+  Saved (82 done)
+
+============================================================
+[ramda/ramda]
+  Cloning ...
+  depcheck  : 0 unused_dep, 17 unused_dev_dep  (2.9s) ok=True
+  knip      : 0 unused_dep, 10 unused_dev_dep  (12.3s) ok=True
+  [llm:llama3.1:8b] eval_count=188 prompt_eval_count=10739
+  llama     : 13 unused_dep, 11 unused_dev_dep  (11.5s) ok=True
+  [llm:qwen3.5:4b] eval_count=262 prompt_eval_count=11609
+  qwen      : 16 unused_dep, 0 unused_dev_dep  (17.5s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=585 prompt_eval_count=15596
+  deepseek  : 31 unused_dep, 31 unused_dev_dep  (19.1s) ok=True
+  Saved (83 done)
+
+============================================================
+[aliyun/darabonba]
+  Cloning ...
+  depcheck  : 0 unused_dep, 4 unused_dev_dep  (1.7s) ok=True
+  knip      : 0 unused_dep, 0 unused_dev_dep  (6.3s) ok=True
+  [llm:llama3.1:8b] eval_count=68 prompt_eval_count=1989
+  llama     : 1 unused_dep, 2 unused_dev_dep  (3.4s) ok=True
+  [llm:qwen3.5:4b] eval_count=1214 prompt_eval_count=2148
+  [llm:qwen3.5:4b] JSON parse error: Extra data: line 15 column 1 (char 1055)
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (20.5s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] eval_count=74 prompt_eval_count=2742
+  deepseek  : 1 unused_dep, 1 unused_dev_dep  (2.0s) ok=True
+  Saved (84 done)
+
+============================================================
+[alheimsins/b5-johnson-120-ipip-neo-pi-r]
+  Cloning ...
+  depcheck  : 0 unused_dep, 3 unused_dev_dep  (0.8s) ok=True
+  knip      : 0 unused_dep, 0 unused_dev_dep  (9.3s) ok=True
+  [llm:llama3.1:8b] eval_count=61 prompt_eval_count=960
+  llama     : 0 unused_dep, 4 unused_dev_dep  (2.8s) ok=True
+  [llm:qwen3.5:4b] eval_count=183 prompt_eval_count=1007
+  qwen      : 0 unused_dep, 2 unused_dev_dep  (4.1s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=66 prompt_eval_count=1336
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (1.3s) ok=True
+  Saved (85 done)
+
+============================================================
+[architect/functions]
+  Cloning ...
+  depcheck  : 0 unused_dep, 6 unused_dev_dep  (1.1s) ok=True
+  knip      : 0 unused_dep, 6 unused_dev_dep  (18.1s) ok=True
+  [llm:llama3.1:8b] eval_count=233 prompt_eval_count=4093
+  llama     : 11 unused_dep, 18 unused_dev_dep  (11.2s) ok=True
+  [llm:qwen3.5:4b] eval_count=197 prompt_eval_count=4365
+  qwen      : 9 unused_dep, 0 unused_dev_dep  (8.7s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=384 prompt_eval_count=5986
+  deepseek  : 13 unused_dep, 19 unused_dev_dep  (8.7s) ok=True
+  Saved (86 done)
+
+============================================================
+[a-synchronous/rubico]
+  Cloning ...
+  depcheck  : 0 unused_dep, 4 unused_dev_dep  (5.1s) ok=True
+  knip      : 0 unused_dep, 3 unused_dev_dep  (7.2s) ok=True
+  [llm:llama3.1:8b] eval_count=60 prompt_eval_count=8289
+  llama     : 3 unused_dep, 0 unused_dev_dep  (5.6s) ok=True
+  [llm:qwen3.5:4b] eval_count=78 prompt_eval_count=8955
+  qwen      : 2 unused_dep, 2 unused_dev_dep  (12.3s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=93 prompt_eval_count=11554
+  deepseek  : 4 unused_dep, 1 unused_dev_dep  (4.7s) ok=True
+  Saved (87 done)
+
+============================================================
+[nock/nock]
+  Cloning ...
+  depcheck  : 0 unused_dep, 11 unused_dev_dep  (1.5s) ok=True
+  knip      : 0 unused_dep, 12 unused_dev_dep  (15.7s) ok=True
+  [llm:llama3.1:8b] eval_count=196 prompt_eval_count=5476
+  llama     : 2 unused_dep, 23 unused_dev_dep  (10.9s) ok=True
+  [llm:qwen3.5:4b] eval_count=75 prompt_eval_count=5924
+  qwen      : 3 unused_dep, 0 unused_dev_dep  (8.6s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=228 prompt_eval_count=7768
+  deepseek  : 2 unused_dep, 23 unused_dev_dep  (5.5s) ok=True
+  Saved (88 done)
+
+============================================================
+[nodeshift/opossum]
+  Cloning ...
+  depcheck  : 0 unused_dep, 19 unused_dev_dep  (0.9s) ok=True
+  knip      : 0 unused_dep, 4 unused_dev_dep  (11.2s) ok=True
+  [llm:llama3.1:8b] eval_count=138 prompt_eval_count=2318
+  llama     : 6 unused_dep, 12 unused_dev_dep  (6.6s) ok=True
+  [llm:qwen3.5:4b] eval_count=74 prompt_eval_count=2488
+  qwen      : 4 unused_dep, 0 unused_dev_dep  (4.4s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=65 prompt_eval_count=3292
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (1.6s) ok=True
+  Saved (89 done)
+
+============================================================
+[smartbear/swaggerhub-cli]
+  Cloning ...
+  depcheck  : 2 unused_dep, 7 unused_dev_dep  (1.4s) ok=True
+  knip      : 10 unused_dep, 9 unused_dev_dep  (10.5s) ok=True
+  [llm:llama3.1:8b] eval_count=124 prompt_eval_count=7022
+  llama     : 7 unused_dep, 8 unused_dev_dep  (10.7s) ok=True
+  [llm:qwen3.5:4b] eval_count=442 prompt_eval_count=7495
+  qwen      : 9 unused_dep, 13 unused_dev_dep  (16.5s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=275 prompt_eval_count=10513
+  deepseek  : 10 unused_dep, 16 unused_dev_dep  (7.3s) ok=True
+  Saved (90 done)
+
+============================================================
+[jashkenas/underscore]
+  Cloning ...
+  depcheck  : 0 unused_dep, 15 unused_dev_dep  (1.8s) ok=True
+  knip      : 0 unused_dep, 1 unused_dev_dep  (14.5s) ok=True
+  [llm:llama3.1:8b] eval_count=82 prompt_eval_count=7711
+  llama     : 7 unused_dep, 0 unused_dev_dep  (6.5s) ok=True
+  [llm:qwen3.5:4b] eval_count=472 prompt_eval_count=8279
+  qwen      : 15 unused_dep, 0 unused_dev_dep  (17.7s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=239 prompt_eval_count=11232
+  deepseek  : 14 unused_dep, 1 unused_dev_dep  (7.1s) ok=True
+  Saved (91 done)
+
+============================================================
+[screwdriver-cd/screwdriver]
+  Cloning ...
+  depcheck  : 31 unused_dep, 6 unused_dev_dep  (3.5s) ok=True
+  knip      : 57 unused_dep, 16 unused_dev_dep  (15.8s) ok=True
+  [llm:llama3.1:8b] eval_count=459 prompt_eval_count=9976
+  llama     : 44 unused_dep, 11 unused_dev_dep  (23.9s) ok=True
+  [llm:qwen3.5:4b] eval_count=712 prompt_eval_count=10645
+  qwen      : 55 unused_dep, 17 unused_dev_dep  (23.4s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=888 prompt_eval_count=14368
+  deepseek  : 65 unused_dep, 21 unused_dev_dep  (24.0s) ok=True
+  Saved (92 done)
+
+============================================================
+[jshttp/compressible]
+  Cloning ...
+  depcheck  : 0 unused_dep, 7 unused_dev_dep  (0.7s) ok=True
+  knip      : 0 unused_dep, 0 unused_dev_dep  (9.8s) ok=True
+  [llm:llama3.1:8b] eval_count=67 prompt_eval_count=1100
+  llama     : 1 unused_dep, 3 unused_dev_dep  (3.1s) ok=True
+  [llm:qwen3.5:4b] eval_count=57 prompt_eval_count=1153
+  qwen      : 1 unused_dep, 0 unused_dev_dep  (2.9s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=138 prompt_eval_count=1527
+  deepseek  : 1 unused_dep, 9 unused_dev_dep  (3.0s) ok=True
+  Saved (93 done)
+
+============================================================
+[evanshortiss/lintspaces-cli]
+  Cloning ...
+  depcheck  : 0 unused_dep, 4 unused_dev_dep  (0.6s) ok=True
+  knip      : 0 unused_dep, 1 unused_dev_dep  (6.4s) ok=True
+  [llm:llama3.1:8b] eval_count=78 prompt_eval_count=1085
+  llama     : 2 unused_dep, 6 unused_dev_dep  (3.4s) ok=True
+  [llm:qwen3.5:4b] eval_count=118 prompt_eval_count=1140
+  qwen      : 2 unused_dep, 0 unused_dev_dep  (3.6s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=99 prompt_eval_count=1492
+  deepseek  : 3 unused_dep, 5 unused_dev_dep  (1.7s) ok=True
+  Saved (94 done)
+
+============================================================
+[cmaurer/relative.time.parser]
+  Cloning ...
+  depcheck  : 0 unused_dep, 9 unused_dev_dep  (0.8s) ok=True
+  knip      : 0 unused_dep, 9 unused_dev_dep  (12.0s) ok=True
+  [llm:llama3.1:8b] eval_count=44 prompt_eval_count=1163
+  llama     : 1 unused_dep, 0 unused_dev_dep  (9.8s) ok=True
+  [llm:qwen3.5:4b] eval_count=217 prompt_eval_count=1222
+  qwen      : 1 unused_dep, 14 unused_dev_dep  (12.0s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=178 prompt_eval_count=1606
+  deepseek  : 12 unused_dep, 4 unused_dev_dep  (2.6s) ok=True
+  Saved (95 done)
+
+============================================================
+[leodutra/simpleflakes]
+  Cloning ...
+  depcheck  : 0 unused_dep, 8 unused_dev_dep  (0.7s) ok=True
+  knip      : 0 unused_dep, 1 unused_dev_dep  (8.8s) ok=True
+  [llm:llama3.1:8b] eval_count=99 prompt_eval_count=1792
+  llama     : 5 unused_dep, 6 unused_dev_dep  (4.5s) ok=True
+  [llm:qwen3.5:4b] eval_count=156 prompt_eval_count=1934
+  qwen      : 0 unused_dep, 2 unused_dev_dep  (4.6s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=65 prompt_eval_count=2490
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (2.2s) ok=True
+  Saved (96 done)
+
+============================================================
+[lenchv/jks-js]
+  Cloning ...
+  depcheck  : 0 unused_dep, 2 unused_dev_dep  (0.8s) ok=True
+  knip      : 0 unused_dep, 2 unused_dev_dep  (8.2s) ok=True
+  [llm:llama3.1:8b] eval_count=65 prompt_eval_count=1458
+  llama     : 1 unused_dep, 3 unused_dev_dep  (3.5s) ok=True
+  [llm:qwen3.5:4b] eval_count=73 prompt_eval_count=1547
+  qwen      : 3 unused_dep, 0 unused_dev_dep  (4.2s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=94 prompt_eval_count=2020
+  deepseek  : 3 unused_dep, 3 unused_dev_dep  (3.2s) ok=True
+  Saved (97 done)
+
+============================================================
+[jhnns/rewire]
+  Cloning ...
+  depcheck  : 0 unused_dep, 4 unused_dev_dep  (0.8s) ok=True
+  knip      : 0 unused_dep, 3 unused_dev_dep  (6.4s) ok=True
+  [llm:llama3.1:8b] eval_count=73 prompt_eval_count=1226
+  llama     : 1 unused_dep, 6 unused_dev_dep  (3.2s) ok=True
+  [llm:qwen3.5:4b] eval_count=367 prompt_eval_count=1288
+  [llm:qwen3.5:4b] JSON parse error: Expecting ',' delimiter: line 23 column 131 (char 846)
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (7.8s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] eval_count=100 prompt_eval_count=1703
+  deepseek  : 1 unused_dep, 7 unused_dev_dep  (3.0s) ok=True
+  Saved (98 done)
+
+============================================================
+[expressjs/errorhandler]
+  Cloning ...
+  depcheck  : 0 unused_dep, 6 unused_dev_dep  (0.7s) ok=True
+  knip      : 0 unused_dep, 0 unused_dev_dep  (9.8s) ok=True
+  [llm:llama3.1:8b] eval_count=91 prompt_eval_count=1147
+  llama     : 2 unused_dep, 8 unused_dev_dep  (4.1s) ok=True
+  [llm:qwen3.5:4b] eval_count=211 prompt_eval_count=1205
+  qwen      : 2 unused_dep, 10 unused_dev_dep  (4.8s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=84 prompt_eval_count=1571
+  deepseek  : 3 unused_dep, 3 unused_dev_dep  (1.5s) ok=True
+  Saved (99 done)
+
+============================================================
+[rsuite/schema-typed]
+  Cloning ...
+  depcheck  : 0 unused_dep, 14 unused_dev_dep  (1.0s) ok=True
+  knip      : 0 unused_dep, 6 unused_dev_dep  (10.6s) ok=True
+  [llm:llama3.1:8b] eval_count=229 prompt_eval_count=2582
+  llama     : 12 unused_dep, 19 unused_dev_dep  (10.6s) ok=True
+  [llm:qwen3.5:4b] eval_count=393 prompt_eval_count=2774
+  qwen      : 1 unused_dep, 9 unused_dev_dep  (9.5s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=209 prompt_eval_count=3727
+  deepseek  : 1 unused_dep, 20 unused_dev_dep  (3.8s) ok=True
+  Saved (100 done)
+
+============================================================
+[akamai/akamaiopen-edgegrid-node]
+  Cloning ...
+  depcheck  : 0 unused_dep, 4 unused_dev_dep  (0.8s) ok=True
+  knip      : 0 unused_dep, 4 unused_dev_dep  (6.7s) ok=True
+  [llm:llama3.1:8b] eval_count=68 prompt_eval_count=1271
+  llama     : 4 unused_dep, 0 unused_dev_dep  (4.9s) ok=True
+  [llm:qwen3.5:4b] eval_count=260 prompt_eval_count=1325
+  qwen      : 1 unused_dep, 0 unused_dev_dep  (11.0s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=93 prompt_eval_count=1784
+  deepseek  : 1 unused_dep, 5 unused_dev_dep  (1.6s) ok=True
+  Saved (101 done)
+
+============================================================
+[eyevinn/hls-vodtolive]
+  Cloning ...
+  depcheck  : 0 unused_dep, 5 unused_dev_dep  (1.4s) ok=True
+  knip      : 0 unused_dep, 1 unused_dev_dep  (5.3s) ok=True
+  [llm:llama3.1:8b] eval_count=70 prompt_eval_count=1408
+  llama     : 3 unused_dep, 2 unused_dev_dep  (3.6s) ok=True
+  [llm:qwen3.5:4b] eval_count=99 prompt_eval_count=1480
+  qwen      : 3 unused_dep, 4 unused_dev_dep  (3.6s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=104 prompt_eval_count=1926
+  deepseek  : 3 unused_dep, 5 unused_dev_dep  (2.6s) ok=True
+  Saved (102 done)
+
+============================================================
+[expressjs/cors]
+  Cloning ...
+  depcheck  : 0 unused_dep, 3 unused_dev_dep  (0.7s) ok=True
+  knip      : 0 unused_dep, 1 unused_dev_dep  (8.6s) ok=True
+  [llm:llama3.1:8b] eval_count=63 prompt_eval_count=1071
+  llama     : 1 unused_dep, 3 unused_dev_dep  (2.9s) ok=True
+  [llm:qwen3.5:4b] eval_count=359 prompt_eval_count=1123
+  qwen      : 2 unused_dep, 6 unused_dev_dep  (6.7s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=86 prompt_eval_count=1470
+  deepseek  : 1 unused_dep, 5 unused_dev_dep  (1.4s) ok=True
+  Saved (103 done)
+
+============================================================
+[expressjs/body-parser]
+  Cloning ...
+  depcheck  : 0 unused_dep, 7 unused_dev_dep  (0.8s) ok=True
+  knip      : 0 unused_dep, 0 unused_dev_dep  (10.1s) ok=True
+  [llm:llama3.1:8b] eval_count=75 prompt_eval_count=1645
+  llama     : 6 unused_dep, 0 unused_dev_dep  (7.7s) ok=True
+  [llm:qwen3.5:4b] eval_count=268 prompt_eval_count=1736
+  qwen      : 9 unused_dep, 0 unused_dev_dep  (16.9s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=179 prompt_eval_count=2288
+  deepseek  : 9 unused_dep, 10 unused_dev_dep  (2.9s) ok=True
+  Saved (104 done)
+
+============================================================
+[breejs/bree]
+  Cloning ...
+  depcheck  : 0 unused_dep, 17 unused_dev_dep  (0.9s) ok=True
+  knip      : 0 unused_dep, 5 unused_dev_dep  (24.8s) ok=True
+  [llm:llama3.1:8b] eval_count=226 prompt_eval_count=3082
+  llama     : 6 unused_dep, 24 unused_dev_dep  (10.6s) ok=True
+  [llm:qwen3.5:4b] eval_count=460 prompt_eval_count=3296
+  qwen      : 8 unused_dep, 24 unused_dev_dep  (11.3s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=241 prompt_eval_count=4262
+  deepseek  : 5 unused_dep, 22 unused_dev_dep  (5.3s) ok=True
+  Saved (105 done)
+
+============================================================
+[jshttp/mime-types]
+  Cloning ...
+  depcheck  : 0 unused_dep, 7 unused_dev_dep  (0.7s) ok=True
+  knip      : 0 unused_dep, 0 unused_dev_dep  (10.0s) ok=True
+  [llm:llama3.1:8b] eval_count=72 prompt_eval_count=1069
+  llama     : 1 unused_dep, 4 unused_dev_dep  (3.4s) ok=True
+  [llm:qwen3.5:4b] eval_count=114 prompt_eval_count=1119
+  qwen      : 1 unused_dep, 0 unused_dev_dep  (3.7s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=138 prompt_eval_count=1481
+  deepseek  : 1 unused_dep, 9 unused_dev_dep  (3.5s) ok=True
+  Saved (106 done)
+
+============================================================
+[jshttp/mime-db]
+  Cloning ...
+  depcheck  : 0 unused_dep, 7 unused_dev_dep  (0.7s) ok=True
+  knip      : 0 unused_dep, 0 unused_dev_dep  (9.1s) ok=True
+  [llm:llama3.1:8b] eval_count=75 prompt_eval_count=1362
+  llama     : 0 unused_dep, 4 unused_dev_dep  (7.3s) ok=True
+  [llm:qwen3.5:4b] eval_count=57 prompt_eval_count=1433
+  qwen      : 1 unused_dep, 0 unused_dev_dep  (2.8s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=66 prompt_eval_count=1882
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (1.3s) ok=True
+  Saved (107 done)
+
+============================================================
+[papandreou/node-cldr]
+  Cloning ...
+  depcheck  : 0 unused_dep, 10 unused_dev_dep  (2.5s) ok=True
+  knip      : 0 unused_dep, 3 unused_dev_dep  (12.7s) ok=True
+  [llm:llama3.1:8b] eval_count=91 prompt_eval_count=2730
+  llama     : 4 unused_dep, 4 unused_dev_dep  (4.8s) ok=True
+  [llm:qwen3.5:4b] eval_count=292 prompt_eval_count=2894
+  qwen      : 8 unused_dep, 14 unused_dev_dep  (8.4s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=299 prompt_eval_count=3864
+  deepseek  : 9 unused_dep, 17 unused_dev_dep  (5.2s) ok=True
+  Saved (108 done)
+
+============================================================
+[substack/tape]
+  Cloning ...
+  depcheck  : 4 unused_dep, 10 unused_dev_dep  (1.3s) ok=True
+  knip      : 7 unused_dep, 11 unused_dev_dep  (17.1s) ok=True
+  [llm:llama3.1:8b] eval_count=245 prompt_eval_count=6574
+  llama     : 18 unused_dep, 18 unused_dev_dep  (12.0s) ok=True
+  [llm:qwen3.5:4b] eval_count=979 prompt_eval_count=7131
+  qwen      : 20 unused_dep, 18 unused_dev_dep  (23.0s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=291 prompt_eval_count=9204
+  deepseek  : 21 unused_dep, 20 unused_dev_dep  (8.0s) ok=True
+  Saved (109 done)
+
+============================================================
+[sap/less-openui5]
+  Cloning ...
+  depcheck  : 0 unused_dep, 4 unused_dev_dep  (1.7s) ok=True
+  knip      : 0 unused_dep, 0 unused_dev_dep  (8.1s) ok=True
+  [llm:llama3.1:8b] eval_count=77 prompt_eval_count=2722
+  llama     : 1 unused_dep, 5 unused_dev_dep  (4.6s) ok=True
+  [llm:qwen3.5:4b] eval_count=56 prompt_eval_count=2962
+  qwen      : 1 unused_dep, 0 unused_dev_dep  (8.9s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=114 prompt_eval_count=3777
+  deepseek  : 2 unused_dep, 5 unused_dev_dep  (18.5s) ok=True
+  Saved (110 done)
+
+============================================================
+[sap/ui5-logger]
+  Cloning ...
+  depcheck  : 0 unused_dep, 11 unused_dev_dep  (0.8s) ok=True
+  knip      : 0 unused_dep, 0 unused_dev_dep  (9.7s) ok=True
+  [llm:llama3.1:8b] eval_count=137 prompt_eval_count=2088
+  llama     : 3 unused_dep, 14 unused_dev_dep  (6.4s) ok=True
+  [llm:qwen3.5:4b] eval_count=467 prompt_eval_count=2200
+  qwen      : 3 unused_dep, 15 unused_dev_dep  (9.7s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=191 prompt_eval_count=2926
+  deepseek  : 3 unused_dep, 19 unused_dev_dep  (3.2s) ok=True
+  Saved (111 done)
+
+============================================================
+[shelljs/shelljs]
+  Cloning ...
+  depcheck  : 0 unused_dep, 7 unused_dev_dep  (1.4s) ok=True
+  knip      : 0 unused_dep, 2 unused_dev_dep  (8.6s) ok=True
+  [llm:llama3.1:8b] eval_count=84 prompt_eval_count=4053
+  llama     : 1 unused_dep, 6 unused_dev_dep  (4.7s) ok=True
+  [llm:qwen3.5:4b] eval_count=166 prompt_eval_count=4436
+  qwen      : 2 unused_dep, 1 unused_dev_dep  (7.9s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=103 prompt_eval_count=5617
+  deepseek  : 2 unused_dep, 5 unused_dev_dep  (2.9s) ok=True
+  Saved (112 done)
+
+============================================================
+[architect/architect]
+  Cloning ...
+  depcheck  : 1 unused_dep, 3 unused_dev_dep  (0.7s) ok=True
+  knip      : 1 unused_dep, 1 unused_dev_dep  (13.7s) ok=True
+  [llm:llama3.1:8b] eval_count=118 prompt_eval_count=1723
+  llama     : 6 unused_dep, 6 unused_dev_dep  (6.4s) ok=True
+  [llm:qwen3.5:4b] eval_count=241 prompt_eval_count=1823
+  qwen      : 11 unused_dep, 6 unused_dev_dep  (5.8s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=219 prompt_eval_count=2433
+  deepseek  : 11 unused_dep, 5 unused_dev_dep  (3.6s) ok=True
+  Saved (113 done)
+
+============================================================
+[turbo87/eslint-plugin-chai-expect]
+  Cloning ...
+  depcheck  : 0 unused_dep, 2 unused_dev_dep  (0.7s) ok=True
+  knip      : 0 unused_dep, 3 unused_dev_dep  (8.0s) ok=True
+  [llm:llama3.1:8b] eval_count=65 prompt_eval_count=1434
+  llama     : 5 unused_dep, 0 unused_dev_dep  (9.5s) ok=True
+  [llm:qwen3.5:4b] eval_count=79 prompt_eval_count=1524
+  qwen      : 0 unused_dep, 5 unused_dev_dep  (8.1s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=65 prompt_eval_count=2058
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (3.8s) ok=True
+  Saved (114 done)
+
+============================================================
+[codekie/openapi-examples-validator]
+  Cloning ...
+  depcheck  : 1 unused_dep, 15 unused_dev_dep  (1.2s) ok=True
+  knip      : 0 unused_dep, 3 unused_dev_dep  (13.3s) ok=True
+  [llm:llama3.1:8b] eval_count=214 prompt_eval_count=2936
+  llama     : 9 unused_dep, 20 unused_dev_dep  (10.2s) ok=True
+  [llm:qwen3.5:4b] eval_count=226 prompt_eval_count=3143
+  qwen      : 9 unused_dep, 9 unused_dev_dep  (7.4s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=347 prompt_eval_count=4076
+  deepseek  : 9 unused_dep, 23 unused_dev_dep  (6.1s) ok=True
+  Saved (115 done)
+
+============================================================
+[ota-meshi/eslint-plugin-lodash-template]
+  Cloning ...
+  depcheck  : 0 unused_dep, 25 unused_dev_dep  (1.5s) ok=True
+  knip      : 0 unused_dep, 0 unused_dev_dep  (32.4s) ok=False
+  [llm:llama3.1:8b] eval_count=263 prompt_eval_count=10893
+  llama     : 3 unused_dep, 37 unused_dev_dep  (14.2s) ok=True
+  [llm:qwen3.5:4b] eval_count=584 prompt_eval_count=11577
+  qwen      : 3 unused_dep, 37 unused_dev_dep  (25.1s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=69 prompt_eval_count=16384
+  deepseek  : 1 unused_dep, 0 unused_dev_dep  (7.1s) ok=True
+  Saved (116 done)
+
+============================================================
+[sinonjs/fake-timers]
+  Cloning ...
+  depcheck  : 0 unused_dep, 10 unused_dev_dep  (1.1s) ok=True
+  knip      : 0 unused_dep, 5 unused_dev_dep  (10.3s) ok=True
+  [llm:llama3.1:8b] eval_count=104 prompt_eval_count=1963
+  llama     : 1 unused_dep, 7 unused_dev_dep  (5.4s) ok=True
+  [llm:qwen3.5:4b] eval_count=510 prompt_eval_count=2076
+  qwen      : 1 unused_dep, 12 unused_dev_dep  (20.8s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=209 prompt_eval_count=2769
+  deepseek  : 1 unused_dep, 14 unused_dev_dep  (6.3s) ok=True
+  Saved (117 done)
+
+============================================================
+[lvgl/lv_font_conv]
+  Cloning ...
+  depcheck  : 0 unused_dep, 9 unused_dev_dep  (1.0s) ok=True
+  knip      : 0 unused_dep, 6 unused_dev_dep  (9.3s) ok=True
+  [llm:llama3.1:8b] eval_count=109 prompt_eval_count=3378
+  llama     : 3 unused_dep, 9 unused_dev_dep  (5.5s) ok=True
+  [llm:qwen3.5:4b] eval_count=567 prompt_eval_count=3541
+  qwen      : 4 unused_dep, 11 unused_dev_dep  (11.9s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=146 prompt_eval_count=4514
+  deepseek  : 7 unused_dep, 11 unused_dev_dep  (3.1s) ok=True
+  Saved (118 done)
+
+============================================================
+[pvdlg/issue-parser]
+  Cloning ...
+  depcheck  : 0 unused_dep, 6 unused_dev_dep  (0.7s) ok=True
+  knip      : 0 unused_dep, 0 unused_dev_dep  (15.2s) ok=True
+  [llm:llama3.1:8b] eval_count=92 prompt_eval_count=1102
+  llama     : 2 unused_dep, 6 unused_dev_dep  (4.2s) ok=True
+  [llm:qwen3.5:4b] eval_count=67 prompt_eval_count=1152
+  qwen      : 2 unused_dep, 0 unused_dev_dep  (3.3s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=146 prompt_eval_count=1524
+  deepseek  : 5 unused_dep, 7 unused_dev_dep  (2.4s) ok=True
+  Saved (119 done)
+
+============================================================
+[bluet/callbaq]
+  Cloning ...
+  depcheck  : 0 unused_dep, 4 unused_dev_dep  (0.7s) ok=True
+  knip      : 0 unused_dep, 3 unused_dev_dep  (6.5s) ok=True
+  [llm:llama3.1:8b] eval_count=48 prompt_eval_count=970
+  llama     : 0 unused_dep, 0 unused_dev_dep  (2.7s) ok=True
+  [llm:qwen3.5:4b] eval_count=131 prompt_eval_count=1022
+  qwen      : 0 unused_dep, 2 unused_dev_dep  (3.4s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=66 prompt_eval_count=1350
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (1.2s) ok=True
+  Saved (120 done)
+
+============================================================
+[jshttp/proxy-addr]
+  Cloning ...
+  depcheck  : 0 unused_dep, 7 unused_dev_dep  (0.7s) ok=True
+  knip      : 0 unused_dep, 2 unused_dev_dep  (10.2s) ok=True
+  [llm:llama3.1:8b] eval_count=101 prompt_eval_count=1230
+  llama     : 1 unused_dep, 10 unused_dev_dep  (10.8s) ok=True
+  [llm:qwen3.5:4b] eval_count=64 prompt_eval_count=1289
+  qwen      : 2 unused_dep, 0 unused_dev_dep  (5.9s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=86 prompt_eval_count=1680
+  deepseek  : 1 unused_dep, 3 unused_dev_dep  (4.5s) ok=True
+  Saved (121 done)
+
+============================================================
+[lucianbuzzo/dungeoneer]
+  Cloning ...
+  depcheck  : 0 unused_dep, 5 unused_dev_dep  (1.1s) ok=True
+  knip      : 0 unused_dep, 0 unused_dev_dep  (18.7s) ok=True
+  [llm:llama3.1:8b] eval_count=89 prompt_eval_count=1486
+  llama     : 1 unused_dep, 8 unused_dev_dep  (4.0s) ok=True
+  [llm:qwen3.5:4b] eval_count=352 prompt_eval_count=1584
+  qwen      : 2 unused_dep, 0 unused_dev_dep  (6.9s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=94 prompt_eval_count=2085
+  deepseek  : 3 unused_dep, 5 unused_dev_dep  (1.7s) ok=True
+  Saved (122 done)
+
+============================================================
+[auth0/node-jwks-rsa]
+  Cloning ...
+  depcheck  : 0 unused_dep, 8 unused_dev_dep  (0.9s) ok=True
+  knip      : 0 unused_dep, 19 unused_dev_dep  (11.0s) ok=True
+  [llm:llama3.1:8b] eval_count=134 prompt_eval_count=3442
+  llama     : 3 unused_dep, 11 unused_dev_dep  (7.0s) ok=True
+  [llm:qwen3.5:4b] eval_count=387 prompt_eval_count=3672
+  qwen      : 5 unused_dep, 26 unused_dev_dep  (9.7s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=303 prompt_eval_count=4759
+  deepseek  : 4 unused_dep, 26 unused_dev_dep  (5.6s) ok=True
+  Saved (123 done)
+
+============================================================
+[share/sharedb]
+  Cloning ...
+  depcheck  : 0 unused_dep, 4 unused_dev_dep  (1.7s) ok=True
+  knip      : 0 unused_dep, 2 unused_dev_dep  (9.5s) ok=True
+  [llm:llama3.1:8b] eval_count=130 prompt_eval_count=5566
+  llama     : 7 unused_dep, 8 unused_dev_dep  (7.7s) ok=True
+  [llm:qwen3.5:4b] eval_count=325 prompt_eval_count=6030
+  qwen      : 2 unused_dep, 5 unused_dev_dep  (11.9s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=172 prompt_eval_count=7866
+  deepseek  : 7 unused_dep, 11 unused_dev_dep  (4.7s) ok=True
+  Saved (124 done)
+
+============================================================
+[wfcd/warframe-items]
+  Cloning ...
+  depcheck  : 0 unused_dep, 43 unused_dev_dep  (11.2s) ok=True
+  knip      : 0 unused_dep, 9 unused_dev_dep  (39.6s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  Saved (125 done)
+
+============================================================
+[hertzg/node-net-keepalive]
+  Cloning ...
+  depcheck  : 0 unused_dep, 13 unused_dev_dep  (0.8s) ok=True
+  knip      : 0 unused_dep, 6 unused_dev_dep  (21.6s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  Saved (126 done)
+
+============================================================
+[aliyun/darabonba-java-generator]
+  Cloning ...
+  depcheck  : 0 unused_dep, 4 unused_dev_dep  (0.9s) ok=True
+  knip      : 0 unused_dep, 1 unused_dev_dep  (6.9s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  Saved (127 done)
+
+============================================================
+[tunnckocore/is-async-function]
+  Cloning ...
+  depcheck  : 0 unused_dep, 13 unused_dev_dep  (0.7s) ok=True
+  knip      : 0 unused_dep, 0 unused_dev_dep  (12.2s) ok=False
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  Saved (128 done)
+
+============================================================
+[elastic/elasticsearch-js-mock]
+  Cloning ...
+  depcheck  : 0 unused_dep, 2 unused_dev_dep  (0.7s) ok=True
+  knip      : 0 unused_dep, 0 unused_dev_dep  (14.7s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  Saved (129 done)
+
+============================================================
+[nikku/eslint-plugin-license-header]
+  Cloning ...
+  depcheck  : 0 unused_dep, 4 unused_dev_dep  (0.7s) ok=True
+  knip      : 0 unused_dep, 4 unused_dev_dep  (8.0s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  Saved (130 done)
+
+============================================================
+[jshttp/media-typer]
+  Cloning ...
+  depcheck  : 0 unused_dep, 8 unused_dev_dep  (0.7s) ok=True
+  knip      : 0 unused_dep, 1 unused_dev_dep  (10.4s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  Saved (131 done)
+
+============================================================
+[crypto-browserify/browserify-sign]
+  Cloning ...
+  depcheck  : 0 unused_dep, 7 unused_dev_dep  (0.7s) ok=True
+  knip      : 0 unused_dep, 0 unused_dev_dep  (10.4s) ok=False
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  Saved (132 done)
+
+============================================================
+[dwyl/javascript-todo-list-tutorial]
+  Cloning ...
+  depcheck  : 0 unused_dep, 5 unused_dev_dep  (0.8s) ok=True
+  knip      : 0 unused_dep, 5 unused_dev_dep  (7.8s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  Saved (133 done)
+
+============================================================
+[wikimedia/html-metadata]
+  Cloning ...
+  depcheck  : 0 unused_dep, 4 unused_dev_dep  (0.7s) ok=True
+  knip      : 0 unused_dep, 3 unused_dev_dep  (8.4s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  Saved (134 done)
+
+============================================================
+[chartmogul/chartmogul-node]
+  Cloning ...
+  depcheck  : 0 unused_dep, 10 unused_dev_dep  (1.0s) ok=True
+  knip      : 0 unused_dep, 6 unused_dev_dep  (7.5s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  Saved (135 done)
+
+============================================================
+[crypto-browserify/pbkdf2]
+  Cloning ...
+  depcheck  : 0 unused_dep, 9 unused_dev_dep  (0.7s) ok=True
+  knip      : 0 unused_dep, 0 unused_dev_dep  (14.5s) ok=False
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  Saved (136 done)
+
+============================================================
+[joshpiper/gmodstore-deployment]
+  Cloning ...
+  depcheck  : 2 unused_dep, 11 unused_dev_dep  (1.8s) ok=True
+  knip      : 0 unused_dep, 9 unused_dev_dep  (10.3s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  Saved (137 done)
+
+============================================================
+[mastercard/insomnia-plugin-mastercard]
+  Cloning ...
+  depcheck  : 0 unused_dep, 6 unused_dev_dep  (0.9s) ok=True
+  knip      : 0 unused_dep, 6 unused_dev_dep  (7.4s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  Saved (138 done)
+
+============================================================
+[mobilefirstllc/shortcuts-for-chrome]
+  Cloning ...
+  depcheck  : 0 unused_dep, 3 unused_dev_dep  (0.8s) ok=True
+  knip      : 0 unused_dep, 1 unused_dev_dep  (12.2s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  Saved (139 done)
+
+============================================================
+[davideviolante/pr-reviews-reminder-action]
+  Cloning ...
+  depcheck  : 0 unused_dep, 4 unused_dev_dep  (1.0s) ok=True
+  knip      : 0 unused_dep, 1 unused_dev_dep  (6.3s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  Saved (140 done)
+
+============================================================
+[loopbackio/loopback-datasource-juggler]
+  Cloning ...
+  depcheck  : 0 unused_dep, 8 unused_dev_dep  (2.9s) ok=True
+  knip      : 0 unused_dep, 4 unused_dev_dep  (8.4s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.2s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.1s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.1s) ok=False
+  Saved (141 done)
+
+============================================================
+[acuminous/tripitaka]
+  Cloning ...
+  depcheck  : 0 unused_dep, 5 unused_dev_dep  (0.8s) ok=True
+  knip      : 0 unused_dep, 0 unused_dev_dep  (9.9s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  Saved (142 done)
+
+============================================================
+[lvgl/lv_i18n]
+  Cloning ...
+  depcheck  : 0 unused_dep, 4 unused_dev_dep  (0.8s) ok=True
+  knip      : 0 unused_dep, 1 unused_dev_dep  (6.0s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  Saved (143 done)
+
+============================================================
+[thedumbterminal/jsonschema-bigquery]
+  Cloning ...
+  depcheck  : 1 unused_dep, 6 unused_dev_dep  (0.8s) ok=True
+  knip      : 2 unused_dep, 4 unused_dev_dep  (8.3s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  Saved (144 done)
+
+============================================================
+[expressjs/cookie-session]
+  Cloning ...
+  depcheck  : 0 unused_dep, 7 unused_dev_dep  (0.7s) ok=True
+  knip      : 0 unused_dep, 0 unused_dev_dep  (9.9s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  Saved (145 done)
+
+============================================================
+[savjee/savjeecoin]
+  Cloning ...
+  depcheck  : 0 unused_dep, 9 unused_dev_dep  (0.7s) ok=True
+  knip      : 0 unused_dep, 4 unused_dev_dep  (6.8s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  Saved (146 done)
+
+============================================================
+[sarbbottam/eslint-find-rules]
+  Cloning ...
+  depcheck  : 0 unused_dep, 13 unused_dev_dep  (0.8s) ok=True
+  knip      : 5 unused_dep, 13 unused_dev_dep  (19.4s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  Saved (147 done)
+
+============================================================
+[dondi/grnsight]
+  Cloning ...
+  depcheck  : 12 unused_dep, 17 unused_dev_dep  (2.3s) ok=True
+  knip      : 26 unused_dep, 8 unused_dev_dep  (16.4s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.2s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.1s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.1s) ok=False
+  Saved (148 done)
+
+============================================================
+[node-oauth/node-oauth2-server]
+  Cloning ...
+  depcheck  : 0 unused_dep, 3 unused_dev_dep  (1.4s) ok=True
+  knip      : 0 unused_dep, 2 unused_dev_dep  (8.6s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.1s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.1s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.1s) ok=False
+  Saved (149 done)
+
+============================================================
+[sloops77/eslint-plugin-better-mutation]
+  Cloning ...
+  depcheck  : 2 unused_dep, 9 unused_dev_dep  (0.7s) ok=True
+  knip      : 2 unused_dep, 3 unused_dev_dep  (23.0s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  Saved (150 done)
+
+============================================================
+[michaelwoods/onstar2mqtt]
+  Cloning ...
+  depcheck  : 0 unused_dep, 6 unused_dev_dep  (0.7s) ok=True
+  knip      : 0 unused_dep, 3 unused_dev_dep  (8.5s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  Saved (151 done)
+
+============================================================
+[wh-iterabb-it/meowfacts]
+  Cloning ...
+  depcheck  : 0 unused_dep, 6 unused_dev_dep  (0.8s) ok=True
+  knip      : 1 unused_dep, 3 unused_dev_dep  (8.1s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  Saved (152 done)
+
+============================================================
+[immobiliare/fastify-sentry]
+  Cloning ...
+  depcheck  : 0 unused_dep, 19 unused_dev_dep  (0.8s) ok=True
+  knip      : 0 unused_dep, 11 unused_dev_dep  (36.5s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  Saved (153 done)
+
+============================================================
+[aller-couleur/handlebars-i18n]
+  Cloning ...
+  depcheck  : 1 unused_dep, 11 unused_dev_dep  (0.8s) ok=True
+  knip      : 2 unused_dep, 10 unused_dev_dep  (8.7s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  Saved (154 done)
+
+============================================================
+[weiran-zsd/eslint-plugin-node]
+  Cloning ...
+  depcheck  : 0 unused_dep, 18 unused_dev_dep  (1.9s) ok=True
+  knip      : 0 unused_dep, 6 unused_dev_dep  (17.5s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.5s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.2s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.2s) ok=False
+  Saved (155 done)
+
+============================================================
+[bugcrowd/ecs-deployment-monitor]
+  Cloning ...
+  depcheck  : 1 unused_dep, 3 unused_dev_dep  (0.9s) ok=True
+  knip      : 1 unused_dep, 2 unused_dev_dep  (11.2s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  Saved (156 done)
+
+============================================================
+[inspect-js/is-async-function]
+  Cloning ...
+  depcheck  : 0 unused_dep, 13 unused_dev_dep  (0.7s) ok=True
+  knip      : 0 unused_dep, 0 unused_dev_dep  (11.4s) ok=False
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  Saved (157 done)
+
+============================================================
+[pillarjs/hbs]
+  Cloning ...
+  depcheck  : 0 unused_dep, 3 unused_dev_dep  (0.8s) ok=True
+  knip      : 0 unused_dep, 2 unused_dev_dep  (8.5s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  Saved (158 done)
+
+============================================================
+[recursivefunk/good-env]
+  Cloning ...
+  depcheck  : 0 unused_dep, 2 unused_dev_dep  (0.7s) ok=True
+  knip      : 0 unused_dep, 2 unused_dev_dep  (7.3s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  Saved (159 done)
+
+============================================================
+[yahoo/subscribe-ui-event]
+  Cloning ...
+  depcheck  : 0 unused_dep, 22 unused_dev_dep  (0.8s) ok=True
+  knip      : 2 unused_dep, 22 unused_dev_dep  (13.4s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  Saved (160 done)
+
+============================================================
+[hexojs/hexo-generator-feed]
+  Cloning ...
+  depcheck  : 0 unused_dep, 3 unused_dev_dep  (0.7s) ok=True
+  knip      : 0 unused_dep, 0 unused_dev_dep  (8.6s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  Saved (161 done)
+
+============================================================
+[mozilla/eslint-plugin-no-unsanitized]
+  Cloning ...
+  depcheck  : 0 unused_dep, 8 unused_dev_dep  (0.7s) ok=True
+  knip      : 0 unused_dep, 5 unused_dev_dep  (7.4s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  Saved (162 done)
+
+============================================================
+[toomuchdesign/postcss-nested-ancestors]
+  Cloning ...
+  depcheck  : 0 unused_dep, 2 unused_dev_dep  (0.7s) ok=True
+  knip      : 0 unused_dep, 0 unused_dev_dep  (6.0s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  Saved (163 done)
+
+============================================================
+[aron123/node-barion]
+  Cloning ...
+  depcheck  : 0 unused_dep, 4 unused_dev_dep  (1.0s) ok=True
+  knip      : 0 unused_dep, 1 unused_dev_dep  (8.4s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.1s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.1s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.1s) ok=False
+  Saved (164 done)
+
+============================================================
+[inspect-js/is-core-module]
+  Cloning ...
+  depcheck  : 0 unused_dep, 7 unused_dev_dep  (0.7s) ok=True
+  knip      : 0 unused_dep, 4 unused_dev_dep  (10.0s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  Saved (165 done)
+
+============================================================
+[ljharb/npmignore]
+  Cloning ...
+  depcheck  : 2 unused_dep, 7 unused_dev_dep  (0.7s) ok=True
+  knip      : 2 unused_dep, 2 unused_dev_dep  (9.9s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  Saved (166 done)
+
+============================================================
+[parse-community/parse-server-api-mail-adapter]
+  Cloning ...
+  depcheck  : 0 unused_dep, 17 unused_dev_dep  (0.8s) ok=True
+  [knip] JSON error: Expecting value: line 1 column 1 (char 0)
+  knip      : 0 unused_dep, 0 unused_dev_dep  (12.6s) ok=False
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  Saved (167 done)
+
+============================================================
+[sourcefuse/loopback4-s3]
+  Cloning ...
+  depcheck  : 4 unused_dep, 24 unused_dev_dep  (0.8s) ok=True
+  knip      : 4 unused_dep, 23 unused_dev_dep  (21.6s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  Saved (168 done)
+
+============================================================
+[sourcefuse/loopback4-helmet]
+  Cloning ...
+  depcheck  : 2 unused_dep, 22 unused_dev_dep  (0.7s) ok=True
+  knip      : 2 unused_dep, 18 unused_dev_dep  (16.6s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  Saved (169 done)
+
+============================================================
+[link2aws/link2aws.github.io]
+  Cloning ...
+  depcheck  : 0 unused_dep, 7 unused_dev_dep  (0.7s) ok=True
+  knip      : 0 unused_dep, 6 unused_dev_dep  (7.1s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  Saved (170 done)
+
+============================================================
+[mongoosejs/kareem]
+  Cloning ...
+  depcheck  : 0 unused_dep, 2 unused_dev_dep  (0.8s) ok=True
+  knip      : 0 unused_dep, 0 unused_dev_dep  (7.5s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  Saved (171 done)
+
+============================================================
+[github/emergency-pull-request-probot-app]
+  Cloning ...
+  depcheck  : 1 unused_dep, 3 unused_dev_dep  (0.7s) ok=True
+  knip      : 1 unused_dep, 4 unused_dev_dep  (9.9s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  Saved (172 done)
+
+============================================================
+[nodesolidserver/oidc-auth-manager]
+  Cloning ...
+  depcheck  : 2 unused_dep, 5 unused_dev_dep  (0.8s) ok=True
+  knip      : 2 unused_dep, 10 unused_dev_dep  (19.9s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  Saved (173 done)
+
+============================================================
+[homebridge/bonjour]
+  Cloning ...
+  depcheck  : 0 unused_dep, 3 unused_dev_dep  (0.7s) ok=True
+  knip      : 0 unused_dep, 1 unused_dev_dep  (7.7s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  Saved (174 done)
+
+============================================================
+[eslint-community/eslint-plugin-n]
+  Cloning ...
+  depcheck  : 0 unused_dep, 18 unused_dev_dep  (2.0s) ok=True
+  knip      : 0 unused_dep, 6 unused_dev_dep  (16.5s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.2s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.2s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.2s) ok=False
+  Saved (175 done)
+
+============================================================
+[ljharb/tape]
+  Cloning ...
+  depcheck  : 4 unused_dep, 10 unused_dev_dep  (1.3s) ok=True
+  knip      : 7 unused_dep, 11 unused_dev_dep  (16.1s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.1s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.1s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.1s) ok=False
+  Saved (176 done)
+
+============================================================
+[minimistjs/minimist]
+  Cloning ...
+  depcheck  : 0 unused_dep, 7 unused_dev_dep  (0.8s) ok=True
+  knip      : 0 unused_dep, 2 unused_dev_dep  (9.8s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  Saved (177 done)
+
+============================================================
+[wikimedia/eslint-plugin-no-jquery]
+  Cloning ...
+  depcheck  : 0 unused_dep, 3 unused_dev_dep  (1.4s) ok=True
+  knip      : 0 unused_dep, 4 unused_dev_dep  (9.6s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.1s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.1s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.1s) ok=False
+  Saved (178 done)
+
+============================================================
+[imagekit-developer/imagekit-javascript]
+  Cloning ...
+  depcheck  : 0 unused_dep, 14 unused_dev_dep  (0.9s) ok=True
+  knip      : 0 unused_dep, 9 unused_dev_dep  (9.1s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  Saved (179 done)
+
+============================================================
+[yaronn/xml-crypto]
+  Cloning ...
+  depcheck  : 0 unused_dep, 12 unused_dev_dep  (1.1s) ok=True
+  knip      : 0 unused_dep, 5 unused_dev_dep  (14.1s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  Saved (180 done)
+
+============================================================
+[rowanmanning/varname]
+  Cloning ...
+  depcheck  : 0 unused_dep, 6 unused_dev_dep  (0.7s) ok=True
+  knip      : 0 unused_dep, 1 unused_dev_dep  (6.1s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  Saved (181 done)
+
+============================================================
+[jeremydaly/lambda-warmer]
+  Cloning ...
+  depcheck  : 0 unused_dep, 7 unused_dev_dep  (0.7s) ok=True
+  knip      : 0 unused_dep, 2 unused_dev_dep  (10.0s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  Saved (182 done)
+
+============================================================
+[postmanlabs/graphql-to-postman]
+  Cloning ...
+  depcheck  : 0 unused_dep, 3 unused_dev_dep  (0.8s) ok=True
+  knip      : 0 unused_dep, 5 unused_dev_dep  (8.2s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  Saved (183 done)
+
+============================================================
+[shelljs/shx]
+  Cloning ...
+  depcheck  : 0 unused_dep, 8 unused_dev_dep  (0.7s) ok=True
+  knip      : 0 unused_dep, 4 unused_dev_dep  (7.5s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  Saved (184 done)
+
+============================================================
+[stream-utils/raw-body]
+  Cloning ...
+  depcheck  : 0 unused_dep, 5 unused_dev_dep  (0.8s) ok=True
+  knip      : 0 unused_dep, 2 unused_dev_dep  (22.2s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  Saved (185 done)
+
+============================================================
+[davideviolante/gender-detection-from-name]
+  Cloning ...
+  depcheck  : 0 unused_dep, 3 unused_dev_dep  (2.6s) ok=True
+  knip      : 0 unused_dep, 1 unused_dev_dep  (6.5s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.1s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.1s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.1s) ok=False
+  Saved (186 done)
+
+============================================================
+[ota-meshi/postcss-html]
+  Cloning ...
+  depcheck  : 0 unused_dep, 15 unused_dev_dep  (0.9s) ok=True
+  knip      : 0 unused_dep, 12 unused_dev_dep  (13.3s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  Saved (187 done)
+
+============================================================
+[engineering-research-and-development/iotagent-opcua]
+  Cloning ...
+  depcheck  : 4 unused_dep, 15 unused_dev_dep  (1.1s) ok=True
+  knip      : 6 unused_dep, 8 unused_dev_dep  (16.2s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.1s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  Saved (188 done)
+
+============================================================
+[devour-js/devour-client]
+  Cloning ...
+  depcheck  : 0 unused_dep, 6 unused_dev_dep  (0.9s) ok=True
+  knip      : 0 unused_dep, 4 unused_dev_dep  (9.2s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  Saved (189 done)
+
+============================================================
+[eugef/node-mocks-http]
+  Cloning ...
+  depcheck  : 0 unused_dep, 8 unused_dev_dep  (1.0s) ok=True
+  knip      : 0 unused_dep, 6 unused_dev_dep  (9.7s) ok=True
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  Saved (190 done)
+
+============================================================
+[browserify/pbkdf2]
+  Cloning ...
+  depcheck  : 0 unused_dep, 9 unused_dev_dep  (0.7s) ok=True
+  knip      : 0 unused_dep, 0 unused_dev_dep  (13.0s) ok=False
+  [llm:llama3.1:8b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:qwen3.5:4b] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  [llm:deepseek-coder:6.7b-instruct] API error: HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/chat (Caused by NewConnectionError("HTTPConnection(host='localhost', port=11434): Failed to establish a new connection: [Errno 111] Connection refused"))
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  Saved (191 done)
+
+Finished. Results: /work/rintaro-k/research/RQ1/output/step1_results-2.csv
+=== Done (7026s) ===
+=== Stopping Ollama (PID: 1917614) ===

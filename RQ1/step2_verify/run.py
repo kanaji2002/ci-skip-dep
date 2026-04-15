@@ -174,6 +174,83 @@ def git_restore_package_json(repo_path: str) -> bool:
         print(f"  [git restore] error: {e}")
         return False
 
+
+def iterative_removal(
+    repo_path: str,
+    candidates: List[str],
+    test_cmd: Optional[str],
+) -> Dict[str, Any]:
+    """
+    反復削除でパッケージ単位の安全性を検証する。
+
+    手順:
+      1. 候補を一括 uninstall してテスト (bulk)
+      2. PASS → 全候補が安全
+      3. FAIL → git restore して1件ずつ個別テスト
+      4. safe が1件以上あれば、最後にまとめて削除して最終テスト
+
+    Returns:
+      bulk_result    : 一括削除時のテスト結果
+      safe_deps      : 削除しても壊れなかったパッケージ
+      must_keep_deps : 削除するとテストが失敗したパッケージ
+      final_result   : safe_deps を全部削除した最終テスト結果
+      n_iterations   : テスト実行回数の合計
+    """
+    n_iter = 0
+
+    # ---- Step 1: 一括削除 ----
+    npm_uninstall(repo_path, candidates)
+    bulk_result, _, _ = run_test(repo_path, test_cmd)
+    n_iter += 1
+    print(f"  [iter] bulk ({len(candidates)} deps): {bulk_result}")
+
+    if bulk_result == "PASS":
+        return {
+            "bulk_result":    bulk_result,
+            "safe_deps":      candidates,
+            "must_keep_deps": [],
+            "final_result":   "PASS",
+            "n_iterations":   n_iter,
+        }
+
+    # ---- Step 2: 1件ずつ個別テスト ----
+    safe: List[str] = []
+    must_keep: List[str] = []
+
+    for pkg in candidates:
+        # クリーンな状態に戻す
+        git_restore_package_json(repo_path)
+        npm_install(repo_path)
+
+        npm_uninstall(repo_path, [pkg])
+        result, _, _ = run_test(repo_path, test_cmd)
+        n_iter += 1
+        print(f"  [iter]   {pkg}: {result}")
+
+        if result == "PASS":
+            safe.append(pkg)
+        else:
+            must_keep.append(pkg)
+
+    # ---- Step 3: safe を全部まとめて最終テスト ----
+    if safe:
+        git_restore_package_json(repo_path)
+        npm_install(repo_path)
+        npm_uninstall(repo_path, safe)
+        final_result, _, _ = run_test(repo_path, test_cmd)
+        n_iter += 1
+        print(f"  [iter] final ({len(safe)} safe deps): {final_result}")
+    else:
+        final_result = "FAIL"
+
+    return {
+        "bulk_result":    bulk_result,
+        "safe_deps":      safe,
+        "must_keep_deps": must_keep,
+        "final_result":   final_result,
+        "n_iterations":   n_iter,
+    }
+
 # ---------------------------------------------------------------------------
 # リポジトリ単位の検証
 # ---------------------------------------------------------------------------
@@ -226,20 +303,18 @@ def verify_repo(
         print(f"\n  --- model: {model} ---")
         print(f"  to_remove (runtime deps only): {to_remove}")
 
-        actually_removed_dep     = [d for d in unused_dep     if d in to_remove]
-        actually_removed_dev_dep: List[str] = []
-
         row: Dict[str, Any] = {
-            "repo":                    full_name,
-            "model":                   model,
-            "removed_deps":            actually_removed_dep,
-            "removed_dev_deps":        actually_removed_dev_dep,
-            "baseline_result":         baseline_result,
-            "baseline_duration_sec":   round(baseline_dur, 2),
-            "post_removal_result":     None,
-            "post_removal_duration_sec": None,
-            "post_removal_output":     None,
-            "error":                   None,
+            "repo":                full_name,
+            "model":               model,
+            "candidates":          to_remove,
+            "removed_deps":        [],
+            "must_keep_deps":      [],
+            "baseline_result":     baseline_result,
+            "baseline_duration_sec": round(baseline_dur, 2),
+            "bulk_result":         None,
+            "post_removal_result": None,
+            "n_iterations":        0,
+            "error":               None,
         }
 
         # ベースラインが失敗している場合は評価不能
@@ -258,30 +333,24 @@ def verify_repo(
             print("  post_removal: SKIP (no deps to remove)")
             continue
 
-        # ---- package.json をリセット ----
+        # ---- package.json をリセットして node_modules を復元 ----
         if not git_restore_package_json(repo_path):
             row["post_removal_result"] = "ERROR"
             row["error"] = "git restore failed"
             rows.append(row)
             continue
 
-        # ---- npm install (リセット後に node_modules を復元) ----
         print("  npm install (restore) ...")
         npm_install(repo_path)
 
-        # ---- npm uninstall (対象パッケージを削除) ----
-        print(f"  npm uninstall {to_remove} ...")
-        if not npm_uninstall(repo_path, to_remove):
-            print("  [warn] npm uninstall failed, proceeding with test anyway")
+        # ---- 反復削除 ----
+        ir = iterative_removal(repo_path, to_remove, test_cmd)
 
-        # ---- テスト実行 ----
-        print("  Running test after removal ...")
-        post_result, post_dur, post_out = run_test(repo_path, test_cmd)
-        print(f"  post_removal: {post_result}  ({post_dur:.1f}s)")
-
-        row["post_removal_result"]       = post_result
-        row["post_removal_duration_sec"] = round(post_dur, 2)
-        row["post_removal_output"]       = post_out
+        row["bulk_result"]         = ir["bulk_result"]
+        row["removed_deps"]        = ir["safe_deps"]
+        row["must_keep_deps"]      = ir["must_keep_deps"]
+        row["post_removal_result"] = ir["final_result"]
+        row["n_iterations"]        = ir["n_iterations"]
         rows.append(row)
 
     # ---- clone 削除 ----
