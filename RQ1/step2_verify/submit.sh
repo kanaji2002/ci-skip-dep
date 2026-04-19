@@ -1,11 +1,11 @@
 #!/bin/bash -l
 #SBATCH --job-name=rq1_step2_verify
 #SBATCH --time=4-04:00:00
-#SBATCH --partition=gpu_long
+#SBATCH --partition=cluster_long
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=4
 #SBATCH --mem=64G
-#SBATCH --gres=gpu:1
+
 #SBATCH --output=/work/rintaro-k/research/RQ1/batch_output/%x/%j/out.out
 #SBATCH --error=/work/rintaro-k/research/RQ1/batch_output/%x/%j/err.err
 

@@ -4,23 +4,16 @@
 #SBATCH --partition=gpu_long
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=4
-#SBATCH --mem=200G
+#SBATCH --mem=100G
 #SBATCH --gres=gpu:1
 #SBATCH --output=/work/rintaro-k/research/DC/data-curation-all/batch/output/%x/%j/out.out
 #SBATCH --error=/work/rintaro-k/research/DC/data-curation-all/batch/output/%x/%j/err.err
 
 # ============================================
 # Usage:
-#   # 旧方式: ps4_results_N.csv を 100 件ずつ処理 (PS5 フィルタあり)
-#   sbatch submit.sh --repo-list ps4_results_0.csv
-#   sbatch submit.sh --repo-list ps4_results_0.csv --stage pipeline
-#   sbatch submit.sh --repo-list ps4_results_0.csv --stage filter
-#
-#   # 新方式: PS5 済み CSV を --batch-index で 100 件ずつ処理 (PS5 フィルタをスキップ)
-#   sbatch submit.sh --repo-list /path/to/ps5_filtered.csv --batch-index 0
-#   sbatch submit.sh --repo-list /path/to/ps5_filtered.csv --batch-index 1
-#   sbatch submit.sh --repo-list /path/to/ps5_filtered.csv --batch-index 5 --stage pipeline
-# ============================================
+# sbatch submit.sh --repo-list /work/rintaro-k/research/PS/js/ps5/ps5_filtered.csv --batch-index 1
+
+============================================
 
 set -euo pipefail
 

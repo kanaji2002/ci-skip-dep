@@ -376,17 +376,8 @@ def main():
     if args.limit:
         repos = repos[:args.limit]
 
-    # 途中再開: 完了済みをスキップ
     done: set = set()
     rows: List[Dict] = []
-    if os.path.exists(args.output):
-        try:
-            prev = pd.read_csv(args.output)
-            rows = prev.to_dict("records")
-            done = set(prev["repo"].tolist())
-            print(f"Resume: {len(done)} repos already done")
-        except Exception:
-            pass
 
     print(f"Target: {len(repos)} repos  |  Output: {args.output}")
 

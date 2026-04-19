@@ -19,8 +19,8 @@ which consists of three stages:
 \subsection{Project Selection}
 \label{sec:ps}
 
-We collected JavaScript projects from GitHub using the SEART GitHub Search
-tool~\cite{seart}, applying a series of filters to obtain projects with
+We collected JavaScript projects from GitHub using the GitHub Search API,
+applying a series of filters to obtain projects with
 sufficient activity and CI usage.
 Table~\ref{tab:ps} summarises each filter step and the resulting project counts.
 
@@ -32,7 +32,7 @@ Table~\ref{tab:ps} summarises each filter step and the resulting project counts.
     \toprule
     Step & Criterion & \#Projects \\
     \midrule
-    PS1 & JavaScript, $\geq$10 stars (SEART) & 261{,}739 \\
+    PS1 & JavaScript, $\geq$10 stars (GitHub Search API) & 261{,}739 \\
     PS2 & $\geq$10 commits during 2024-03-01 -- 2026-03-01 & 100{,}811 \\
     PS3 & GitHub Actions adopted (\texttt{.github/workflows/*.yml}) & 16{,}226 \\
     PS4 & $\geq$10 GitHub Actions executions & \textit{(TBD)} \\
@@ -42,8 +42,8 @@ Table~\ref{tab:ps} summarises each filter step and the resulting project counts.
 \end{table}
 
 \paragraph{PS1 -- Initial Collection.}
-We queried the SEART GitHub Search API for JavaScript repositories with at
-least 10 stars, yielding 261{,}739 candidates.
+We queried the GitHub Search API for JavaScript repositories with at
+least 10 stars (\texttt{language:JavaScript stars:>=10}), yielding 261{,}739 candidates.
 
 \paragraph{PS2 -- Activity Filter.}
 We retained only projects with at least 10 commits in the study period

@@ -395,9 +395,8 @@ def run_llm(repo_path: str, model: str) -> Tuple[List[str], List[str], List[str]
         # Qwen3系のthinkingモードを無効化
         if model.startswith("qwen3"):
             chat_payload["think"] = False
-        # deepseek-coderはJSONを返さないことがあるため、constrained decodingを強制
-        if "deepseek" in model:
-            chat_payload["format"] = "json"
+        # 全モデルにconstrained decodingを強制 (RQ1と統一)
+        chat_payload["format"] = "json"
 
         response = requests.post(
             f"{config.OLLAMA_URL}/api/chat",

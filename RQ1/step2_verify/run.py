@@ -20,7 +20,6 @@ import argparse
 import ast
 import json
 import os
-import re
 import shutil
 import subprocess
 import sys
@@ -42,9 +41,6 @@ OUTPUT_DIR   = os.path.join(RQ1_DIR, "output")
 CLONES_DIR   = os.path.join(OUTPUT_DIR, "clones")
 STEP1_CSV    = os.path.join(OUTPUT_DIR, "step1_results.csv")
 RESULTS_CSV  = os.path.join(OUTPUT_DIR, "step2_results.csv")
-
-PS8_CSV = os.path.join(_ROOT, "PS", "js", "ps8",
-                       "ps8_filtered_more_than_70%_linecoverage.csv")
 
 # ---------------------------------------------------------------------------
 # 設定
@@ -131,31 +127,6 @@ def npm_uninstall(repo_path: str, packages: List[str]) -> bool:
     except Exception as e:
         print(f"  [npm uninstall] error: {e}")
         return False
-
-def get_packages_used_in_scripts(repo_path: str, candidates: List[str]) -> List[str]:
-    """package.json の scripts で直接実行されているパッケージ名を返す。
-    テストランナー等のCLIツール (nyc, mocha, jasmine, etc.) が誤って削除されないようにする。
-    """
-    pkg_json_path = os.path.join(repo_path, "package.json")
-    if not os.path.exists(pkg_json_path):
-        return []
-    try:
-        with open(pkg_json_path) as f:
-            pkg = json.load(f)
-        scripts = pkg.get("scripts", {})
-        script_text = " ".join(str(v) for v in scripts.values())
-        used = []
-        for p in candidates:
-            # 通常呼び出し (例: "nyc mocha") または node_modules/.bin/ 経由の呼び出し
-            pattern = (
-                r'(?:(?<![/@\w])' + re.escape(p) + r'(?![\w/-])'
-                + r'|node_modules/\.bin/' + re.escape(p) + r'(?![\w/-]))'
-            )
-            if re.search(pattern, script_text):
-                used.append(p)
-        return used
-    except Exception:
-        return []
 
 def git_restore_package_json(repo_path: str) -> bool:
     """package.json を git で元の状態に戻す"""
@@ -377,7 +348,6 @@ def _error_row(full_name: str, model: str, error: str) -> Dict[str, Any]:
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--step1-results", default=STEP1_CSV)
-    parser.add_argument("--repo-list",     default=PS8_CSV)
     parser.add_argument("--limit",  type=int, default=None)
     parser.add_argument("--skip",   type=int, default=0)
     parser.add_argument("--output", default=RESULTS_CSV)
