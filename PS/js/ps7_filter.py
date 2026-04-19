@@ -3,17 +3,19 @@
 ps7_filter.py
 
 Input : ps6/ps6_filtered.csv
-Check : nyc がある + npm install 成功 + nyc+test が全通過
-Output: ps7/ps7_filtered.csv  (通過分のみ、coverageカラム付き)
+Check : package.json に実質的な test スクリプトがある（ダミー除外）
+Output: ps7/ps7_filtered.csv  (通過分のみ)
         ps7/progress.log      (再開用)
 """
 
 import csv
+import itertools
 import json
+import os
 import re
-import shutil
-import subprocess
 import time
+import urllib.request
+import urllib.error
 from pathlib import Path
 
 # ============================================================
@@ -24,140 +26,88 @@ INPUT_CSV  = BASE_DIR / "ps6" / "ps6_filtered.csv"
 OUTPUT_DIR = BASE_DIR / "ps7"
 OUTPUT_CSV = OUTPUT_DIR / "ps7_filtered.csv"
 PROGRESS   = OUTPUT_DIR / "progress.log"
-REPOS_TMP  = BASE_DIR / "repos_tmp"
 
-CLONE_TIMEOUT       = 120   # sec
-NPM_INSTALL_TIMEOUT = 300   # sec
-NYC_TIMEOUT         = 300   # sec
+RETRY_MAX            = 3
+RATE_LIMIT_THRESHOLD = 50
+
+_DUMMY_RE = re.compile(r"echo.*no test|exit 1", re.IGNORECASE)
 
 
 # ============================================================
-# nyc 検出・実行
+# トークンローテーション
 # ============================================================
-def _pkg_has_nyc(pkg: dict) -> bool:
-    deps = {}
-    deps.update(pkg.get("dependencies") or {})
-    deps.update(pkg.get("devDependencies") or {})
-    scripts_str = " ".join(str(v) for v in (pkg.get("scripts") or {}).values())
-    return "nyc" in deps or "nyc" in scripts_str
-
-
-def detect_nyc_cmd(pkg: dict) -> str | None:
-    scripts = pkg.get("scripts") or {}
-
-    # coverage 系スクリプトが nyc を呼んでいる
-    for key in ["coverage", "test:coverage", "test-coverage", "cov"]:
-        if "nyc" in scripts.get(key, ""):
-            return f"npm run {key}"
-
-    # test スクリプト自体が nyc を呼んでいる
-    if "nyc" in scripts.get("test", ""):
-        return "npm test"
-
-    # devDep に nyc → npx で wrap
-    deps = {}
-    deps.update(pkg.get("dependencies") or {})
-    deps.update(pkg.get("devDependencies") or {})
-    if "nyc" in deps:
-        return "npx nyc --reporter=json-summary npm test"
-
-    return None
-
-
-def _parse_coverage_summary(path: Path) -> dict | None:
+def _load_env(path: str) -> dict:
+    result = {}
     try:
         with open(path) as f:
-            data = json.load(f)
-        total = data.get("total", {})
-        return {
-            "lines":      total.get("lines",      {}).get("pct", 0.0),
-            "branches":   total.get("branches",   {}).get("pct", 0.0),
-            "functions":  total.get("functions",  {}).get("pct", 0.0),
-            "statements": total.get("statements", {}).get("pct", 0.0),
+            for line in f:
+                line = line.strip()
+                if line and not line.startswith("#") and "=" in line:
+                    k, _, v = line.partition("=")
+                    result[k.strip()] = v.strip()
+    except FileNotFoundError:
+        pass
+    return result
+
+
+_env    = _load_env(str(BASE_DIR / ".." / ".." / ".env"))
+_tokens = [v for k, v in _env.items() if k.startswith("GITHUB_TOKEN") and v]
+_cycle  = itertools.cycle(_tokens) if _tokens else None
+
+
+def get_token() -> str:
+    return next(_cycle) if _cycle else os.environ.get("GITHUB_TOKEN", "")
+
+
+# ============================================================
+# GitHub API
+# ============================================================
+def github_get(url: str) -> tuple[bytes | None, int]:
+    for attempt in range(RETRY_MAX):
+        token = get_token()
+        headers = {
+            "User-Agent": "ps7-filter",
+            "Accept":     "application/vnd.github.raw+json",
         }
-    except Exception:
-        return None
+        if token:
+            headers["Authorization"] = f"Bearer {token}"
+        try:
+            req = urllib.request.Request(url, headers=headers)
+            with urllib.request.urlopen(req, timeout=15) as resp:
+                remaining = int(resp.headers.get("X-RateLimit-Remaining", 9999))
+                if remaining < RATE_LIMIT_THRESHOLD:
+                    reset_at = int(resp.headers.get("X-RateLimit-Reset", time.time() + 60))
+                    wait = max(reset_at - int(time.time()), 0) + 5
+                    print(f"  [RateLimit] remaining={remaining}, wait {wait}s ...")
+                    time.sleep(wait)
+                return resp.read(), resp.status
+        except urllib.error.HTTPError as e:
+            if e.code in (404, 451):
+                return None, e.code
+            if e.code == 403:
+                time.sleep(60)
+                continue
+            print(f"  [HTTP {e.code}] attempt {attempt+1}")
+            time.sleep(5 * (attempt + 1))
+        except Exception as e:
+            print(f"  [Error] {e} attempt {attempt+1}")
+            time.sleep(5 * (attempt + 1))
+    return None, -1
 
 
-def _parse_nyc_stdout(text: str) -> dict | None:
-    m = re.search(
-        r"All files\s*\|\s*([\d.]+)\s*\|\s*([\d.]+)\s*\|\s*([\d.]+)\s*\|\s*([\d.]+)",
-        text,
-    )
-    if m:
-        return {
-            "statements": float(m.group(1)),
-            "branches":   float(m.group(2)),
-            "functions":  float(m.group(3)),
-            "lines":      float(m.group(4)),
-        }
-    return None
-
-
-def run_ps7(dest: Path) -> tuple[bool, dict | None, str]:
-    """
-    PS7 実行。Returns: (passed, coverage | None, reason)
-    """
-    pkg_path = dest / "package.json"
-    if not pkg_path.exists():
-        return False, None, "no_package_json"
+# ============================================================
+# PS7 判定
+# ============================================================
+def check_ps7(pkg_bytes: bytes) -> tuple[bool, str]:
+    """(passed, test_script)"""
     try:
-        with open(pkg_path, encoding="utf-8", errors="replace") as f:
-            pkg = json.load(f)
+        pkg = json.loads(pkg_bytes.decode("utf-8", errors="replace"))
     except Exception:
-        return False, None, "invalid_package_json"
-
-    if not _pkg_has_nyc(pkg):
-        return False, None, "no_nyc"
-
-    nyc_cmd = detect_nyc_cmd(pkg)
-    if not nyc_cmd:
-        return False, None, "no_nyc_cmd"
-
-    # npm install
-    print(f"    npm install ...", end=" ", flush=True)
-    r = subprocess.run(
-        ["npm", "install", "--no-audit", "--no-fund"],
-        cwd=dest, capture_output=True, text=True,
-        timeout=NPM_INSTALL_TIMEOUT,
-    )
-    if r.returncode != 0:
-        print(f"FAIL (exit={r.returncode})")
-        return False, None, f"npm_install_failed(exit={r.returncode})"
-    print("OK")
-
-    # nyc 実行
-    print(f"    {nyc_cmd} ...", end=" ", flush=True)
-    try:
-        r2 = subprocess.run(
-            nyc_cmd, shell=True,
-            cwd=dest, capture_output=True, text=True,
-            timeout=NYC_TIMEOUT,
-        )
-    except subprocess.TimeoutExpired:
-        print("TIMEOUT")
-        return False, None, "timeout"
-
-    if r2.returncode != 0:
-        print(f"FAIL (exit={r2.returncode})")
-        return False, None, f"test_failed(exit={r2.returncode})"
-    print("OK (all tests passed)")
-
-    # json-summary 生成（なければ追加実行）
-    summary_path = dest / "coverage" / "coverage-summary.json"
-    if not summary_path.exists():
-        subprocess.run(
-            ["npx", "nyc", "report", "--reporter=json-summary"],
-            cwd=dest, capture_output=True, text=True, timeout=60,
-        )
-
-    cov = _parse_coverage_summary(summary_path)
-    if cov is None:
-        cov = _parse_nyc_stdout(r2.stdout + r2.stderr)
-    if cov is None:
-        return False, None, "no_coverage_data"
-
-    return True, cov, "ok"
+        return False, ""
+    test_script = (pkg.get("scripts") or {}).get("test", "")
+    if not test_script:
+        return False, ""
+    return not bool(_DUMMY_RE.search(test_script)), test_script
 
 
 # ============================================================
@@ -183,7 +133,6 @@ def save_progress(repo: str, status: str):
 # ============================================================
 def main():
     OUTPUT_DIR.mkdir(exist_ok=True)
-    REPOS_TMP.mkdir(exist_ok=True)
 
     with open(INPUT_CSV, newline="", encoding="utf-8") as f:
         reader     = csv.DictReader(f)
@@ -191,14 +140,14 @@ def main():
         rows       = list(reader)
 
     print("=" * 60)
-    print("PS7: nyc 実行チェック (nyc検出 + build成功 + test全通過)")
+    print("PS7: test スクリプト チェック")
     print(f"Input : {INPUT_CSV}  ({len(rows)} 件)")
     print(f"Output: {OUTPUT_CSV}")
     print("=" * 60 + "\n")
 
     done = load_progress()
 
-    out_fields = fieldnames + ["nyc_lines", "nyc_branches", "nyc_functions", "nyc_statements"]
+    out_fields = fieldnames + ["test_script"]
     out_exists = OUTPUT_CSV.exists() and OUTPUT_CSV.stat().st_size > 0
     outfile    = open(OUTPUT_CSV, "a", newline="", encoding="utf-8")
     writer     = csv.DictWriter(outfile, fieldnames=out_fields)
@@ -209,75 +158,39 @@ def main():
 
     for i, row in enumerate(rows, 1):
         repo = row["name"]
-        print(f"[{i}/{len(rows)}] {repo}", flush=True)
+        print(f"[{i}/{len(rows)}] {repo}", end=" ... ", flush=True)
 
         if repo in done:
-            print(f"  skip ({done[repo]})")
+            print(f"skip ({done[repo]})")
             skipped += 1
             if done[repo].startswith("pass"):
                 passed += 1
             continue
 
-        owner, repo_name = repo.split("/", 1)
-        dest = REPOS_TMP / owner / repo_name
-        shutil.rmtree(dest, ignore_errors=True)
+        pkg_bytes, status = github_get(
+            f"https://api.github.com/repos/{repo}/contents/package.json"
+        )
 
-        # clone
-        print(f"  clone ...", end=" ", flush=True)
-        try:
-            r = subprocess.run(
-                ["git", "clone", "--depth=1",
-                 f"https://github.com/{repo}.git", str(dest)],
-                capture_output=True, text=True, timeout=CLONE_TIMEOUT,
-            )
-        except subprocess.TimeoutExpired:
-            print("TIMEOUT")
-            shutil.rmtree(dest, ignore_errors=True)
-            save_progress(repo, "fail_clone_timeout")
-            failed += 1
-            continue
-        if r.returncode != 0:
-            print("FAIL")
-            save_progress(repo, "fail_clone")
-            failed += 1
-            continue
-        print("OK")
-
-        try:
-            ok, cov, reason = run_ps7(dest)
-        except subprocess.TimeoutExpired:
-            ok, cov, reason = False, None, "timeout"
-        except Exception as e:
-            ok, cov, reason = False, None, f"error({e})"
-        finally:
-            shutil.rmtree(dest, ignore_errors=True)
-
-        if not ok:
-            print(f"  => SKIP ({reason})")
-            save_progress(repo, f"fail_{reason}")
+        if status != 200 or pkg_bytes is None:
+            save_progress(repo, f"fail_no_pkg(status={status})")
+            print(f"no package.json (status={status})")
             failed += 1
             continue
 
-        if cov["lines"] < 70:
-            print(f"  => SKIP (nyc_lines={cov['lines']}% < 70)")
-            save_progress(repo, f"fail_low_coverage(lines={cov['lines']}%)")
+        ok, test_script = check_ps7(pkg_bytes)
+
+        if ok:
+            row_out = dict(row)
+            row_out["test_script"] = test_script
+            writer.writerow(row_out)
+            outfile.flush()
+            save_progress(repo, f"pass")
+            passed += 1
+            print(f"PASS  test={test_script[:60]!r}")
+        else:
+            save_progress(repo, f"fail_dummy_or_missing")
             failed += 1
-            continue
-
-        row_out = dict(row)
-        row_out["nyc_lines"]      = cov["lines"]
-        row_out["nyc_branches"]   = cov["branches"]
-        row_out["nyc_functions"]  = cov["functions"]
-        row_out["nyc_statements"] = cov["statements"]
-        for col in out_fields:
-            row_out.setdefault(col, "")
-        writer.writerow(row_out)
-        outfile.flush()
-
-        save_progress(repo, f"pass(lines={cov['lines']}%,branches={cov['branches']}%)")
-        passed += 1
-        print(f"  => SAVED  lines={cov['lines']}%  branches={cov['branches']}%  "
-              f"funcs={cov['functions']}%  stmts={cov['statements']}%")
+            print(f"FAIL  test={test_script[:60]!r}")
 
     outfile.close()
 

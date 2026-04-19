@@ -28,6 +28,6 @@ echo "Python: $(python3 --version)  Working dir: $(pwd)"
 echo "================"
 
 echo ""
-echo "=== PS6: test スクリプト チェック ==="
+echo "=== PS6: repo サイズ < 10MB フィルタ ==="
 python3 ps6_filter.py
 echo "=== PS6 complete ==="
