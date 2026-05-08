@@ -25,6 +25,26 @@ PS/python/batch
 PS/rust/batch
 PS/batch
 
+PS/js/js_
+PS/csharp/batch
+PS/python/batch
+PS/rust/batch
+PS/batch
+
+PS/rust/cargo_cache
+
+
 RQ1/test_coverage/picked-up/
 RQ1/test_coverage/step3_results_100row_each/
 RQ1/test_coverage/results_1-300k_step3.csv
+
+
+
+/work/rintaro-k/research/RQ3/Code/python/batch
+/work/rintaro-k/research/RQ3/Code/rust/batch
+/work/rintaro-k/research/RQ3/Code/csharp/batch
+
+/work/rintaro-k/research/RQ3/Code/common/__pycache__
+/work/rintaro-k/research/RQ3/Code/python/__pycache__
+/work/rintaro-k/research/RQ3/Code/rust/__pycache__
+/work/rintaro-k/research/RQ3/Code/csharp/__pycache__
