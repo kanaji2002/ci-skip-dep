@@ -1,7 +1,7 @@
 {
   "language": "Python",
   "package_manager": "pip",
-  "package_file": "requirements.txt or pyproject.toml",
+  "package_file": "pyproject.toml",
   "extra_dep_label": "optional_dependencies",
   "subpath_example": "from os.path import join → os (built-in, ignore)",
   "builtin_modules": "os, sys, re, json, math, time, datetime, pathlib, typing, collections, itertools, functools, io, abc, copy, enum, dataclasses, contextlib, logging, warnings, hashlib, base64, struct, socket, threading, multiprocessing, subprocess, shutil, tempfile, glob, fnmatch, configparser, argparse, unittest, ast, inspect, importlib, gc, weakref, string, textwrap, pprint, traceback",

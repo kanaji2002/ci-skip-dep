@@ -1,0 +1,6 @@
+Python: /work/rintaro-k/.pyenv/versions/3.10.19/envs/py3/bin/python
+Version: 3.10.19 (main, Feb  2 2026, 21:32:16) [GCC 11.4.0]
+CWD: /work/rintaro-k/research/RQ3
+tomli OK: 2.4.1
+toml FAIL: No module named 'toml'
+sys.path: ['/work/rintaro-k/research/RQ3/Code/python', '/work/rintaro-k/.pyenv/versions/3.10.19/lib/python310.zip', '/work/rintaro-k/.pyenv/versions/3.10.19/lib/python3.10']

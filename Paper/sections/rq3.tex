@@ -1,21 +1,81 @@
-\section{RQ3: TODO -- Define RQ3 Title}
+\section{RQ3: Extension to Other Languages}
 \label{sec:rq3}
 
-% TODO: Define the exact research question
-% Candidate: "How does the choice of unused dependency detection tool
-%             affect the skip analysis results?"
-% (depcheck vs knip vs llama3.2 vs qwen2.5)
+For RQ3, we extended the analysis to Python, Rust, and C\# to investigate
+whether CI waste caused by unused dependencies is specific to JavaScript or
+arises more broadly.
+Project selection followed the same PS1--PS6 procedure, with PS6 replaced by
+the presence of the ecosystem's package management file
+(\texttt{pyproject.toml}, \texttt{Cargo.toml}, or \texttt{.csproj}).
 
-\subsection{Motivation}
+RQ3.1 evaluates whether the LLM-based detection approach from RQ1---which
+reasons over source code and configuration files rather than
+language-specific APIs---generalises to Python, Rust, and C\#, where static
+analysis tools such as depcheck and knip are not available.
+RQ3.2 then applies the skippability pipeline from RQ2 to estimate how much CI
+waste the detected unused dependencies cause in each ecosystem.
+
+% ---------------------------------------------------------------
+\subsection{RQ3.1: LLM-Based Detection Across Languages}
+\label{sec:rq3.1}
+
+\subsubsection{Approach}
+We used a single shared prompt template with named placeholders of the form
+\texttt{\{variable\}}, substituted at inference time from two sources:
+a per-ecosystem \emph{parameter file} (static variables) and the
+\emph{repository under analysis} (dynamic variables).
+
+Static variables are fixed per ecosystem (Table~\ref{tab:prompt-static-vars}).
+\texttt{\{language\_rules\}} carries ecosystem-specific heuristics: plugin
+packages referenced via config files for JavaScript, import-to-package name
+mappings (e.g., \texttt{cv2} $\to$ \texttt{opencv-python}) for Python, and
+crate-name normalisation and procedural macro detection for Rust.
+
+\begin{table}[t]
+  \centering
+  \caption{Per-language values of the static prompt variables.
+           Each placeholder is substituted with the corresponding value
+           at inference time.}
+  \label{tab:prompt-static-vars}
+  \small
+  \begin{tabular}{llllll}
+    \toprule
+    Placeholder & Description & JavaScript & Python & Rust & C\# \\
+    \midrule
+    \texttt{\{language\}} & Language name
+      & JavaScript/Node.js & Python & Rust & C\#/.NET \\
+    \texttt{\{package\_manager\}} & Package manager
+      & npm & pip & cargo & NuGet \\
+    \texttt{\{package\_file\}} & Package definition file
+      & \texttt{package.json}
+      & \texttt{requirements.txt} / \texttt{pyproject.toml}
+      & \texttt{Cargo.toml}
+      & \texttt{*.csproj} / \texttt{packages.config} \\
+    \texttt{\{extra\_dep\_label\}} & Extra dependency category
+      & peer\_dependencies & optional\_dependencies & build\_dependencies & analyzer\_packages \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+Dynamic variables are populated from the target commit: \texttt{\{dependencies\}}
+and \texttt{\{dev\_dependencies\}} from the package definition file,
+\texttt{\{source\_code\}} from language-matched source files,
+and \texttt{\{config\_references\}} from ecosystem-specific configuration files
+(e.g., \texttt{.babelrc} for JavaScript, \texttt{.flake8} for Python).
+The complete template and parameter files are provided in
+Appendix~\ref{app:prompt}.
+
+\subsubsection{Results}
 % TODO
 
-\subsection{Approach}
-% TODO
+% ---------------------------------------------------------------
+\subsection{RQ3.2: CI Waste Estimation Across Languages}
+\label{sec:rq3.2}
 
-\subsection{Results}
-% TODO
+\subsubsection{Approach}
+We applied the skippability pipeline from RQ2 (Section~\ref{sec:rq2})
+unchanged, using the LLM detection results from RQ3.1 as the source of unused
+dependency information.
 
-\subsection{Summary}
-% \begin{mdframed}
-% \textbf{RQ3 Summary:} ...
-% \end{mdframed}
+\subsubsection{Results}
+% TODO

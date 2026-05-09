@@ -1,0 +1,7 @@
+python
+batch
+.claude
+csharp
+.env
+js
+rust

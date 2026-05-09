@@ -1,0 +1,8 @@
+Collecting tomli
+  Downloading tomli-2.4.1-py3-none-any.whl.metadata (10 kB)
+Downloading tomli-2.4.1-py3-none-any.whl (14 kB)
+Installing collected packages: tomli
+Successfully installed tomli-2.4.1
+
+[notice] A new release of pip is available: 25.1.1 -> 26.1
+[notice] To update, run: /work/rintaro-k/.pyenv/versions/3.10.19/bin/python3.10 -m pip install --upgrade pip

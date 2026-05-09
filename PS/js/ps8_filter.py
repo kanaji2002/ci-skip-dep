@@ -70,10 +70,10 @@ def _parse_coverage_summary(path: Path) -> dict | None:
             data = json.load(f)
         total = data.get("total", {})
         return {
-            "lines":      total.get("lines",      {}).get("pct", 0.0),
-            "branches":   total.get("branches",   {}).get("pct", 0.0),
-            "functions":  total.get("functions",  {}).get("pct", 0.0),
-            "statements": total.get("statements", {}).get("pct", 0.0),
+            "lines":      float(total.get("lines",      {}).get("pct", 0) or 0),
+            "branches":   float(total.get("branches",   {}).get("pct", 0) or 0),
+            "functions":  float(total.get("functions",  {}).get("pct", 0) or 0),
+            "statements": float(total.get("statements", {}).get("pct", 0) or 0),
         }
     except Exception:
         return None

@@ -1,0 +1,85 @@
+=== Starting Ollama ===
+[GIN] 2026/05/08 - 23:11:35 | 200 |  104.880797ms |       127.0.0.1 | GET      "/api/tags"
+Ollama ready.
+[GIN] 2026/05/08 - 23:11:35 | 200 |      79.027µs |       127.0.0.1 | HEAD     "/"
+[GIN] 2026/05/08 - 23:11:36 | 200 |  1.018502038s |       127.0.0.1 | POST     "/api/pull"
+[GIN] 2026/05/08 - 23:11:37 | 200 |      56.241µs |       127.0.0.1 | HEAD     "/"
+[GIN] 2026/05/08 - 23:11:38 | 200 |  734.799967ms |       127.0.0.1 | POST     "/api/pull"
+[GIN] 2026/05/08 - 23:11:38 | 200 |      49.755µs |       127.0.0.1 | HEAD     "/"
+[GIN] 2026/05/08 - 23:11:39 | 200 |  742.708603ms |       127.0.0.1 | POST     "/api/pull"
+=== Job Info ===
+Job ID:   4255613
+Node:     cc21isgpu00.naist.jp
+Python:   Python 3.10.19
+GPU:      NVIDIA H200 NVL
+Args:     --limit 5
+================
+[GIN] 2026/05/08 - 23:12:14 | 200 | 15.941827481s |       127.0.0.1 | POST     "/api/chat"
+[GIN] 2026/05/08 - 23:12:30 | 200 | 15.232369501s |       127.0.0.1 | POST     "/api/chat"
+[GIN] 2026/05/08 - 23:12:37 | 200 |  6.909312917s |       127.0.0.1 | POST     "/api/chat"
+[GIN] 2026/05/08 - 23:12:39 | 200 |   1.84029737s |       127.0.0.1 | POST     "/api/chat"
+[GIN] 2026/05/08 - 23:12:42 | 200 |   2.29245929s |       127.0.0.1 | POST     "/api/chat"
+[GIN] 2026/05/08 - 23:12:43 | 200 |  1.003074795s |       127.0.0.1 | POST     "/api/chat"
+[GIN] 2026/05/08 - 23:12:46 | 200 |  2.055976554s |       127.0.0.1 | POST     "/api/chat"
+[GIN] 2026/05/08 - 23:12:53 | 200 |  6.092814406s |       127.0.0.1 | POST     "/api/chat"
+[GIN] 2026/05/08 - 23:12:55 | 200 |  2.226154575s |       127.0.0.1 | POST     "/api/chat"
+[GIN] 2026/05/08 - 23:12:59 | 200 |  1.867907432s |       127.0.0.1 | POST     "/api/chat"
+[GIN] 2026/05/08 - 23:13:01 | 200 |  2.125220099s |       127.0.0.1 | POST     "/api/chat"
+[GIN] 2026/05/08 - 23:13:02 | 200 |  944.209186ms |       127.0.0.1 | POST     "/api/chat"
+Target: 5 repos  |  Output: /work/rintaro-k/research/RQ3/RQ3-1/Code/python/output/step1_results.csv
+
+============================================================
+[conestack/cone.app]
+  Cloning ...
+  [llm:llama3.1:8b] eval_count=119 prompt_eval_count=3199
+  llama     : 7 unused_dep, 2 unused_dev_dep  (16.2s) ok=True
+  [llm:qwen3.5:4b] eval_count=72 prompt_eval_count=3374
+  qwen      : 3 unused_dep, 0 unused_dev_dep  (15.3s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=186 prompt_eval_count=4517
+  deepseek  : 9 unused_dep, 7 unused_dev_dep  (7.0s) ok=True
+  Saved (1 done)
+
+============================================================
+[conestack/plumber]
+  Cloning ...
+  [llm:llama3.1:8b] eval_count=45 prompt_eval_count=1656
+  llama     : 0 unused_dep, 1 unused_dev_dep  (1.9s) ok=True
+  [llm:qwen3.5:4b] eval_count=58 prompt_eval_count=1762
+  qwen      : 0 unused_dep, 1 unused_dev_dep  (2.3s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=68 prompt_eval_count=2342
+  deepseek  : 0 unused_dep, 1 unused_dev_dep  (1.0s) ok=True
+  Saved (2 done)
+
+============================================================
+[Zomojo/compiletools]
+  Cloning ...
+  [llm:llama3.1:8b] eval_count=35 prompt_eval_count=5236
+  llama     : 0 unused_dep, 0 unused_dev_dep  (2.2s) ok=True
+  [llm:qwen3.5:4b] eval_count=191 prompt_eval_count=5389
+  qwen      : 2 unused_dep, 0 unused_dev_dep  (6.2s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=113 prompt_eval_count=6761
+  deepseek  : 6 unused_dep, 4 unused_dev_dep  (2.3s) ok=True
+  Saved (3 done)
+
+============================================================
+[plone/plone.reload]
+  Cloning ...
+  llama     : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  qwen      : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  deepseek  : 0 unused_dep, 0 unused_dev_dep  (0.0s) ok=False
+  Saved (4 done)
+
+============================================================
+[Pike/pygrep]
+  Cloning ...
+  [llm:llama3.1:8b] eval_count=43 prompt_eval_count=1482
+  llama     : 0 unused_dep, 1 unused_dev_dep  (1.9s) ok=True
+  [llm:qwen3.5:4b] eval_count=56 prompt_eval_count=1547
+  qwen      : 0 unused_dep, 1 unused_dev_dep  (2.1s) ok=True
+  [llm:deepseek-coder:6.7b-instruct] eval_count=68 prompt_eval_count=2052
+  deepseek  : 0 unused_dep, 1 unused_dev_dep  (1.0s) ok=True
+  Saved (5 done)
+
+Finished. Results: /work/rintaro-k/research/RQ3/RQ3-1/Code/python/output/step1_results.csv
+=== Done (82s) ===
+=== Stopping Ollama (PID: 2455760) ===

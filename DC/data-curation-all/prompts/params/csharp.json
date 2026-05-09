@@ -1,7 +1,7 @@
 {
   "language": "C#/.NET",
   "package_manager": "NuGet",
-  "package_file": "*.csproj or packages.config",
+  "package_file": "*.csproj",
   "extra_dep_label": "analyzer_packages (build-time only)",
   "subpath_example": "using Newtonsoft.Json.Linq → Newtonsoft.Json",
   "builtin_modules": "System, System.Collections, System.Collections.Generic, System.IO, System.Linq, System.Text, System.Threading, System.Threading.Tasks, System.Net, System.Net.Http, System.Reflection, System.Runtime, System.Diagnostics, System.ComponentModel, System.Security, Microsoft.CSharp, Microsoft.VisualBasic",

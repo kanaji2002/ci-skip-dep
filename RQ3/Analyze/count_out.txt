@@ -1,0 +1,2 @@
+rows: 3184
+batches needed (100/batch): 32

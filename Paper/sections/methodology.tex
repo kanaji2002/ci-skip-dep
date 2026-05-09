@@ -37,6 +37,9 @@ Table~\ref{tab:ps} summarises each filter step and the resulting project counts.
     PS3 & GitHub Actions adopted (\texttt{.github/workflows/*.yml}) & 16{,}226 \\
     PS4 & $\geq$10 GitHub Actions executions & \textit{(TBD)} \\
     PS5 & npm adopted (\texttt{package.json} exists) & 13{,}991 \\
+    PS6 & Repository size $<$ 10\,MB & 9{,}330 \\
+    PS7 & Non-dummy \texttt{test} script in \texttt{package.json} & \textit{(TBD)} \\
+    PS8 & nyc line coverage $\geq$ 70\% (tests pass) & \textit{(TBD)} \\
     \bottomrule
   \end{tabular}
 \end{table}
@@ -63,9 +66,102 @@ This step is a novel addition over the original Dep-sCImitar work, which did
 not explicitly verify CI activity.
 
 \paragraph{PS5 -- npm Adoption.}
-Finally, we filtered for projects containing a \texttt{package.json} file at
+We filtered for projects containing a \texttt{package.json} file at
 the repository root, confirming use of the npm package manager and yielding
 13{,}991 projects.
+
+\paragraph{PS6 -- Repository Size Filter.}
+We discarded projects whose total repository size (as reported by the GitHub
+REST API \texttt{size} field, measured in kilobytes) exceeded 10\,MB.
+Large repositories tend to be monorepos or projects that commit build
+artefacts, binary assets, or generated files, which complicate static
+dependency analysis and substantially increase clone and analysis time.
+Applying this threshold reduced the candidate set to \textbf{9{,}330 projects}
+(63\% of PS5), a retention rate consistent with our observation that
+well-maintained single-package libraries are typically small.
+
+\paragraph{PS7 -- Test Script Verification.}
+For each remaining project we retrieved \texttt{package.json} via the GitHub
+Contents API and inspected the \texttt{scripts.test} field.
+Projects were excluded if (a) no \texttt{test} script was defined, or
+(b) the script was a no-op placeholder (matching the pattern
+\texttt{echo.*no test} or \texttt{exit 1}).
+This filter removes projects that nominally declare a test command but do not
+actually run any tests, which would make code-coverage measurement meaningless.
+
+\paragraph{PS8 -- Test Coverage Verification (nyc $\geq$ 70\%).}
+\label{sec:ps8}
+
+PS8 is the most demanding filter: it \emph{executes} the test suite of
+each surviving project and requires a measured line-coverage of at least
+70\%.
+The filter proceeds in four sub-steps for each project.
+
+\textbf{(1) Clone.}
+We perform a shallow clone (\texttt{git clone --depth=1}) of the default branch.
+Clone attempts that exceed 120\,seconds are aborted.
+
+\textbf{(2) nyc detection.}
+We parse \texttt{package.json} to determine whether the project uses
+\texttt{nyc}~\cite{nyc} for coverage instrumentation.
+A project is considered to use nyc if the string \texttt{nyc} appears in
+either \texttt{dependencies}, \texttt{devDependencies}, or in the value of
+any \texttt{scripts} entry.
+Projects with no nyc reference are excluded at this point.
+
+\textbf{(3) Coverage command selection.}
+We select the coverage command using the following priority order:
+\begin{enumerate}
+  \item If the \texttt{coverage}, \texttt{test:coverage}, \texttt{test-coverage},
+        or \texttt{cov} script calls nyc, we execute \texttt{npm run <key>}.
+  \item If the \texttt{test} script itself invokes nyc, we execute
+        \texttt{npm test}.
+  \item If nyc is listed as a dependency but not wired into any script,
+        we wrap the test command as
+        \texttt{npx nyc --reporter=json-summary npm test}.
+\end{enumerate}
+
+\textbf{(4) Execution and threshold.}
+We first run \texttt{npm install --no-audit --no-fund} (timeout: 300\,s).
+We then execute the selected coverage command (timeout: 300\,s).
+If the command exits with a non-zero status (i.e., any test fails), the
+project is excluded.
+Coverage percentages are extracted from
+\texttt{coverage/coverage-summary.json}; if that file is absent, we fall back
+to parsing the nyc table printed to standard output.
+A project passes PS8 only if its \emph{line coverage} is $\geq 70\%$.
+The output CSV is augmented with four numeric columns:
+\texttt{nyc\_lines}, \texttt{nyc\_branches}, \texttt{nyc\_functions}, and
+\texttt{nyc\_statements}.
+
+The 70\% threshold was chosen to ensure that the test suite exercises a
+substantial fraction of the codebase, providing confidence that the
+dependency-update commits we subsequently analyse occur in projects with
+genuine test infrastructure rather than superficial or non-functional tests.
+
+% ----------------------------------------------------------------
+\subsection{Dataset Characteristics}
+\label{sec:dataset}
+
+To the best of our knowledge, the dataset produced by PS8 is the first
+publicly available benchmark for evaluating unused dependency detection
+in npm projects under the constraint of executable, high-coverage test
+suites.
+We make this dataset publicly available on Zenodo: XXXXXX.
+
+The dataset comprises \textbf{XX} projects with a total of XX dependencies
+examined.
+Commit counts range from XX to XX (median: XX), and GitHub star counts
+range from XX to XX (median: XX), reflecting a mix of small utility
+libraries and widely adopted packages.
+
+Regarding test coverage, all projects satisfy the PS8 minimum of 70\%
+nyc line coverage (median: XX\%).
+XX\% of projects fall in the range $[70, 80)$\%,
+XX\% in $[80, 90)$\%, XX\% in $[90, 100)$\%,
+and XX\% achieve perfect 100\% line coverage,
+reflecting the tendency of well-maintained npm libraries to ship
+exhaustive unit tests.
 
 % ----------------------------------------------------------------
 \subsection{Data Curation}
@@ -113,10 +209,11 @@ exports, files, and dependencies in JSON format:
 knip performs project-level cross-file analysis, potentially capturing
 indirect usage patterns that single-file tools miss.
 
-\paragraph{LLM-based detection (llama3.2 and qwen2.5).}
+\paragraph{LLM-based detection (llama3.1:8b, qwen3.5:4b, deepseek-coder:6.7b-instruct).}
 As an alternative to traditional static analysis, we explored LLM-based
-detection using two open-source models served locally via
-Ollama~\cite{ollama}: \texttt{llama3.2} and \texttt{qwen2.5}.
+detection using three lightweight, open-source models served locally via
+Ollama~\cite{ollama}: \texttt{llama3.1:8b}, \texttt{qwen3.5:4b}, and
+\texttt{deepseek-coder:6.7b-instruct}.
 For each commit, we extracted all \texttt{import}/\texttt{require} statements
 from the project source using regular expressions, then prompted the LLM to
 classify whether each dependency listed in \texttt{package.json} was
