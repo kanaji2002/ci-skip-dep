@@ -7,6 +7,17 @@ ollama_models/
 *.zip
 tem2/
 
+# Python キャッシュ
+**/__pycache__/
+**/*.pyc
+**/*.pyo
+
+# Singularity コンテナイメージ
+*.sif
+
+# ログファイル
+*.log
+
 # Large data directories
 DC/*
 # 除外対象：フォルダを明示的に追跡
@@ -34,20 +45,12 @@ PS/batch
 PS/rust/cargo_cache
 RQ3/Code/**
 
-containers
-
+containers/
 
 RQ1/test_coverage/picked-up/
 RQ1/test_coverage/step3_results_100row_each/
 RQ1/test_coverage/results_1-300k_step3.csv
 
-
-
-/work/rintaro-k/research/RQ3/Code/python/batch
-/work/rintaro-k/research/RQ3/Code/rust/batch
-/work/rintaro-k/research/RQ3/Code/csharp/batch
-
-/work/rintaro-k/research/RQ3/Code/common/__pycache__
-/work/rintaro-k/research/RQ3/Code/python/__pycache__
-/work/rintaro-k/research/RQ3/Code/rust/__pycache__
-/work/rintaro-k/research/RQ3/Code/csharp/__pycache__
+RQ3/Code/python/batch
+RQ3/Code/rust/batch
+RQ3/Code/csharp/batch
