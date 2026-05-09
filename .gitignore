@@ -60,5 +60,9 @@ RQ3/Code/csharp/batch/
 # コンテナ
 containers/
 
+/tem/
+
 # 旧パス
 data-curation-all/data_dependency_waste_project/latest_clones/
+
+/tem/
