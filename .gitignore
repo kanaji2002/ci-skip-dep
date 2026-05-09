@@ -1,61 +1,64 @@
-data-curation-all/data_dependency_waste_project/latest_clones/
+# 機密・環境ファイル
 .env
 .claude/
+
+# macOS アーティファクト
 __MACOSX/
-ollama.sif
+
+# Singularity コンテナイメージ
+*.sif
 ollama_models/
+
+# 圧縮ファイル
 *.zip
-tem2/
 
 # Python キャッシュ
 **/__pycache__/
 **/*.pyc
 **/*.pyo
 
-# Singularity コンテナイメージ
-*.sif
-
 # ログファイル
 *.log
+*.err
+*.out
+
+# 一時フォルダ
+tem/
+tem2/
 
 # Large data directories
 DC/*
 # 除外対象：フォルダを明示的に追跡
 !DC/data-curation-all/
 
-
 # さらにその中の不要なものを無視
 DC/data-curation-all/batch/
 DC/data-curation-all/data_dependency_waste_project/
 
-
-
-PS/js/batch
-PS/csharp/batch
-PS/python/batch
-PS/rust/batch
-PS/batch
-
+# PS バッチ出力
+PS/batch/
+PS/js/batch/
 PS/js/js_
-PS/csharp/batch
-PS/python/batch
-PS/rust/batch
-PS/batch
+PS/csharp/batch/
+PS/python/batch/
+PS/rust/batch/
+PS/rust/cargo_cache/
 
-tem
-
-PS/rust/cargo_cache
-RQ3/Code/**
-
-containers/
-
+# RQ バッチ出力・ログ
+**/batch_output/
+**/logs/
 RQ1/test_coverage/picked-up/
 RQ1/test_coverage/step3_results_100row_each/
 RQ1/test_coverage/results_1-300k_step3.csv
 
-RQ3/Code/python/batch
-RQ3/Code/rust/batch
-RQ3/Code/csharp/batch
-*.sif
+# RQ3 コード (大容量)
+RQ3/Code/**
+RQ3/Code/python/batch/
+RQ3/Code/rust/batch/
+RQ3/Code/csharp/batch/
 
-*.sif
+# コンテナ
+containers/
+
+# 旧パス
+data-curation-all/data_dependency_waste_project/latest_clones/
