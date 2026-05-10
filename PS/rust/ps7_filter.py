@@ -2,11 +2,11 @@
 """
 ps7_filter.py  (Rust)
 
-Input : ps6/ps6_filtered.csv
-Check : cargo-tarpaulin (Singularity コンテナ) でテスト実行 & line coverage >= 70%
+Input : ps6/ps6_filtered.csv  (PS6 でテスト存在が確認済みのリポジトリ)
+Check : ローカルでテストを実行して line coverage >= 70% を確認
         - git clone --depth=1
         - singularity exec rust-tarpaulin.sif cargo tarpaulin --out Json
-        - tarpaulin-report.json の coverage (0.0-1.0) * 100 >= 70 を確認
+        - tarpaulin-report.json の coverage * 100 >= 70 を確認
 Output: ps7/ps7_filtered.csv  (通過分のみ、cov_lines カラム付き)
         ps7/progress.log      (再開用)
 """

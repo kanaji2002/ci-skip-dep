@@ -2,8 +2,8 @@
 """
 ps7_filter.py  (C#)
 
-Input : ps6/ps6_filtered.csv
-Check : dotnet test --collect:"XPlat Code Coverage" で line coverage >= 70%
+Input : ps6/ps6_filtered.csv  (PS6 で xUnit 参照が確認済みのリポジトリ)
+Check : ローカルでテストを実行して line coverage >= 70% を確認
         - git clone --depth=1
         - テスト .csproj を検出 → coverlet.collector を未参照なら動的に追加
         - singularity exec dotnet-sdk8.sif dotnet restore

@@ -1,6 +1,6 @@
 #!/bin/bash -l
 #SBATCH --job-name=ps6-filter-rust
-#SBATCH --time=24:00:00
+#SBATCH --time=100:00:00
 #SBATCH --partition=cluster_long
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=1
@@ -28,6 +28,6 @@ echo "Python: $(python3 --version)  Working dir: $(pwd)"
 echo "================"
 
 echo ""
-echo "=== PS6 (Rust): tests/ ディレクトリ チェック ==="
+echo "=== PS6 (Rust): テスト存在チェック (GitHub API) ==="
 python3 ps6_filter.py
 echo "=== PS6 complete ==="
