@@ -1,18 +1,19 @@
 #!/usr/bin/env python3
 """
-ps8_filter.py  (C#)
+ps7_filter.py  (C#)
 
-Input : ps7/ps7_filtered.csv
+Input : ps6/ps6_filtered.csv
 Check : dotnet test --collect:"XPlat Code Coverage" で line coverage >= 70%
         - git clone --depth=1
         - テスト .csproj を検出 → coverlet.collector を未参照なら動的に追加
         - singularity exec dotnet-sdk8.sif dotnet restore
         - singularity exec dotnet-sdk8.sif dotnet test --collect:"XPlat Code Coverage"
         - TestResults/**/coverage.cobertura.xml を解析
-Output: ps8/ps8_filtered.csv  (通過分のみ、cov_lines カラム付き)
-        ps8/progress.log      (再開用)
+Output: ps7/ps7_filtered.csv  (通過分のみ、cov_lines カラム付き)
+        ps7/progress.log      (再開用)
 """
 
+import argparse
 import csv
 import glob
 import re
@@ -22,9 +23,9 @@ import xml.etree.ElementTree as ET
 from pathlib import Path
 
 BASE_DIR   = Path(__file__).parent
-INPUT_CSV  = BASE_DIR / "ps7" / "ps7_filtered.csv"
-OUTPUT_DIR = BASE_DIR / "ps8"
-OUTPUT_CSV = OUTPUT_DIR / "ps8_filtered.csv"
+INPUT_CSV  = BASE_DIR / "ps6" / "ps6_filtered.csv"
+OUTPUT_DIR = BASE_DIR / "ps7"
+OUTPUT_CSV = OUTPUT_DIR / "ps7_filtered.csv"
 PROGRESS   = OUTPUT_DIR / "progress.log"
 REPOS_TMP  = BASE_DIR / "repos_tmp"
 
@@ -95,7 +96,7 @@ def parse_cobertura(xml_path: Path) -> tuple[int, int]:
         return 0, 0
 
 
-def run_ps8(dest: Path) -> tuple[bool, dict | None, str]:
+def run_ps7(dest: Path) -> tuple[bool, dict | None, str]:
     # テストプロジェクトを検出
     test_projs = find_test_csproj(dest)
     if not test_projs:
@@ -178,6 +179,17 @@ def save_progress(repo: str, status: str):
 
 
 def main():
+    global INPUT_CSV, OUTPUT_CSV, PROGRESS, OUTPUT_DIR
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--input",    default=str(INPUT_CSV))
+    parser.add_argument("--output",   default=str(OUTPUT_CSV))
+    parser.add_argument("--progress", default=str(PROGRESS))
+    args = parser.parse_args()
+    INPUT_CSV  = Path(args.input)
+    OUTPUT_CSV = Path(args.output)
+    PROGRESS   = Path(args.progress)
+    OUTPUT_DIR = OUTPUT_CSV.parent
+
     if not SIF_PATH.exists():
         print(f"ERROR: コンテナが見つかりません: {SIF_PATH}")
         print("  /work/rintaro-k/research/containers/pull-containers.sh を実行してください。")
@@ -192,7 +204,7 @@ def main():
         rows       = list(reader)
 
     print("=" * 60)
-    print("PS8 (C#): dotnet test XPlat Code Coverage (line >= 70%)")
+    print("PS7 (C#): dotnet test XPlat Code Coverage (line >= 70%)")
     print(f"Input : {INPUT_CSV}  ({len(rows)} 件)")
     print(f"Output: {OUTPUT_CSV}")
     print(f"SIF   : {SIF_PATH}")
@@ -245,7 +257,7 @@ def main():
         print("OK")
 
         try:
-            ok, cov, reason = run_ps8(dest)
+            ok, cov, reason = run_ps7(dest)
         except Exception as e:
             ok, cov, reason = False, None, f"error({e})"
         finally:
@@ -274,7 +286,7 @@ def main():
         print(f"  => SAVED  lines={cov['lines']:.1f}%")
 
     outfile.close()
-    print(f"\n=== PS8 (C#) 完了 ===")
+    print(f"\n=== PS7 (C#) 完了 ===")
     print(f"Total: {len(rows)}  Pass: {passed}  Fail: {failed}  Skip: {skipped}")
     print(f"Output: {OUTPUT_CSV}")
 

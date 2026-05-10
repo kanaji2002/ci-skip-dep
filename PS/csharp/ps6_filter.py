@@ -13,6 +13,7 @@ Output: ps6/ps6_filtered.csv  (通過分のみ、cov_lines カラム付き)
         ps6/progress.log      (再開用)
 """
 
+import argparse
 import csv
 import re
 import shutil
@@ -177,6 +178,17 @@ def save_progress(repo: str, status: str):
 
 
 def main():
+    global INPUT_CSV, OUTPUT_CSV, PROGRESS, OUTPUT_DIR
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--input",    default=str(INPUT_CSV))
+    parser.add_argument("--output",   default=str(OUTPUT_CSV))
+    parser.add_argument("--progress", default=str(PROGRESS))
+    args = parser.parse_args()
+    INPUT_CSV  = Path(args.input)
+    OUTPUT_CSV = Path(args.output)
+    PROGRESS   = Path(args.progress)
+    OUTPUT_DIR = OUTPUT_CSV.parent
+
     if not SIF_PATH.exists():
         print(f"ERROR: コンテナが見つかりません: {SIF_PATH}")
         print("  /work/rintaro-k/research/containers/pull-containers.sh を実行してください。")
@@ -191,7 +203,7 @@ def main():
         rows       = list(reader)
 
     print("=" * 60)
-    print("PS7 (C#): dotnet test XPlat Code Coverage (line >= 70%)")
+    print("PS6 (C#): dotnet test XPlat Code Coverage (line >= 70%)")
     print(f"Input : {INPUT_CSV}  ({len(rows)} 件)")
     print(f"Output: {OUTPUT_CSV}")
     print(f"SIF   : {SIF_PATH}")
@@ -273,7 +285,7 @@ def main():
         print(f"  => SAVED  lines={cov['lines']:.1f}%")
 
     outfile.close()
-    print(f"\n=== PS7 (C#) 完了 ===")
+    print(f"\n=== PS6 (C#) 完了 ===")
     print(f"Total: {len(rows)}  Pass: {passed}  Fail: {failed}  Skip: {skipped}")
     print(f"Output: {OUTPUT_CSV}")
 

@@ -28,6 +28,6 @@ echo "Python: $(python3 --version)  Working dir: $(pwd)"
 echo "================"
 
 echo ""
-echo "=== PS6 (C#): テストプロジェクト チェック ==="
+echo "=== PS6 (C#): dotnet test XPlat Code Coverage ==="
 python3 ps6_filter.py
 echo "=== PS6 complete ==="
