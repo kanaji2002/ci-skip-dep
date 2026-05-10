@@ -1,10 +1,10 @@
 #!/bin/bash -l
-#SBATCH --job-name=repo-list-filter-csharp
+#SBATCH --job-name=csharp-ps1-3-filter
 #SBATCH --time=100:00:00
 #SBATCH --partition=cluster_long
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=1
-#SBATCH --mem=8G
+#SBATCH --mem=32G
 #SBATCH --output=/work/rintaro-k/research/PS/csharp/batch/output/%x/%j/out.out
 #SBATCH --error=/work/rintaro-k/research/PS/csharp/batch/output/%x/%j/err.err
 
@@ -48,9 +48,9 @@ echo "================"
 # ============================================
 # Run filter pipeline
 # ============================================
-# 読み込む CSV を指定する（デフォルト: PS1/ps1.csv）
-# 例: sbatch --export=ALL,INPUT_CSV=PS1/ps1.csv submit-ps1-3.sh
-INPUT_CSV="${INPUT_CSV:-PS1/ps1.csv}"
+# 読み込む CSV を指定する（デフォルト: ps0/ps0_filtered.csv）
+# 例: sbatch --export=ALL,INPUT_CSV=ps0/ps0_filtered.csv submit-ps1-3.sh
+INPUT_CSV="${INPUT_CSV:-ps0/ps0_filtered.csv}"
 export INPUT_CSV
 
 echo ""
