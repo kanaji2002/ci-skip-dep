@@ -1,5 +1,5 @@
 #!/bin/bash -l
-#SBATCH --job-name=ps8-filter-rust
+#SBATCH --job-name=ps7-filter-rust
 #SBATCH --time=100:00:00
 #SBATCH --partition=cluster_long
 #SBATCH --ntasks=1
@@ -39,6 +39,6 @@ echo "SIF: $SIF"
 echo "================"
 
 echo ""
-echo "=== PS8 (Rust): cargo-tarpaulin 実行チェック ==="
-python3 ps8_filter.py
-echo "=== PS8 complete ==="
+echo "=== PS7 (Rust): cargo-tarpaulin 実行チェック ==="
+python3 ps7_filter.py
+echo "=== PS7 complete ==="

@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 """
-ps7_filter.py  (Rust)
+ps6_filter.py  (Rust)
 
-Input : ps6/ps6_filtered.csv
+Input : ps5/ps5_filtered.csv
 Check : cargo-tarpaulin (Singularity コンテナ) でテスト実行 & line coverage >= 70%
         - git clone --depth=1
         - singularity exec rust-tarpaulin.sif cargo tarpaulin --out Json
         - tarpaulin-report.json の coverage (0.0-1.0) * 100 >= 70 を確認
-Output: ps7/ps7_filtered.csv  (通過分のみ、cov_lines カラム付き)
-        ps7/progress.log      (再開用)
+Output: ps6/ps6_filtered.csv  (通過分のみ、cov_lines カラム付き)
+        ps6/progress.log      (再開用)
 """
 
 import csv
@@ -18,9 +18,9 @@ import subprocess
 from pathlib import Path
 
 BASE_DIR   = Path(__file__).parent
-INPUT_CSV  = BASE_DIR / "ps6" / "ps6_filtered.csv"
-OUTPUT_DIR = BASE_DIR / "ps7"
-OUTPUT_CSV = OUTPUT_DIR / "ps7_filtered.csv"
+INPUT_CSV  = BASE_DIR / "ps5" / "ps5_filtered.csv"
+OUTPUT_DIR = BASE_DIR / "ps6"
+OUTPUT_CSV = OUTPUT_DIR / "ps6_filtered.csv"
 PROGRESS   = OUTPUT_DIR / "progress.log"
 REPOS_TMP  = BASE_DIR / "repos_tmp"
 
@@ -49,7 +49,7 @@ def singularity_exec(cmd: list, cwd: Path, timeout: int) -> subprocess.Completed
     )
 
 
-def run_ps7(dest: Path) -> tuple[bool, dict | None, str]:
+def run_ps6(dest: Path) -> tuple[bool, dict | None, str]:
     if not (dest / "Cargo.toml").exists():
         return False, None, "no_cargo_toml"
 
@@ -122,7 +122,7 @@ def main():
         rows       = list(reader)
 
     print("=" * 60)
-    print("PS7 (Rust): cargo-tarpaulin チェック (line coverage >= 70%)")
+    print("PS6 (Rust): cargo-tarpaulin チェック (line coverage >= 70%)")
     print(f"Input : {INPUT_CSV}  ({len(rows)} 件)")
     print(f"Output: {OUTPUT_CSV}")
     print(f"SIF   : {SIF_PATH}")
@@ -175,7 +175,7 @@ def main():
         print("OK")
 
         try:
-            ok, cov, reason = run_ps7(dest)
+            ok, cov, reason = run_ps6(dest)
         except Exception as e:
             ok, cov, reason = False, None, f"error({e})"
         finally:
@@ -204,7 +204,7 @@ def main():
         print(f"  => SAVED  lines={cov['lines']:.1f}%")
 
     outfile.close()
-    print(f"\n=== PS7 (Rust) 完了 ===")
+    print(f"\n=== PS6 (Rust) 完了 ===")
     print(f"Total: {len(rows)}  Pass: {passed}  Fail: {failed}  Skip: {skipped}")
     print(f"Output: {OUTPUT_CSV}")
 
