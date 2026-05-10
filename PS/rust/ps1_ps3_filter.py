@@ -7,6 +7,7 @@ PS3: GitHub Actions 実行履歴が 10件以上   → ps3/ps3_filtered.csv
 """
 
 import csv
+import itertools
 import time
 import requests
 import os
@@ -17,8 +18,26 @@ load_dotenv(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..",
 # ============================================================
 # 設定
 # ============================================================
-GITHUB_TOKEN = os.environ["GITHUB_TOKEN_1"]
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+GITHUB_TOKENS = []
+i = 1
+while True:
+    t = os.environ.get(f"GITHUB_TOKEN_{i}", "").strip()
+    if not t:
+        break
+    GITHUB_TOKENS.append(t)
+    i += 1
+
+if not GITHUB_TOKENS:
+    t = os.environ.get("GITHUB_TOKEN", "").strip()
+    if t:
+        GITHUB_TOKENS.append(t)
+
+if not GITHUB_TOKENS:
+    raise RuntimeError("GITHUB_TOKEN または GITHUB_TOKEN_1 が .env に見つかりません")
+
+_token_cycle = itertools.cycle(GITHUB_TOKENS)
 
 _input_arg = os.environ.get("INPUT_CSV", "ps0/ps0_filtered.csv")
 INPUT_CSV = os.path.join(BASE_DIR, _input_arg) if not os.path.isabs(_input_arg) else _input_arg
@@ -41,11 +60,12 @@ RETRY_DELAY = 3
 def github_get(url: str, params: dict = None):
     """
     GitHub API に GET リクエストを送る。
-    レート制限対応・リトライ付き。
+    レート制限対応・リトライ付き。トークンをラウンドロビンで使用。
     戻り値: (data, status_code)
     """
+    token = next(_token_cycle)
     headers = {
-        "Authorization": f"token {GITHUB_TOKEN}",
+        "Authorization": f"token {token}",
         "Accept": "application/vnd.github.v3+json",
     }
     for attempt in range(RETRY_MAX):
@@ -232,6 +252,7 @@ def main():
     print("="*60)
     print("repo-list フィルタリング パイプライン (PS1 -> PS2 -> PS3)")
     print("="*60)
+    print(f"[初期化] トークン {len(GITHUB_TOKENS)} 件")
     print(f"入力: {INPUT_CSV}")
 
     ps1_filter_commits(INPUT_CSV, PS1_CSV)

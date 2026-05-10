@@ -4,7 +4,7 @@
 #SBATCH --partition=cluster_long
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=1
-#SBATCH --mem=32G
+#SBATCH --mem=64G
 #SBATCH --output=/work/rintaro-k/research/PS/rust/batch/output/%x/%j/out.out
 #SBATCH --error=/work/rintaro-k/research/PS/rust/batch/output/%x/%j/err.err
 
