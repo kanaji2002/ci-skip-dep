@@ -79,8 +79,8 @@ def run_ps8(dest: Path) -> tuple[bool, dict | None, str]:
         print("TIMEOUT")
         return False, None, "timeout"
 
-    # exit=1 は一部テスト失敗。exit>=2 は内部エラー
-    if r.returncode >= 2:
+  
+    if r.returncode != 0:
         print(f"FAIL (exit={r.returncode})")
         return False, None, f"pytest_error(exit={r.returncode})"
 
