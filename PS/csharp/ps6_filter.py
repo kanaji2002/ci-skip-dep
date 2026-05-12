@@ -28,7 +28,7 @@ OUTPUT_DIR = BASE_DIR / "ps6"
 OUTPUT_CSV = OUTPUT_DIR / "ps6_filtered.csv"
 PROGRESS   = OUTPUT_DIR / "progress.log"
 
-load_dotenv(BASE_DIR / ".." / ".env")
+load_dotenv(BASE_DIR / ".." / ".." / ".env")
 
 GITHUB_TOKENS = []
 _i = 1
@@ -38,6 +38,10 @@ while True:
         break
     GITHUB_TOKENS.append(_t)
     _i += 1
+if not GITHUB_TOKENS:
+    _t = os.environ.get("GITHUB_TOKEN", "").strip()
+    if _t:
+        GITHUB_TOKENS.append(_t)
 
 XUNIT_RE   = re.compile(r'xunit', re.IGNORECASE)
 API_TIMEOUT = 30

@@ -21,10 +21,15 @@ ollama_models/
 *.log
 *.err
 *.out
+*.txt
+*/commits
+*.json
 
 # 一時フォルダ
 tem/
 tem2/
+
+
 
 # Large data directories
 DC/*
@@ -64,3 +69,4 @@ containers/
 data-curation-all/data_dependency_waste_project/latest_clones/
 
 /tem/
+PS/python/repos_tmp/
