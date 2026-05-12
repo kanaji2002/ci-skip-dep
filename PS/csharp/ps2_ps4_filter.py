@@ -1,9 +1,9 @@
 """
-ps0_filtered.csv を3段階でフィルタリングするスクリプト
+ps1_filtered.csv を3段階でフィルタリングするスクリプト
 
-PS1: 2024/3/1〜2026/3/1 に 10コミット以上 → ps1/ps1_filtered.csv
-PS2: .github/workflows/*.yml が存在       → ps2/ps2_filtered.csv
-PS3: GitHub Actions 実行履歴が 10件以上   → ps3/ps3_filtered.csv
+PS2: 2024/3/1〜2026/3/1 に 10コミット以上 → ps2/ps2_filtered.csv
+PS3: .github/workflows/*.yml が存在       → ps3/ps3_filtered.csv
+PS4: GitHub Actions 実行履歴が 10件以上   → ps4/ps4_filtered.csv
 """
 
 import csv
@@ -39,11 +39,11 @@ if not GITHUB_TOKENS:
 
 _token_cycle = itertools.cycle(GITHUB_TOKENS)
 
-_input_arg = os.environ.get("INPUT_CSV", "ps0/ps0_filtered.csv")
+_input_arg = os.environ.get("INPUT_CSV", "ps1/ps1_filtered.csv")
 INPUT_CSV = os.path.join(BASE_DIR, _input_arg) if not os.path.isabs(_input_arg) else _input_arg
-PS1_CSV = os.path.join(BASE_DIR, "ps1", "ps1_filtered.csv")
 PS2_CSV = os.path.join(BASE_DIR, "ps2", "ps2_filtered.csv")
 PS3_CSV = os.path.join(BASE_DIR, "ps3", "ps3_filtered.csv")
+PS4_CSV = os.path.join(BASE_DIR, "ps4", "ps4_filtered.csv")
 
 DATE_SINCE = "2024-03-01T00:00:00Z"
 DATE_UNTIL = "2026-03-01T00:00:00Z"
@@ -129,9 +129,9 @@ def save_csv(rows: list, path: str):
 # ============================================================
 # PS1: コミット数フィルタ
 # ============================================================
-def ps1_filter_commits(input_csv: str, output_csv: str):
+def ps2_filter_commits(input_csv: str, output_csv: str):
     print("\n" + "="*60)
-    print("PS1: コミット数フィルタ (2024/3/1〜2026/3/1 に 10件以上)")
+    print("PS2: コミット数フィルタ (2024/3/1〜2026/3/1 に 10件以上)")
     print("="*60)
 
     rows = load_csv(input_csv)
@@ -162,15 +162,15 @@ def ps1_filter_commits(input_csv: str, output_csv: str):
         print(f"  [{i+1}/{len(rows)}] {owner}/{repo} -> {result}")
 
     save_csv(passed, output_csv)
-    print(f"\nPS1 完了: {len(rows)} -> {len(passed)} 件")
+    print(f"\nPS2 完了: {len(rows)} -> {len(passed)} 件")
 
 
 # ============================================================
 # PS2: .github/workflows フィルタ
 # ============================================================
-def ps2_filter_workflows(input_csv: str, output_csv: str):
+def ps3_filter_workflows(input_csv: str, output_csv: str):
     print("\n" + "="*60)
-    print("PS2: .github/workflows フィルタ")
+    print("PS3: .github/workflows フィルタ")
     print("="*60)
 
     rows = load_csv(input_csv)
@@ -200,15 +200,15 @@ def ps2_filter_workflows(input_csv: str, output_csv: str):
         print(f"  [{i+1}/{len(rows)}] {owner}/{repo} -> {result}")
 
     save_csv(passed, output_csv)
-    print(f"\nPS2 完了: {len(rows)} -> {len(passed)} 件")
+    print(f"\nPS3 完了: {len(rows)} -> {len(passed)} 件")
 
 
 # ============================================================
-# PS3: CI実行履歴フィルタ
+# PS4: CI実行履歴フィルタ
 # ============================================================
-def ps3_filter_ci_runs(input_csv: str, output_csv: str):
+def ps4_filter_ci_runs(input_csv: str, output_csv: str):
     print("\n" + "="*60)
-    print("PS3: GitHub Actions 実行履歴フィルタ (10件以上)")
+    print("PS4: GitHub Actions 実行履歴フィルタ (10件以上)")
     print("="*60)
 
     rows = load_csv(input_csv)
@@ -242,7 +242,7 @@ def ps3_filter_ci_runs(input_csv: str, output_csv: str):
         print(f"  [{i+1}/{len(rows)}] {owner}/{repo} -> {result}")
 
     save_csv(passed, output_csv)
-    print(f"\nPS3 完了: {len(rows)} -> {len(passed)} 件")
+    print(f"\nPS4 完了: {len(rows)} -> {len(passed)} 件")
 
 
 # ============================================================
@@ -250,14 +250,14 @@ def ps3_filter_ci_runs(input_csv: str, output_csv: str):
 # ============================================================
 def main():
     print("="*60)
-    print("repo-list フィルタリング パイプライン (PS1 -> PS2 -> PS3)")
+    print("repo-list フィルタリング パイプライン (PS2 -> PS3 -> PS4)")
     print("="*60)
     print(f"[初期化] トークン {len(GITHUB_TOKENS)} 件")
     print(f"入力: {INPUT_CSV}")
 
-    ps1_filter_commits(INPUT_CSV, PS1_CSV)
-    ps2_filter_workflows(PS1_CSV, PS2_CSV)
-    ps3_filter_ci_runs(PS2_CSV, PS3_CSV)
+    ps2_filter_commits(INPUT_CSV, PS2_CSV)
+    ps3_filter_workflows(PS2_CSV, PS3_CSV)
+    ps4_filter_ci_runs(PS3_CSV, PS4_CSV)
 
     print("\n" + "="*60)
     print("全ステップ完了")

@@ -49,9 +49,9 @@ echo "Args:        $*"
 echo "================"
 
 # ============================================
-# Run PS5 filter
+# Run PS4 filter
 # ============================================
 echo ""
-echo "=== Starting PS5 filter (C# / size < 10MB) ==="
+echo "=== Starting PS5 filter (C# / .csproj check) ==="
 python3 ps5_filter.py "$@"
 echo "=== PS5 filter complete ==="

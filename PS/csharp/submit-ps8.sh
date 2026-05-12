@@ -1,5 +1,5 @@
 #!/bin/bash -l
-#SBATCH --job-name=ps7-filter-csharp
+#SBATCH --job-name=ps8-filter-csharp
 #SBATCH --time=100:00:00
 #SBATCH --partition=cluster_long
 #SBATCH --ntasks=1
@@ -59,6 +59,6 @@ echo "NuGet coverlet.collector: $(ls $COVERLET_PKG 2>/dev/null | head -1 || echo
 echo "================"
 
 echo ""
-echo "=== PS7 (C#): dotnet test XPlat Code Coverage ==="
-python3 ps7_filter.py
-echo "=== PS7 complete ==="
+echo "=== PS8 (C#): dotnet test XPlat Code Coverage ==="
+python3 ps8_filter.py
+echo "=== PS8 complete ==="

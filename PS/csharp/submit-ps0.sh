@@ -50,5 +50,5 @@ echo "================"
 # ============================================
 echo ""
 echo "=== Starting csharp repo collection ==="
-python3 ps0_filter.py
+python3 ps1_filter.py
 echo "=== csharp repo collection complete ==="
