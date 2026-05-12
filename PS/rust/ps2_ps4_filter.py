@@ -39,7 +39,7 @@ if not GITHUB_TOKENS:
 
 _token_cycle = itertools.cycle(GITHUB_TOKENS)
 
-_input_arg = os.environ.get("INPUT_CSV", "ps1/ps1_filtered.csv")
+_input_arg = os.environ.get("PS1_CSV", "ps1/ps1_filtered.csv")
 PS1_CSV = os.path.join(BASE_DIR, _input_arg) if not os.path.isabs(_input_arg) else _input_arg
 PS2_CSV = os.path.join(BASE_DIR, "ps2", "ps2_filtered.csv")
 PS3_CSV = os.path.join(BASE_DIR, "ps3", "ps3_filtered.csv")
@@ -127,7 +127,7 @@ def save_csv(rows: list, path: str):
 
 
 # ============================================================
-# 2: コミット数フィルタ
+# PS2: コミット数フィルタ
 # ============================================================
 def ps2_filter_commits(input_csv: str, output_csv: str):
     print("\n" + "="*60)

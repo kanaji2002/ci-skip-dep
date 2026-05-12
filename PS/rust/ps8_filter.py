@@ -175,7 +175,7 @@ def main():
         print("OK")
 
         try:
-            ok, cov, reason = run_ps8(dest)
+            ok, cov, reason = run_8(dest)
         except Exception as e:
             ok, cov, reason = False, None, f"error({e})"
         finally:

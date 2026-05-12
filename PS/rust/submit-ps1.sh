@@ -50,5 +50,5 @@ echo "================"
 # ============================================
 echo ""
 echo "=== Starting rust repo collection ==="
-python3 ps0_filter.py
+python3 ps1_filter.py
 echo "=== rust repo collection complete ==="

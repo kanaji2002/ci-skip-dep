@@ -1,5 +1,5 @@
 #!/bin/bash -l
-#SBATCH --job-name=ps5-filter-rust
+#SBATCH --job-name=ps6-filter-rust
 #SBATCH --time=100:00:00
 #SBATCH --partition=cluster_long
 #SBATCH --ntasks=1
@@ -10,8 +10,8 @@
 
 # ============================================
 # Usage:
-#   sbatch submit-ps5.sh
-#   sbatch submit-ps5.sh --limit 10
+#   sbatch submit-ps6.sh
+#   sbatch submit-ps6.sh --limit 10
 # ============================================
 
 set -euo pipefail
@@ -32,7 +32,7 @@ pyenv activate py3
 # ============================================
 # Setup directories
 # ============================================
-OUT_DIR="/work/rintaro-k/research/PS/rust/batch/output/${SLURM_JOB_NAME:-ps5-filter-rust}/${SLURM_JOB_ID:-local}"
+OUT_DIR="/work/rintaro-k/research/PS/rust/batch/output/${SLURM_JOB_NAME:-ps6-filter-rust}/${SLURM_JOB_ID:-local}"
 mkdir -p "$OUT_DIR"
 
 cd /work/rintaro-k/research/PS/rust
@@ -49,9 +49,9 @@ echo "Args:        $*"
 echo "================"
 
 # ============================================
-# Run PS5 filter
+# Run PS6 filter
 # ============================================
 echo ""
-echo "=== Starting PS5 filter (Rust / Cargo.toml) ==="
-python3 ps5_filter.py "$@"
-echo "=== PS5 filter complete ==="
+echo "=== Starting PS6 filter (Rust / size < 10MB) ==="
+python3 ps6_filter.py "$@"
+echo "=== PS6 filter complete ==="

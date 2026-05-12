@@ -96,7 +96,7 @@ def parse_cobertura(xml_path: Path) -> tuple[int, int]:
         return 0, 0
 
 
-def run_ps7(dest: Path) -> tuple[bool, dict | None, str]:
+def run_ps8(dest: Path) -> tuple[bool, dict | None, str]:
     # テストプロジェクトを検出
     test_projs = find_test_csproj(dest)
     if not test_projs:
@@ -257,7 +257,7 @@ def main():
         print("OK")
 
         try:
-            ok, cov, reason = run_ps7(dest)
+            ok, cov, reason = run_ps8(dest)
         except Exception as e:
             ok, cov, reason = False, None, f"error({e})"
         finally:

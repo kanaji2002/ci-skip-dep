@@ -1,5 +1,5 @@
 #!/bin/bash -l
-#SBATCH --job-name=rust-ps1-3-filter
+#SBATCH --job-name=rust-ps2-4-filter
 #SBATCH --time=100:00:00
 #SBATCH --partition=cluster_long
 #SBATCH --ntasks=1
@@ -49,12 +49,12 @@ echo "================"
 # Run filter pipeline
 # ============================================
 # 読み込む CSV を指定する（デフォルト: ps1/ps1_filtered.csv）
-# 例: sbatch --export=ALL,INPUT_CSV=ps1/ps1_filtered.csv submit-ps2-4.sh
-INPUT_CSV="${INPUT_CSV:-ps1/ps1_filtered.csv}"
-export INPUT_CSV
+# 例: sbatch --export=ALL,PS1_CSV=ps1/ps1_filtered.csv submit-ps2-4.sh
+PS1_CSV="${PS1_CSV:-ps1/ps1_filtered.csv}"
+export PS1_CSV
 
 echo ""
 echo "=== Starting filter pipeline (PS2 -> PS3 -> PS4) ==="
-echo "Input CSV: ${INPUT_CSV}"
+echo "Input CSV: ${PS1_CSV}"
 python3 ps2_ps4_filter.py
 echo "=== Filter pipeline complete ==="
