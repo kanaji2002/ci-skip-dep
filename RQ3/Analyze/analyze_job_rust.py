@@ -14,30 +14,12 @@ from pathlib import Path
 
 import pandas as pd
 
-# ─── 解析対象ジョブ番号 (Rust / rq3_rust   ) ────────────────────────────────────
+    # ─── 解析対象ジョブ番号 (Rust / rq3_rust   ) ────────────────────────────────────
 JOB_IDS = [
-4239194,
-4239200,  
-4239201,
-4239202,
-4239203,
-4239204,
-4239205,
-4239206,
-4239207,
-4239208,
-4239209,
-4239210,
-4239211,
-4239212,
-4239213,
-4239214,
-4239215,
-4239216,
-4239217,
-4239218,
-4239219,
-4239220,
+    4262234,
+    4262247,
+    4262248,
+    4262249
 ]
 # ──────────────────────────────────────────────────────────────────────────────
 
@@ -46,7 +28,7 @@ ALL_DIR     = BASE_DIR / "DC" / "data-curation-all"
 BATCH_ROOT  = ALL_DIR / "batch" / "output" / "pipeline_all"
 DATA_ROOT   = ALL_DIR / "data_dependency_waste_project"
 
-RUST_LANG_DIR  = BASE_DIR / "RQ3" / "Code" / "rust"
+RUST_LANG_DIR  = BASE_DIR / "RQ3" / "RQ3-2" / "rust"
 RUST_BATCH_ROOT = RUST_LANG_DIR / "batch" / "output" / "rq3_rust"
 RUST_DATA_ROOT  = RUST_LANG_DIR / "data_dependency_waste_project"
 

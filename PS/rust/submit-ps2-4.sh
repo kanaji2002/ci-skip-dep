@@ -1,18 +1,12 @@
 #!/bin/bash -l
-#SBATCH --job-name=ps4-filter-rust
+#SBATCH --job-name=rust-ps1-3-filter
 #SBATCH --time=100:00:00
 #SBATCH --partition=cluster_long
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=1
-#SBATCH --mem=8G
+#SBATCH --mem=64G
 #SBATCH --output=/work/rintaro-k/research/PS/rust/batch/output/%x/%j/out.out
 #SBATCH --error=/work/rintaro-k/research/PS/rust/batch/output/%x/%j/err.err
-
-# ============================================
-# Usage:
-#   sbatch submit-ps5.sh
-#   sbatch submit-ps5.sh --limit 10
-# ============================================
 
 set -euo pipefail
 
@@ -27,12 +21,15 @@ if command -v pyenv &> /dev/null; then
     eval "$(pyenv init --path)" 2>/dev/null || true
 fi
 
+# ============================================
+# Activate virtual environment (py3)
+# ============================================
 pyenv activate py3
 
 # ============================================
 # Setup directories
 # ============================================
-OUT_DIR="/work/rintaro-k/research/PS/rust/batch/output/${SLURM_JOB_NAME:-ps4-filter-rust}/${SLURM_JOB_ID:-local}"
+OUT_DIR="/work/rintaro-k/research/PS/rust/batch/output/${SLURM_JOB_NAME}/${SLURM_JOB_ID}"
 mkdir -p "$OUT_DIR"
 
 cd /work/rintaro-k/research/PS/rust
@@ -41,17 +38,23 @@ cd /work/rintaro-k/research/PS/rust
 # Job Info
 # ============================================
 echo "=== Job Info ==="
-echo "Job ID:      ${SLURM_JOB_ID:-local}"
-echo "Node:        $(hostname)"
-echo "Python:      $(which python3) ($(python3 --version))"
+echo "Job ID: ${SLURM_JOB_ID}"
+echo "Node: $(hostname)"
+echo "Python: $(which python3)"
+echo "Python version: $(python3 --version)"
 echo "Working dir: $(pwd)"
-echo "Args:        $*"
 echo "================"
 
 # ============================================
-# Run PS5 filter
+# Run filter pipeline
 # ============================================
+# 読み込む CSV を指定する（デフォルト: ps1/ps1_filtered.csv）
+# 例: sbatch --export=ALL,INPUT_CSV=ps1/ps1_filtered.csv submit-ps2-4.sh
+INPUT_CSV="${INPUT_CSV:-ps1/ps1_filtered.csv}"
+export INPUT_CSV
+
 echo ""
-echo "=== Starting PS4 filter (Rust / Cargo.toml) ==="
-python3 ps4_filter.py "$@"
-echo "=== PS4 filter complete ==="
+echo "=== Starting filter pipeline (PS2 -> PS3 -> PS4) ==="
+echo "Input CSV: ${INPUT_CSV}"
+python3 ps2_ps4_filter.py
+echo "=== Filter pipeline complete ==="

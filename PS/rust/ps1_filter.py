@@ -1,6 +1,6 @@
 """
 GitHub 上の Rust リポジトリを収集し、
-ps0/ps0_filtered.csv に保存するスクリプト。
+ps1/ps1_filtered.csv に保存するスクリプト。
 
 GitHub Search API は 1 クエリあたり最大 1000 件の制限があるため、
 以下の3段階で再帰的に分割して全件取得する。
@@ -45,7 +45,7 @@ if not GITHUB_TOKENS:
 
 _token_cycle = itertools.cycle(GITHUB_TOKENS)
 
-OUTPUT_CSV = os.path.join(BASE_DIR, "ps0", "ps0_filtered.csv")
+OUTPUT_CSV = os.path.join(BASE_DIR, "ps1", "ps1_filtered.csv")
 SEARCH_URL = "https://api.github.com/search/repositories"
 
 BASE_LANGUAGE = "language:Rust"
@@ -339,7 +339,7 @@ def fetch_recursive(date_start: str, date_end: str,
 # メイン
 # ============================================================
 def main():
-    os.makedirs(os.path.join(BASE_DIR, "ps0"), exist_ok=True)
+    os.makedirs(os.path.join(BASE_DIR, "ps1"), exist_ok=True)
 
     print(f"[初期化] トークン {len(GITHUB_TOKENS)} 件 / SEARCH_INTERVAL={SEARCH_INTERVAL:.1f}s")
 
