@@ -43,7 +43,7 @@ if [[ -z "$REPO_LIST_FILE" ]]; then
 fi
 export REPO_LIST_PATH="${REPO_LIST_FILE}"
 
-TIME_LOG="/work/rintaro-k/research/RQ3/Code/csharp/batch/output/${SLURM_JOB_NAME:-rq3_csharp}/${SLURM_JOB_ID:-local}/timing.log"
+TIME_LOG="/work/rintaro-k/research/RQ3/RQ3-2/csharp/batch/output/${SLURM_JOB_NAME:-rq3_csharp}/${SLURM_JOB_ID:-local}/timing.log"
 TOTAL_START=$(date +%s)
 
 # ── pyenv ──
@@ -56,9 +56,9 @@ fi
 pyenv activate py3
 
 # ── 作業ディレクトリ ──
-OUT_DIR="/work/rintaro-k/research/RQ3/Code/csharp/batch/output/${SLURM_JOB_NAME:-rq3_csharp}/${SLURM_JOB_ID:-local}"
+OUT_DIR="/work/rintaro-k/research/RQ3/RQ3-2/csharp/batch/output/${SLURM_JOB_NAME:-rq3_csharp}/${SLURM_JOB_ID:-local}"
 mkdir -p "$OUT_DIR"
-cd /work/rintaro-k/research/RQ3/Code/csharp
+cd /work/rintaro-k/research/RQ3/RQ3-2/csharp
 
 # ── Ollama ──
 module load singularity

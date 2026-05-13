@@ -1,4 +1,4 @@
-s#!/usr/bin/env python3
+#!/usr/bin/env python3
 # rust/pipeline_main.py
 
 import argparse
