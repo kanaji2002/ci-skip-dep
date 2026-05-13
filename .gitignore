@@ -25,6 +25,7 @@ ollama_models/
 */commits
 *.json
 
+Paper
 # 一時フォルダ
 tem/
 tem2/

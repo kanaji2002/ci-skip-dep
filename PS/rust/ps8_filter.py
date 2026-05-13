@@ -18,9 +18,9 @@ import subprocess
 from pathlib import Path
 
 BASE_DIR   = Path(__file__).parent
-INPUT_CSV  = BASE_DIR / "ps7" / "ps7_filtered-test.csv"
+INPUT_CSV  = BASE_DIR / "ps7" / "ps7_filtered.csv"
 OUTPUT_DIR = BASE_DIR / "ps8"
-OUTPUT_CSV = OUTPUT_DIR / "ps8_filtered-test.csv"
+OUTPUT_CSV = OUTPUT_DIR / "ps8_filtered.csv"
 PROGRESS   = OUTPUT_DIR / "progress.log"
 REPOS_TMP  = BASE_DIR / "repos_tmp"
 
