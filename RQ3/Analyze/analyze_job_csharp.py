@@ -16,16 +16,17 @@ import pandas as pd
 
 # ─── 解析対象ジョブ番号 (C# / rq3_csharp) ────────────────────────────────────
 JOB_IDS = [
-    4239221,
-    4239222,
-    4239223,
-    4239224,
-    4239225,
-    4239226,
-    4239227,
-    4239228,
-    4239229,
-    4239230,
+    # 完了済みジョブ (batch_index 0-9, ps6_filtered.csv)
+    4239221,  # batch_index=0
+    4239222,  # batch_index=1
+    4239223,  # batch_index=2
+    4239224,  # batch_index=3
+    4239225,  # batch_index=4
+    4239226,  # batch_index=5
+    4239227,  # batch_index=6
+    4239228,  # batch_index=7
+    4239229,  # batch_index=8
+    4239230,  # batch_index=9
 ]
 # ──────────────────────────────────────────────────────────────────────────────
 
@@ -34,10 +35,10 @@ ALL_DIR     = BASE_DIR / "DC" / "data-curation-all"
 BATCH_ROOT  = ALL_DIR / "batch" / "output" / "pipeline_all"
 DATA_ROOT   = ALL_DIR / "data_dependency_waste_project"
 
-CSHARP_LANG_DIR  = BASE_DIR / "RQ3" / "Code" / "csharp"
+CSHARP_LANG_DIR  = BASE_DIR / "RQ3" / "RQ3-2" / "csharp"
 CSHARP_BATCH_ROOT = CSHARP_LANG_DIR / "batch" / "output" / "rq3_csharp"
 CSHARP_DATA_ROOT  = CSHARP_LANG_DIR / "data_dependency_waste_project"
-
+# /work/rintaro-k/research/RQ3/Code/csharp/batch/output
 MODELS = ["depcheck", "knip", "llama", "qwen", "deepseek"]
 
 

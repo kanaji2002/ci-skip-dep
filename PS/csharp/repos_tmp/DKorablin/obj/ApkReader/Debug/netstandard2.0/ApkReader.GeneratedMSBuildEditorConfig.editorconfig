@@ -1,0 +1,5 @@
+is_global = true
+build_property.RootNamespace = AlphaOmega.Debug
+build_property.ProjectDir = /work/rintaro-k/research/PS/csharp/repos_tmp/DKorablin/ApkReader/ApkReader/
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
