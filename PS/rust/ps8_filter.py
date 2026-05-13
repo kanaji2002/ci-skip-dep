@@ -18,9 +18,9 @@ import subprocess
 from pathlib import Path
 
 BASE_DIR   = Path(__file__).parent
-INPUT_CSV  = BASE_DIR / "ps7" / "ps7_filtered.csv"
+INPUT_CSV  = BASE_DIR / "ps7" / "ps7_filtered-test.csv"
 OUTPUT_DIR = BASE_DIR / "ps8"
-OUTPUT_CSV = OUTPUT_DIR / "ps8_filtered.csv"
+OUTPUT_CSV = OUTPUT_DIR / "ps8_filtered-test.csv"
 PROGRESS   = OUTPUT_DIR / "progress.log"
 REPOS_TMP  = BASE_DIR / "repos_tmp"
 
@@ -42,6 +42,7 @@ def singularity_exec(cmd: list, cwd: Path, timeout: int) -> subprocess.Completed
     full_cmd = [
         SINGULARITY, "exec",
         "--bind", "/work/rintaro-k:/work/rintaro-k",
+        "--env", "CARGO_HOME=/work/rintaro-k/.cargo",
         str(SIF_PATH),
     ] + cmd
     return subprocess.run(
@@ -49,7 +50,7 @@ def singularity_exec(cmd: list, cwd: Path, timeout: int) -> subprocess.Completed
     )
 
 
-def run_8(dest: Path) -> tuple[bool, dict | None, str]:
+def run_ps8(dest: Path) -> tuple[bool, dict | None, str]:
     if not (dest / "Cargo.toml").exists():
         return False, None, "no_cargo_toml"
 
@@ -175,7 +176,7 @@ def main():
         print("OK")
 
         try:
-            ok, cov, reason = run_8(dest)
+            ok, cov, reason = run_ps8(dest)
         except Exception as e:
             ok, cov, reason = False, None, f"error({e})"
         finally:
