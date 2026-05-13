@@ -11,18 +11,28 @@ Output: ps8/ps8_filtered.csv  (通過分のみ、cov_lines カラム付き)
         ps8/progress.log      (再開用)
 """
 
+import argparse
 import csv
 import json
 import shutil
 import subprocess
 from pathlib import Path
 
-BASE_DIR   = Path(__file__).parent
-INPUT_CSV  = BASE_DIR / "ps7" / "ps7_filtered.csv"
+BASE_DIR  = Path(__file__).parent
+REPOS_TMP = BASE_DIR / "repos_tmp"
+
+def parse_args():
+    p = argparse.ArgumentParser()
+    p.add_argument("--index", type=int, default=0, help="Batch index (0-based, 100 repos each)")
+    p.add_argument("--input", type=str, default=str(BASE_DIR / "ps7" / "ps7_filtered.csv"))
+    return p.parse_args()
+
+ARGS       = parse_args()
+BATCH_SIZE = 100
+INPUT_CSV  = Path(ARGS.input)
 OUTPUT_DIR = BASE_DIR / "ps8"
-OUTPUT_CSV = OUTPUT_DIR / "ps8_filtered.csv"
-PROGRESS   = OUTPUT_DIR / "progress.log"
-REPOS_TMP  = BASE_DIR / "repos_tmp"
+OUTPUT_CSV = OUTPUT_DIR / f"ps8_filtered-{ARGS.index}.csv"
+PROGRESS   = OUTPUT_DIR / f"progress-{ARGS.index}.log"
 
 SIF_PATH = Path("/work/rintaro-k/research/containers/rust-tarpaulin.sif")
 SINGULARITY = "/opt/singularity/3.9.6/bin/singularity"
@@ -120,11 +130,16 @@ def main():
     with open(INPUT_CSV, newline="", encoding="utf-8") as f:
         reader     = csv.DictReader(f)
         fieldnames = list(reader.fieldnames)
-        rows       = list(reader)
+        all_rows   = list(reader)
+
+    start = ARGS.index * BATCH_SIZE
+    end   = start + BATCH_SIZE
+    rows  = all_rows[start:end]
 
     print("=" * 60)
     print("PS8 (Rust): cargo-tarpaulin チェック (line coverage >= 70%)")
-    print(f"Input : {INPUT_CSV}  ({len(rows)} 件)")
+    print(f"Input : {INPUT_CSV}  (全 {len(all_rows)} 件)")
+    print(f"Batch : index={ARGS.index}  rows {start}-{end-1}  ({len(rows)} 件)")
     print(f"Output: {OUTPUT_CSV}")
     print(f"SIF   : {SIF_PATH}")
     print("=" * 60 + "\n")
