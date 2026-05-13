@@ -44,21 +44,6 @@ def _extract_dep_name(line: str) -> str:
     return ""
 
 
-def _extract_version(line: str) -> Optional[str]:
-    """Cargo.toml の依存行からバージョン文字列を抽出する。なければ None。
-    単純形式: name = "version"
-    テーブル形式: name = { version = "...", ... }
-    """
-    line = line.strip()
-    m = re.match(r'^[a-zA-Z0-9][a-zA-Z0-9_\-]* *= *"([^"]+)"', line)
-    if m:
-        return m.group(1)
-    m = re.search(r'\bversion *= *"([^"]+)"', line)
-    if m:
-        return m.group(1)
-    return None
-
-
 def extract_commits_with_data(loginfo: str) -> Tuple[List, List, List, List]:
     li_commit_data = []
     li_insertions  = []
@@ -116,22 +101,18 @@ def extract_commits_with_data(loginfo: str) -> Tuple[List, List, List, List]:
                 if not _is_dep_section(ins_section) and not _is_dep_section(del_section):
                     continue
 
-                # dep名が両辺で一致することを確認
-                ins_dep = _extract_dep_name(ins_line)
-                del_dep = _extract_dep_name(del_line)
-                if not ins_dep or ins_dep != del_dep:
-                    continue
-
-                # バージョンが両辺に存在し、かつ変更されていることを確認
-                ins_ver = _extract_version(ins_line)
-                del_ver = _extract_version(del_line)
-                if not ins_ver or not del_ver or ins_ver == del_ver:
-                    continue
-
-                li_commit_data.append([sha, parent_commit, author, email, date])
-                li_insertions.append([ins_line])
-                li_deletions.append([del_line])
-                li_upgraded_dep.append(ins_dep)
+                output_list = [li for li in difflib.ndiff(ins_line, del_line) if li[0] != ' ']
+                new_list = []
+                for o in output_list:
+                    new_list += re.findall(r'\d+', o)
+                if len(new_list) / 2 <= 7:
+                    dep_name = _extract_dep_name(ins_line) or _extract_dep_name(del_line)
+                    if not dep_name:
+                        continue
+                    li_commit_data.append([sha, parent_commit, author, email, date])
+                    li_insertions.append([ins_line])
+                    li_deletions.append([del_line])
+                    li_upgraded_dep.append(dep_name)
 
         except Exception:
             continue
