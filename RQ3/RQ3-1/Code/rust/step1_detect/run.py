@@ -1,5 +1,5 @@
 """
-Step 1: 未使用依存検知 (Python)
+Step 1: 未使用依存検知 (Rust)
 PS8 CSV に記載の各リポジトリを clone し、3つのLLMで未使用依存を検知する。
 出力: output/step1_results.csv
 
@@ -16,7 +16,6 @@ import re
 import shutil
 import sys
 import time
-import xml.etree.ElementTree as ET
 from typing import Any, Dict, List, Tuple
 
 import pandas as pd
@@ -36,7 +35,7 @@ OUTPUT_DIR  = os.path.join(LANG_DIR, "output")
 CLONES_DIR  = os.path.join(OUTPUT_DIR, "clones")
 RESULTS_CSV = os.path.join(OUTPUT_DIR, "step1_results.csv")
 
-PS8_CSV = os.path.join(_ROOT, "PS", "python", "ps8", "ps8_filtered.csv")
+PS8_CSV = os.path.join(_ROOT, "PS", "rust", "ps8", "ps8_filtered-3.csv")
 
 # RQ3 共通プロンプト (path指定でアクセス)
 PROMPTS_BASE = "/work/rintaro-k/research/RQ3/RQ3-2/common/prompts"
@@ -51,7 +50,7 @@ OLLAMA_MODEL_DEEPSEEK = "deepseek-coder:6.7b-instruct"
 
 LLM_TIMEOUT = 300
 
-LANGUAGE = "python"
+LANGUAGE = "rust"
 
 # ---------------------------------------------------------------------------
 # TOML ローダー (Python 3.10 対応)
@@ -81,97 +80,45 @@ def _load_toml(path: str) -> Dict:
 
 
 # ---------------------------------------------------------------------------
-# pyproject.toml パース
+# Cargo.toml パース
 # ---------------------------------------------------------------------------
 
-def _parse_pep508(dep_str: str) -> Tuple[str, str]:
-    dep_str = dep_str.strip().strip('"\'')
-    for sep in ['>=', '<=', '~=', '==', '!=', '>', '<', '[', '@', ';']:
-        idx = dep_str.find(sep)
-        if idx > 0:
-            name = dep_str[:idx].strip()
-            ver = dep_str[idx:].split(';')[0].strip()
-            return name, ver
-    return dep_str.split(';')[0].strip(), '*'
-
-
-def parse_pyproject_toml(repo_path: str) -> Dict:
-    path = os.path.join(repo_path, "pyproject.toml")
+def parse_cargo_toml(repo_path: str) -> Dict:
+    path = os.path.join(repo_path, "Cargo.toml")
     if not os.path.exists(path):
         return {}
     try:
         raw = _load_toml(path)
     except Exception as e:
-        print(f"  [warn] parse pyproject.toml: {e}")
+        print(f"  [warn] parse Cargo.toml: {e}")
         return {}
 
-    tool    = raw.get('tool', {})
-    poetry  = tool.get('poetry', {})
-    project = raw.get('project', {})
-
-    deps: Dict[str, str] = {}
-    dev_deps: Dict[str, str] = {}
-    extra_deps: Dict[str, str] = {}
-
-    # Poetry: [tool.poetry.dependencies]
-    for name, ver in poetry.get('dependencies', {}).items():
-        if name == 'python':
-            continue
-        deps[name] = ver if isinstance(ver, str) else str(ver)
-
-    # Poetry: [tool.poetry.dev-dependencies]
-    for name, ver in poetry.get('dev-dependencies', {}).items():
-        dev_deps[name] = ver if isinstance(ver, str) else str(ver)
-
-    # Poetry: [tool.poetry.group.*.dependencies]
-    for group_data in poetry.get('group', {}).values():
-        if isinstance(group_data, dict):
-            for name, ver in group_data.get('dependencies', {}).items():
-                dev_deps[name] = ver if isinstance(ver, str) else str(ver)
-
-    # PEP 621: [project.dependencies]
-    for dep_str in project.get('dependencies', []):
-        name, ver = _parse_pep508(str(dep_str))
-        if name and name not in deps:
-            deps[name] = ver
-
-    # PEP 621: [project.optional-dependencies]
-    DEV_GROUPS = {'dev', 'test', 'lint', 'typing', 'type-checking', 'docs'}
-    for group_name, dep_list in project.get('optional-dependencies', {}).items():
-        for dep_str in dep_list:
-            name, ver = _parse_pep508(str(dep_str))
-            if not name:
-                continue
-            if group_name.lower() in DEV_GROUPS:
-                dev_deps[name] = ver
+    def _extract(dep_dict: dict) -> dict:
+        result = {}
+        for name, ver in dep_dict.items():
+            if isinstance(ver, str):
+                result[name] = ver
+            elif isinstance(ver, dict):
+                result[name] = ver.get('version', '*')
             else:
-                extra_deps[name] = ver
-
-    # PEP 735: [dependency-groups]
-    for group_name, items in raw.get('dependency-groups', {}).items():
-        for item in items:
-            if isinstance(item, str):
-                name, ver = _parse_pep508(item)
-                if name:
-                    dev_deps[name] = ver
-
-    scripts = {**project.get('scripts', {}), **poetry.get('scripts', {})}
+                result[name] = str(ver)
+        return result
 
     return {
-        'dependencies': deps,
-        'dev_dependencies': dev_deps,
-        'extra_dependencies': extra_deps,
-        'scripts': scripts,
+        'dependencies':       _extract(raw.get('dependencies', {})),
+        'dev_dependencies':   _extract(raw.get('dev-dependencies', {})),
+        'extra_dependencies': _extract(raw.get('build-dependencies', {})),
+        'scripts': {},
     }
 
 
 # ---------------------------------------------------------------------------
-# ソースコード抽出 (import 文)
+# ソースコード抽出 (use 文)
 # ---------------------------------------------------------------------------
 
 def _project_tree(repo_path: str) -> str:
-    EXCLUDE = {'.git', '__pycache__', '.venv', 'venv', 'env', 'node_modules',
-               'dist', 'build', '.tox', '.mypy_cache', 'target'}
+    EXCLUDE = {'.git', 'node_modules', 'dist', 'build', 'target',
+               '__pycache__', '.venv', 'venv', '.mypy_cache', '.tox'}
     try:
         entries = []
         for e in sorted(os.scandir(repo_path), key=lambda e: (not e.is_dir(), e.name)):
@@ -184,14 +131,13 @@ def _project_tree(repo_path: str) -> str:
 
 
 def _import_lines(repo_path: str) -> str:
-    EXTENSIONS = {'.py'}
-    EXCLUDE_DIRS = {'.git', '__pycache__', '.venv', 'venv', 'env',
-                    'node_modules', 'dist', 'build', '.tox', '.mypy_cache'}
+    EXTENSIONS = {'.rs'}
+    EXCLUDE_DIRS = {'.git', 'target'}
     MAX_FILES = 200
     MAX_LINES_TOTAL = 600
 
     import_re = re.compile(
-        r"^[ \t]*(?:import\s+[a-zA-Z_]\w*|from\s+[a-zA-Z_]\w*\s+import).*$",
+        r"^[ \t]*(?:use\s+\w|extern\s+crate\s+\w).*$",
         re.MULTILINE,
     )
 
@@ -224,14 +170,12 @@ def _import_lines(repo_path: str) -> str:
             if file_count >= MAX_FILES or total_lines >= MAX_LINES_TOTAL:
                 break
 
-    return "\n\n".join(parts) or "(no import statements found)"
+    return "\n\n".join(parts) or "(no use statements found)"
 
 
 def _config_refs(repo_path: str) -> str:
     CONFIG_FILES = [
-        "pyproject.toml", "setup.cfg", "pytest.ini", ".flake8",
-        "mypy.ini", ".mypy.ini", "tox.ini", ".coveragerc", ".pylintrc",
-        "docs/conf.py", ".pre-commit-config.yaml",
+        "Cargo.toml", "build.rs", ".cargo/config.toml", "rust-toolchain.toml",
     ]
     MAX_FILE_SIZE = 3000
     parts = []
@@ -277,7 +221,7 @@ def _build_prompt(template: str, variables: Dict) -> str:
 
 
 def run_llm(repo_path: str, model: str) -> Tuple[List[str], List[str], List[str], bool]:
-    pkg = parse_pyproject_toml(repo_path)
+    pkg = parse_cargo_toml(repo_path)
     if not pkg:
         return [], [], [], False
 
@@ -302,14 +246,14 @@ def run_llm(repo_path: str, model: str) -> Tuple[List[str], List[str], List[str]
 
     variables = {
         **params,
-        "dependencies":      "\n".join(f"- {k}: {v}" for k, v in deps.items()) or "(none)",
-        "dev_dependencies":  "\n".join(f"- {k}: {v}" for k, v in dev_deps.items()) or "(none)",
-        "extra_dependencies":"\n".join(f"- {k}: {v}" for k, v in extra_deps.items()) or "(none)",
-        "scripts":           "\n".join(f'  "{k}": "{v}"' for k, v in scripts.items()) or "(none)",
-        "project_tree":      _project_tree(repo_path),
-        "source_code":       _import_lines(repo_path),
-        "config_references": _config_refs(repo_path),
-        "language_rules":    "\n".join(fmt_rule(r) for r in params.get("language_rules", [])),
+        "dependencies":       "\n".join(f"- {k}: {v}" for k, v in deps.items()) or "(none)",
+        "dev_dependencies":   "\n".join(f"- {k}: {v}" for k, v in dev_deps.items()) or "(none)",
+        "extra_dependencies": "\n".join(f"- {k}: {v}" for k, v in extra_deps.items()) or "(none)",
+        "scripts":            "\n".join(f'  "{k}": "{v}"' for k, v in scripts.items()) or "(none)",
+        "project_tree":       _project_tree(repo_path),
+        "source_code":        _import_lines(repo_path),
+        "config_references":  _config_refs(repo_path),
+        "language_rules":     "\n".join(fmt_rule(r) for r in params.get("language_rules", [])),
     }
     prompt = _build_prompt(template, variables)
 

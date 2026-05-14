@@ -23,7 +23,7 @@ REPOS_TMP = BASE_DIR / "repos_tmp"
 
 def parse_args():
     p = argparse.ArgumentParser()
-    p.add_argument("--index", type=int, default=0, help="Batch index (0-based, 100 repos each)")
+    p.add_argument("--index", type=int, default=None, help="Batch index (0-based, 100 repos each); 省略時は全行処理")
     p.add_argument("--input", type=str, default=str(BASE_DIR / "ps7" / "ps7_filtered.csv"))
     return p.parse_args()
 
@@ -31,8 +31,12 @@ ARGS       = parse_args()
 BATCH_SIZE = 100
 INPUT_CSV  = Path(ARGS.input)
 OUTPUT_DIR = BASE_DIR / "ps8"
-OUTPUT_CSV = OUTPUT_DIR / f"ps8_filtered-{ARGS.index}.csv"
-PROGRESS   = OUTPUT_DIR / f"progress-{ARGS.index}.log"
+if ARGS.index is None:
+    OUTPUT_CSV = OUTPUT_DIR / "ps8_filtered.csv"
+    PROGRESS   = OUTPUT_DIR / "progress.log"
+else:
+    OUTPUT_CSV = OUTPUT_DIR / f"ps8_filtered-{ARGS.index}.csv"
+    PROGRESS   = OUTPUT_DIR / f"progress-{ARGS.index}.log"
 
 SIF_PATH = Path("/work/rintaro-k/research/containers/rust-tarpaulin.sif")
 SINGULARITY = "/opt/singularity/3.9.6/bin/singularity"
@@ -132,14 +136,19 @@ def main():
         fieldnames = list(reader.fieldnames)
         all_rows   = list(reader)
 
-    start = ARGS.index * BATCH_SIZE
-    end   = start + BATCH_SIZE
-    rows  = all_rows[start:end]
+    if ARGS.index is None:
+        rows  = all_rows
+        label = f"全件  ({len(rows)} 件)"
+    else:
+        start = ARGS.index * BATCH_SIZE
+        end   = start + BATCH_SIZE
+        rows  = all_rows[start:end]
+        label = f"index={ARGS.index}  rows {start}-{end-1}  ({len(rows)} 件)"
 
     print("=" * 60)
     print("PS8 (Rust): cargo-tarpaulin チェック (line coverage >= 70%)")
     print(f"Input : {INPUT_CSV}  (全 {len(all_rows)} 件)")
-    print(f"Batch : index={ARGS.index}  rows {start}-{end-1}  ({len(rows)} 件)")
+    print(f"Batch : {label}")
     print(f"Output: {OUTPUT_CSV}")
     print(f"SIF   : {SIF_PATH}")
     print("=" * 60 + "\n")

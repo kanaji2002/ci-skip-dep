@@ -1,6 +1,6 @@
 #!/bin/bash -l
 #SBATCH --job-name=ps8-filter-rust
-#SBATCH --time=100:00:00
+#SBATCH --time=4:00:00
 #SBATCH --partition=cluster_short
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=4
