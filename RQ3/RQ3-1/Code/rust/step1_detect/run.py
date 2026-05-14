@@ -35,7 +35,8 @@ OUTPUT_DIR  = os.path.join(LANG_DIR, "output")
 CLONES_DIR  = os.path.join(OUTPUT_DIR, "clones")
 RESULTS_CSV = os.path.join(OUTPUT_DIR, "step1_results.csv")
 
-PS8_CSV = os.path.join(_ROOT, "PS", "rust", "ps8", "ps8_filtered-3.csv")
+PS8_CSV = os.path.join(_ROOT, "PS", "rust", "ps8", "ps8_filtered.csv")
+BATCH_SIZE = 100
 
 # RQ3 共通プロンプト (path指定でアクセス)
 PROMPTS_BASE = "/work/rintaro-k/research/RQ3/RQ3-2/common/prompts"
@@ -358,10 +359,22 @@ def analyze_repo(owner: str, repo: str) -> Dict[str, Any]:
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--repo-list", default=PS8_CSV)
+    parser.add_argument("--index", type=int, default=None,
+                        help=f"バッチインデックス (各{BATCH_SIZE}件). --skip/--limit より優先")
     parser.add_argument("--limit", type=int, default=None)
     parser.add_argument("--skip",  type=int, default=0)
-    parser.add_argument("--output", default=RESULTS_CSV)
+    parser.add_argument("--output", default=None)
     args = parser.parse_args()
+
+    # --batch-index が指定された場合は skip/limit を上書きし、出力ファイルも分割
+    if args.index is not None:
+        args.skip  = args.index * BATCH_SIZE
+        args.limit = BATCH_SIZE
+        if args.output is None:
+            args.output = os.path.join(OUTPUT_DIR, f"step1_results-{args.index}.csv")
+    else:
+        if args.output is None:
+            args.output = RESULTS_CSV
 
     os.makedirs(OUTPUT_DIR, exist_ok=True)
     os.makedirs(CLONES_DIR, exist_ok=True)
