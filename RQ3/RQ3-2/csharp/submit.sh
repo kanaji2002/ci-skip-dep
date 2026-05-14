@@ -1,7 +1,7 @@
 #!/bin/bash -l
 #SBATCH --job-name=rq3_csharp
-#SBATCH --time=04:00:00
-#SBATCH --partition=isgpu4h200_short
+#SBATCH --time=4-00:00:00
+#SBATCH --partition=isgpu4h200_long
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=4
 #SBATCH --mem=100G
