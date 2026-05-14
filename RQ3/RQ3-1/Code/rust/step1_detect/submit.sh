@@ -1,7 +1,7 @@
 #!/bin/bash -l
 #SBATCH --job-name=rq3_1_rust_step1
 #SBATCH --time=4-00:00:00
-#SBATCH --partition=isgpu4h200_short
+#SBATCH --partition=isgpu4h200_long
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=4
 #SBATCH --mem=64G
@@ -11,9 +11,10 @@
 
 # ============================================
 # Usage:
-#   sbatch submit.sh
-#   sbatch submit.sh --limit 5     # テスト実行
-#   sbatch submit.sh --skip 20     # 20件スキップして再開
+#   sbatch submit.sh --index 0   # idx0 (0〜99件目)
+#   sbatch submit.sh --index 1   # idx1 (100〜199件目)
+#   sbatch submit.sh --limit 5   # テスト実行
+#   sbatch submit.sh --skip 20   # 20件スキップして再開
 # ============================================
 
 set -euo pipefail
@@ -31,7 +32,18 @@ trap cleanup EXIT
 
 PYTHON_ARGS="$*"
 
-OUT_DIR="/work/rintaro-k/research/RQ3/RQ3-1/Code/rust/batch_output/${SLURM_JOB_NAME:-rq3_1_rust_step1}/${SLURM_JOB_ID:-local}"
+# --batch-index の値をログディレクトリ名に反映
+BATCH_INDEX=""
+_args=("$@")
+for (( i=0; i<${#_args[@]}; i++ )); do
+    if [[ "${_args[$i]}" == "--index" ]]; then
+        BATCH_INDEX="${_args[$((i+1))]}"
+        break
+    fi
+done
+JOB_LABEL="${SLURM_JOB_NAME:-rq3_1_rust_step1}${BATCH_INDEX:+_idx${BATCH_INDEX}}"
+
+OUT_DIR="/work/rintaro-k/research/RQ3/RQ3-1/Code/rust/batch_output/${JOB_LABEL}/${SLURM_JOB_ID:-local}"
 mkdir -p "$OUT_DIR"
 
 # ============================================
