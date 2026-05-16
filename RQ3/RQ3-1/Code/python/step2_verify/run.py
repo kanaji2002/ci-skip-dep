@@ -121,14 +121,22 @@ def pip_install_project(repo_path: str, venv_dir: str) -> bool:
         )
         if proc.returncode == 0:
             return True
-        # さらにフォールバック: requirements.txt
-        req_file = os.path.join(repo_path, "requirements.txt")
-        if os.path.exists(req_file):
-            proc = subprocess.run(
-                [pip, "install", "-r", req_file],
-                cwd=repo_path, capture_output=True, timeout=INSTALL_TIMEOUT,
-            )
-            return proc.returncode == 0
+        # さらにフォールバック: requirements*.txt
+        for req_name in [
+            "requirements.txt",
+            "requirements-dev.txt",
+            "requirements-test.txt",
+            "requirements-devel.txt",
+            "test-requirements.txt",
+        ]:
+            req_file = os.path.join(repo_path, req_name)
+            if os.path.exists(req_file):
+                proc = subprocess.run(
+                    [pip, "install", "-r", req_file],
+                    cwd=repo_path, capture_output=True, timeout=INSTALL_TIMEOUT,
+                )
+                if proc.returncode == 0:
+                    break
         return False
     except subprocess.TimeoutExpired:
         print("  [pip install] timeout")
@@ -294,6 +302,8 @@ def verify_repo(owner: str, repo: str, step1_row: Dict) -> List[Dict[str, Any]]:
     print("  pip install ...")
     if not pip_install_project(repo_path, venv_dir):
         print("  [warn] pip install failed, proceeding anyway")
+    # pytest を確実にインストール (extras 名の違いで漏れるケースを補完)
+    pip_install_package(repo_path, venv_dir, ["pytest", "pytest-timeout"])
 
     # ベースライン pytest
     print("  Running baseline pytest ...")

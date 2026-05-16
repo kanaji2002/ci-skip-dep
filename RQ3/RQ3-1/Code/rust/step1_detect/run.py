@@ -390,12 +390,18 @@ def main():
     done: set = set()
     rows: List[Dict] = []
 
-    # 前回の途中結果を読み込んで再開
-    if os.path.exists(args.output) and args.skip == 0:
+    # 前回の途中結果を読み込んで再開 (Ollamaクラッシュで全False になった行は再実行)
+    if os.path.exists(args.output):
         prev_df = pd.read_csv(args.output)
-        done = set(prev_df["repo"].tolist())
-        rows = prev_df.to_dict("records")
-        print(f"Resuming: {len(done)} repos already done")
+        # クローンエラーがある か 少なくとも1つのLLMが成功 → スキップ対象
+        success_mask = (
+            prev_df[["llama_success", "qwen_success", "deepseek_success"]].any(axis=1)
+            | prev_df["error"].notna()
+        )
+        done = set(prev_df.loc[success_mask, "repo"].tolist())
+        rows = prev_df.loc[success_mask].to_dict("records")
+        failed_count = int((~success_mask).sum())
+        print(f"Resuming: {len(done)} repos already done, {failed_count} all-failed repos will be re-run")
 
     print(f"Target: {len(repos)} repos  |  Output: {args.output}")
 

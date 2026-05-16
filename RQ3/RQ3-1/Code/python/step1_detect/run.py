@@ -34,9 +34,9 @@ load_dotenv(os.path.join(_ROOT, ".env"))
 LANG_DIR    = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUTPUT_DIR  = os.path.join(LANG_DIR, "output")
 CLONES_DIR  = os.path.join(OUTPUT_DIR, "clones")
-RESULTS_CSV = os.path.join(OUTPUT_DIR, "step1_results.csv")
+RESULTS_CSV = os.path.join(OUTPUT_DIR, "step1_results-3.csv")
 
-PS8_CSV = os.path.join(_ROOT, "PS", "python", "ps8", "ps8_filtered.csv")
+PS8_CSV = os.path.join(_ROOT, "PS", "python", "ps8", "ps8_filtered-3.csv")
 
 # RQ3 共通プロンプト (path指定でアクセス)
 PROMPTS_BASE = "/work/rintaro-k/research/RQ3/RQ3-2/common/prompts"
@@ -313,28 +313,35 @@ def run_llm(repo_path: str, model: str) -> Tuple[List[str], List[str], List[str]
     }
     prompt = _build_prompt(template, variables)
 
-    try:
-        payload = {
-            "model": model,
-            "messages": [{"role": "user", "content": prompt}],
-            "stream": False,
-            "format": "json",
-            "options": {"temperature": 0, "num_predict": 8000, "num_ctx": 16384},
-        }
-        if model.startswith("qwen3"):
-            payload["think"] = False
+    payload = {
+        "model": model,
+        "messages": [{"role": "user", "content": prompt}],
+        "stream": False,
+        "format": "json",
+        "options": {"temperature": 0, "num_predict": 8000, "num_ctx": 16384},
+    }
+    if model.startswith("qwen3"):
+        payload["think"] = False
 
-        resp = requests.post(
-            f"{OLLAMA_URL}/api/chat",
-            json=payload,
-            timeout=LLM_TIMEOUT,
-        )
-        resp.raise_for_status()
-        raw_resp = resp.json()
-        text = raw_resp.get("message", {}).get("content", "")
-        print(f"  [llm:{model}] eval_count={raw_resp.get('eval_count')} prompt_eval_count={raw_resp.get('prompt_eval_count')}")
-    except Exception as e:
-        print(f"  [llm:{model}] API error: {e}")
+    last_err = None
+    for attempt in range(3):
+        try:
+            resp = requests.post(
+                f"{OLLAMA_URL}/api/chat",
+                json=payload,
+                timeout=LLM_TIMEOUT,
+            )
+            resp.raise_for_status()
+            raw_resp = resp.json()
+            text = raw_resp.get("message", {}).get("content", "")
+            print(f"  [llm:{model}] eval_count={raw_resp.get('eval_count')} prompt_eval_count={raw_resp.get('prompt_eval_count')}")
+            break
+        except Exception as e:
+            last_err = e
+            print(f"  [llm:{model}] API error (attempt {attempt+1}/3): {e}")
+            if attempt < 2:
+                time.sleep(15)
+    else:
         return [], [], [], False
 
     text = re.sub(r"<think>.*?</think>", "", text, flags=re.DOTALL)
