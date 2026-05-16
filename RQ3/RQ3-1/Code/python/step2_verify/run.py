@@ -257,9 +257,9 @@ def iterative_removal(
         n_iter += 1
         print(f"  [iter] final ({len(safe)} safe deps): {final_result}")
     else:
-        # 全部再インストールして環境を戻す
+        # 全部再インストールして環境を戻す (何も削除しないのでベースラインと同じ PASS)
         pip_install_package(repo_path, venv_dir, candidates)
-        final_result = "FAIL"
+        final_result = "PASS"
 
     return {
         "bulk_result":    bulk_result,
