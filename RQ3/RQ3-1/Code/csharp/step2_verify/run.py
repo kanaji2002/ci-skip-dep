@@ -31,7 +31,6 @@ from typing import Any, Dict, List, Optional, Tuple
 
 import pandas as pd
 from dotenv import load_dotenv
-from git import Repo
 
 _ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))))
 load_dotenv(os.path.join(_ROOT, ".env"))
@@ -279,9 +278,15 @@ def verify_repo(owner: str, repo: str, step1_row: Dict) -> List[Dict[str, Any]]:
     # clone
     if os.path.exists(repo_path):
         shutil.rmtree(repo_path)
+    print("  Cloning ...")
     try:
-        print("  Cloning ...")
-        Repo.clone_from(f"https://github.com/{owner}/{repo}", repo_path)
+        r = subprocess.run(
+            ["git", "clone", "--depth=1",
+             f"https://github.com/{owner}/{repo}.git", repo_path],
+            capture_output=True, text=True, timeout=120,
+        )
+        if r.returncode != 0:
+            raise RuntimeError(r.stderr.strip() or "clone failed")
     except Exception as e:
         print(f"  [error] clone failed: {e}")
         return [_error_row(full_name, m, str(e)) for m in MODELS]
@@ -293,12 +298,16 @@ def verify_repo(owner: str, repo: str, step1_row: Dict) -> List[Dict[str, Any]]:
     print("  dotnet restore ...")
     if not dotnet_restore(repo_path, sln):
         err = "restore failed"
-        print(f"  [warn] {err}")
+        print(f"  [error] {err}")
+        shutil.rmtree(repo_path, ignore_errors=True)
+        return [_error_row(full_name, m, err) for m in MODELS]
 
     # ベースライン dotnet test
     print("  Running baseline dotnet test ...")
     baseline_result, baseline_dur, baseline_out = run_dotnet_test(repo_path, sln)
     print(f"  baseline: {baseline_result}  ({baseline_dur:.1f}s)")
+    if baseline_result != "PASS":
+        print(f"  [debug] baseline output:\n{baseline_out}")
 
     rows = []
 
@@ -404,11 +413,14 @@ def main():
 
     # 前回結果があれば再開
     if os.path.exists(args.output) and args.skip == 0:
-        prev_df = pd.read_csv(args.output)
-        done_repos = set(prev_df["repo"].unique().tolist())
-        all_rows = prev_df.to_dict("records")
-        repos = [r for r in repos if r not in done_repos]
-        print(f"Resuming: {len(done_repos)} repos already done, {len(repos)} remaining")
+        try:
+            prev_df = pd.read_csv(args.output)
+            done_repos = set(prev_df["repo"].unique().tolist())
+            all_rows = prev_df.to_dict("records")
+            repos = [r for r in repos if r not in done_repos]
+            print(f"Resuming: {len(done_repos)} repos already done, {len(repos)} remaining")
+        except Exception as e:
+            print(f"[warn] could not read existing output ({e}), starting fresh")
 
     print(f"Target: {len(repos)} repos  |  Output: {args.output}")
 

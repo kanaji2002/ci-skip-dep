@@ -28,7 +28,6 @@ from typing import Any, Dict, List, Optional, Tuple
 
 import pandas as pd
 from dotenv import load_dotenv
-from git import Repo
 
 _ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))))
 load_dotenv(os.path.join(_ROOT, ".env"))
@@ -285,9 +284,15 @@ def verify_repo(owner: str, repo: str, step1_row: Dict) -> List[Dict[str, Any]]:
     # clone
     if os.path.exists(repo_path):
         shutil.rmtree(repo_path)
+    print("  Cloning ...")
     try:
-        print("  Cloning ...")
-        Repo.clone_from(f"https://github.com/{owner}/{repo}", repo_path)
+        r = subprocess.run(
+            ["git", "clone", "--depth=1",
+             f"https://github.com/{owner}/{repo}.git", repo_path],
+            capture_output=True, text=True, timeout=120,
+        )
+        if r.returncode != 0:
+            raise RuntimeError(r.stderr.strip() or "clone failed")
     except Exception as e:
         print(f"  [error] clone failed: {e}")
         return [_error_row(full_name, m, str(e)) for m in MODELS]

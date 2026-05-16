@@ -28,7 +28,6 @@ from typing import Any, Dict, List, Optional, Tuple
 
 import pandas as pd
 from dotenv import load_dotenv
-from git import Repo
 
 _ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))))
 load_dotenv(os.path.join(_ROOT, ".env"))
@@ -47,6 +46,7 @@ RESULTS_CSV  = os.path.join(OUTPUT_DIR, "step2_results.csv")
 # ---------------------------------------------------------------------------
 SIF_PATH    = "/work/rintaro-k/research/containers/rust-tarpaulin.sif"
 SINGULARITY = "/opt/singularity/3.9.6/bin/singularity"
+CARGO_HOME  = os.path.join(os.path.dirname(OUTPUT_DIR), "step2_verify", "cargo_cache")
 
 TEST_TIMEOUT    = 600
 REMOVE_TIMEOUT  = 120
@@ -74,10 +74,11 @@ def singularity_exec(cmd: list, cwd: str, timeout: int) -> subprocess.CompletedP
     full_cmd = [
         SINGULARITY, "exec",
         "--bind", "/work/rintaro-k:/work/rintaro-k",
-        "--pwd", cwd,
+        "--env", f"CARGO_HOME={CARGO_HOME}",
+        "--env", "RUST_TEST_THREADS=1",
         SIF_PATH,
     ] + cmd
-    return subprocess.run(full_cmd, capture_output=True, text=True, timeout=timeout)
+    return subprocess.run(full_cmd, cwd=cwd, capture_output=True, text=True, timeout=timeout)
 
 
 def find_cargo_tomls(repo_path: str) -> List[str]:
@@ -149,7 +150,7 @@ def run_cargo_test(repo_path: str) -> Tuple[str, float, str]:
     t0 = time.time()
     try:
         r = singularity_exec(
-            ["cargo", "test", "--all", "--", "--test-threads=1"],
+            ["cargo", "test", "--all"],
             cwd=repo_path,
             timeout=TEST_TIMEOUT,
         )
@@ -157,6 +158,8 @@ def run_cargo_test(repo_path: str) -> Tuple[str, float, str]:
         combined = (r.stdout + "\n" + r.stderr).strip()
         tail = combined[-500:] if len(combined) > 500 else combined
         result = "PASS" if r.returncode == 0 else "FAIL"
+        if result == "FAIL":
+            print(f"  [cargo test tail]\n{tail}")
         return result, duration, tail
     except subprocess.TimeoutExpired:
         return "ERROR", time.time() - t0, "timeout"
@@ -254,9 +257,15 @@ def verify_repo(owner: str, repo: str, step1_row: Dict) -> List[Dict[str, Any]]:
     # clone
     if os.path.exists(repo_path):
         shutil.rmtree(repo_path)
+    print("  Cloning ...")
     try:
-        print("  Cloning ...")
-        Repo.clone_from(f"https://github.com/{owner}/{repo}", repo_path)
+        r = subprocess.run(
+            ["git", "clone", "--depth=1",
+             f"https://github.com/{owner}/{repo}.git", repo_path],
+            capture_output=True, text=True, timeout=120,
+        )
+        if r.returncode != 0:
+            raise RuntimeError(r.stderr.strip() or "clone failed")
     except Exception as e:
         print(f"  [error] clone failed: {e}")
         return [_error_row(full_name, m, str(e)) for m in MODELS]
@@ -350,6 +359,7 @@ def main():
 
     os.makedirs(OUTPUT_DIR, exist_ok=True)
     os.makedirs(CLONES_DIR, exist_ok=True)
+    os.makedirs(CARGO_HOME, exist_ok=True)
 
     if not os.path.exists(SIF_PATH):
         print(f"[error] コンテナが見つかりません: {SIF_PATH}")
