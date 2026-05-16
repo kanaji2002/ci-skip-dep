@@ -1,4 +1,4 @@
-#!/usr/bin/env rust
+#!/usr/bin/env python3
 """
 analyze_job_rust.py - Rust ジョブの final_dataset.csv を集約して精度指標を出力する
 

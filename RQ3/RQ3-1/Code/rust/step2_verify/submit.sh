@@ -37,12 +37,18 @@ fi
 pyenv activate py3
 
 # ============================================
+# Singularity
+# ============================================
+module load singularity
+
+# ============================================
 # Job info
 # ============================================
 echo "=== Job Info ==="
 echo "Job ID:   ${SLURM_JOB_ID:-local}"
 echo "Node:     $(hostname)"
 echo "Python:   $(python3 --version)"
+echo "Container: /work/rintaro-k/research/containers/rust-tarpaulin.sif"
 echo "Args:     ${PYTHON_ARGS:-'(none)'}"
 echo "================"
 

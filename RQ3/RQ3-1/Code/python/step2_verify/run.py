@@ -256,6 +256,7 @@ def iterative_removal(
         final_result, _, _ = run_pytest(repo_path, venv_dir)
         n_iter += 1
         print(f"  [iter] final ({len(safe)} safe deps): {final_result}")
+        pip_install_package(repo_path, venv_dir, safe)  # 次モデルのために venv を元に戻す
     else:
         # 全部再インストールして環境を戻す (何も削除しないのでベースラインと同じ PASS)
         pip_install_package(repo_path, venv_dir, candidates)

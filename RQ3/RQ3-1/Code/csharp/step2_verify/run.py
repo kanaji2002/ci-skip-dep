@@ -253,7 +253,8 @@ def iterative_removal(
         print(f"  [iter] final ({len(safe)} safe deps): {final_result}")
         restore_csproj(final_backups)
     else:
-        final_result = "FAIL"
+        # 何も削除しないのでベースラインと同じ PASS
+        final_result = "PASS"
 
     restore_csproj(backups)
     return {

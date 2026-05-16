@@ -73,7 +73,7 @@ CSHARP_LANG_DIR  = BASE_DIR / "RQ3" / "RQ3-2" / "csharp"
 CSHARP_BATCH_ROOT = CSHARP_LANG_DIR / "batch" / "output" / "rq3_csharp"
 CSHARP_DATA_ROOT  = CSHARP_LANG_DIR / "data_dependency_waste_project"
 # /work/rintaro-k/research/RQ3/Code/csharp/batch/output
-MODELS = ["depcheck", "knip", "llama", "qwen", "deepseek"]
+MODELS = ["llama", "qwen", "deepseek"]
 
 
 # ─── ジョブからデータセット CSV を特定 ────────────────────────────────────────
