@@ -15,39 +15,40 @@ from pathlib import Path
 import pandas as pd
 
 # ─── 解析対象ジョブ番号 (Python / rq3_python) ────────────────────────────────────
+# batch_index 0-31 の最新ジョブ (各 batch_index で CSV が存在するもの)
 JOB_IDS = [
-    4238242,
-    4238243,
-    4238244,
-    4238245,
-    4238246,
-    4238247,
-    4238248,
-    4238249,
-    4238250,
-    4238251,
-    4238252,
-    4238253,
-    4238254,
-    4238255,
-    4238256,
-    4238257,
-    4238258,
-    4238259,
-    4238260,
-    4238261,
-    4238262,
-    4238263,
-    4238264,
-    4238265,
-    4238266,
-    4238267,
-    4238268,
-    4238269,
-    4238270,
-    4238271,
-    4238272,
-    4238273
+    4238242,  # idx=0
+    4238243,  # idx=1
+    4238244,  # idx=2
+    4238245,  # idx=3
+    4238246,  # idx=4
+    4238247,  # idx=5
+    4238248,  # idx=6
+    4238249,  # idx=7
+    4238250,  # idx=8
+    4238251,  # idx=9
+    4238252,  # idx=10
+    4238253,  # idx=11
+    4238254,  # idx=12
+    4238255,  # idx=13
+    4238256,  # idx=14
+    4238257,  # idx=15
+    4238258,  # idx=16
+    4238259,  # idx=17
+    4238260,  # idx=18
+    4238261,  # idx=19
+    4238262,  # idx=20
+    4238263,  # idx=21
+    4238264,  # idx=22
+    4238265,  # idx=23
+    4238266,  # idx=24
+    4238267,  # idx=25
+    4238268,  # idx=26
+    4238269,  # idx=27
+    4238270,  # idx=28
+    4238271,  # idx=29
+    4238272,  # idx=30
+    4238273,  # idx=31
 ]
 # ──────────────────────────────────────────────────────────────────────────────
 
@@ -56,7 +57,7 @@ ALL_DIR     = BASE_DIR / "DC" / "data-curation-all"
 BATCH_ROOT  = ALL_DIR / "batch" / "output" / "pipeline_all"
 DATA_ROOT   = ALL_DIR / "data_dependency_waste_project"
 
-PYTHON_LANG_DIR  = BASE_DIR / "RQ3" / "Code" / "python"
+PYTHON_LANG_DIR  = BASE_DIR / "RQ3" / "RQ3-2" / "python"
 PYTHON_BATCH_ROOT = PYTHON_LANG_DIR / "batch" / "output" / "rq3_python"
 PYTHON_DATA_ROOT  = PYTHON_LANG_DIR / "data_dependency_waste_project"
 

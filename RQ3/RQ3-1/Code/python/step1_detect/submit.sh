@@ -1,7 +1,7 @@
 #!/bin/bash -l
 #SBATCH --job-name=rq3_1_py_step1
-#SBATCH --time=4:00:00
-#SBATCH --partition=isgpu4h200_short
+#SBATCH --time=20:00:00
+#SBATCH --partition=isgpu4h200_long
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=4
 #SBATCH --mem=64G

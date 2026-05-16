@@ -34,9 +34,9 @@ load_dotenv(os.path.join(_ROOT, ".env"))
 LANG_DIR    = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUTPUT_DIR  = os.path.join(LANG_DIR, "output")
 CLONES_DIR  = os.path.join(OUTPUT_DIR, "clones")
-RESULTS_CSV = os.path.join(OUTPUT_DIR, "step1_results-3.csv")
+RESULTS_CSV = os.path.join(OUTPUT_DIR, "step1_results-2.csv")
 
-PS8_CSV = os.path.join(_ROOT, "PS", "python", "ps8", "ps8_filtered-3.csv")
+PS8_CSV = os.path.join(_ROOT, "PS", "python", "ps8", "ps8_filtered-2.csv")
 
 # RQ3 共通プロンプト (path指定でアクセス)
 PROMPTS_BASE = "/work/rintaro-k/research/RQ3/RQ3-2/common/prompts"
