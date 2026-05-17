@@ -1,6 +1,6 @@
 #!/bin/bash -l
 #SBATCH --job-name=rq3_1_rust_step2
-#SBATCH --time=4-04:00:00
+#SBATCH --time=4-00:00:00
 #SBATCH --partition=cluster_long
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=4
@@ -53,9 +53,9 @@ echo "Args:     ${PYTHON_ARGS:-'(none)'}"
 echo "================"
 
 # step1_results.csv の存在確認
-STEP1_CSV="/work/rintaro-k/research/RQ3/RQ3-1/Code/rust/output/step1_results.csv"
+STEP1_CSV="/work/rintaro-k/research/RQ3/RQ3-1/Code/rust/output/step1_result-400-466.csv"
 if [[ ! -f "$STEP1_CSV" ]]; then
-    echo "[error] step1_results.csv not found: ${STEP1_CSV}"
+    echo "[error] step1_result-400-466.csv not found: ${STEP1_CSV}"
     echo "先に step1_detect/submit.sh を実行してください。"
     exit 1
 fi

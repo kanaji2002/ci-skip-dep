@@ -38,7 +38,7 @@ load_dotenv(os.path.join(_ROOT, ".env"))
 LANG_DIR     = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUTPUT_DIR   = os.path.join(LANG_DIR, "output")
 CLONES_DIR   = os.path.join(OUTPUT_DIR, "clones")
-STEP1_CSV    = os.path.join(OUTPUT_DIR, "step1_results.csv")
+STEP1_CSV    = os.path.join(OUTPUT_DIR, "step1_result.csv")
 RESULTS_CSV  = os.path.join(OUTPUT_DIR, "step2_results.csv")
 
 # ---------------------------------------------------------------------------
@@ -74,11 +74,12 @@ def singularity_exec(cmd: list, cwd: str, timeout: int) -> subprocess.CompletedP
     full_cmd = [
         SINGULARITY, "exec",
         "--bind", "/work/rintaro-k:/work/rintaro-k",
+        "--pwd", cwd,
         "--env", f"CARGO_HOME={CARGO_HOME}",
         "--env", "RUST_TEST_THREADS=1",
         SIF_PATH,
     ] + cmd
-    return subprocess.run(full_cmd, cwd=cwd, capture_output=True, text=True, timeout=timeout)
+    return subprocess.run(full_cmd, capture_output=True, text=True, timeout=timeout)
 
 
 def find_cargo_tomls(repo_path: str) -> List[str]:
