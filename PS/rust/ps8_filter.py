@@ -2,27 +2,41 @@
 """
 ps8_filter.py  (Rust)
 
-Input : ps7/ps7_filtered.csv
-Check : cargo-tarpaulin (Singularity コンテナ) でテスト実行 & line coverage >= 70%
+Input : ps7/ps7_filtered.csv  (PS7 でテスト存在が確認済みのリポジトリ)
+Check : ローカルでテストを実行して line coverage >= 70% を確認
         - git clone --depth=1
         - singularity exec rust-tarpaulin.sif cargo tarpaulin --out Json
-        - tarpaulin-report.json の coverage (0.0-1.0) * 100 >= 70 を確認
+        - tarpaulin-report.json の coverage * 100 >= 70 を確認
 Output: ps8/ps8_filtered.csv  (通過分のみ、cov_lines カラム付き)
         ps8/progress.log      (再開用)
 """
 
+import argparse
 import csv
 import json
 import shutil
 import subprocess
 from pathlib import Path
 
-BASE_DIR   = Path(__file__).parent
-INPUT_CSV  = BASE_DIR / "ps7" / "ps7_filtered.csv"
+BASE_DIR  = Path(__file__).parent
+REPOS_TMP = BASE_DIR / "repos_tmp"
+
+def parse_args():
+    p = argparse.ArgumentParser()
+    p.add_argument("--index", type=int, default=None, help="Batch index (0-based, 100 repos each); 省略時は全行処理")
+    p.add_argument("--input", type=str, default=str(BASE_DIR / "ps7" / "ps7_filtered.csv"))
+    return p.parse_args()
+
+ARGS       = parse_args()
+BATCH_SIZE = 100
+INPUT_CSV  = Path(ARGS.input)
 OUTPUT_DIR = BASE_DIR / "ps8"
-OUTPUT_CSV = OUTPUT_DIR / "ps8_filtered.csv"
-PROGRESS   = OUTPUT_DIR / "progress.log"
-REPOS_TMP  = BASE_DIR / "repos_tmp"
+if ARGS.index is None:
+    OUTPUT_CSV = OUTPUT_DIR / "ps8_filtered.csv"
+    PROGRESS   = OUTPUT_DIR / "progress.log"
+else:
+    OUTPUT_CSV = OUTPUT_DIR / f"ps8_filtered-{ARGS.index}.csv"
+    PROGRESS   = OUTPUT_DIR / f"progress-{ARGS.index}.log"
 
 SIF_PATH = Path("/work/rintaro-k/research/containers/rust-tarpaulin.sif")
 SINGULARITY = "/opt/singularity/3.9.6/bin/singularity"
@@ -42,6 +56,7 @@ def singularity_exec(cmd: list, cwd: Path, timeout: int) -> subprocess.Completed
     full_cmd = [
         SINGULARITY, "exec",
         "--bind", "/work/rintaro-k:/work/rintaro-k",
+        "--env", "CARGO_HOME=/work/rintaro-k/.cargo",
         str(SIF_PATH),
     ] + cmd
     return subprocess.run(
@@ -119,11 +134,21 @@ def main():
     with open(INPUT_CSV, newline="", encoding="utf-8") as f:
         reader     = csv.DictReader(f)
         fieldnames = list(reader.fieldnames)
-        rows       = list(reader)
+        all_rows   = list(reader)
+
+    if ARGS.index is None:
+        rows  = all_rows
+        label = f"全件  ({len(rows)} 件)"
+    else:
+        start = ARGS.index * BATCH_SIZE
+        end   = start + BATCH_SIZE
+        rows  = all_rows[start:end]
+        label = f"index={ARGS.index}  rows {start}-{end-1}  ({len(rows)} 件)"
 
     print("=" * 60)
     print("PS8 (Rust): cargo-tarpaulin チェック (line coverage >= 70%)")
-    print(f"Input : {INPUT_CSV}  ({len(rows)} 件)")
+    print(f"Input : {INPUT_CSV}  (全 {len(all_rows)} 件)")
+    print(f"Batch : {label}")
     print(f"Output: {OUTPUT_CSV}")
     print(f"SIF   : {SIF_PATH}")
     print("=" * 60 + "\n")
@@ -204,7 +229,7 @@ def main():
         print(f"  => SAVED  lines={cov['lines']:.1f}%")
 
     outfile.close()
-    print(f"\n=== PS8 (Rust) 完了 ===")
+    print(f"\n=== PS8   (Rust) 完了 ===")
     print(f"Total: {len(rows)}  Pass: {passed}  Fail: {failed}  Skip: {skipped}")
     print(f"Output: {OUTPUT_CSV}")
 

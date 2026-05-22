@@ -1,10 +1,10 @@
 #!/bin/bash -l
 #SBATCH --job-name=ps7-filter-csharp
-#SBATCH --time=24:00:00
+#SBATCH --time=100:00:00
 #SBATCH --partition=cluster_long
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=1
-#SBATCH --mem=8G
+#SBATCH --mem=32G
 #SBATCH --output=/work/rintaro-k/research/PS/csharp/batch/output/%x/%j/out.out
 #SBATCH --error=/work/rintaro-k/research/PS/csharp/batch/output/%x/%j/err.err
 
@@ -28,6 +28,6 @@ echo "Python: $(python3 --version)  Working dir: $(pwd)"
 echo "================"
 
 echo ""
-echo "=== PS7 (C#): テストプロジェクト チェック ==="
+echo "=== PS7 (C#): xUnit 参照チェック (GitHub API) ==="
 python3 ps7_filter.py
 echo "=== PS7 complete ==="

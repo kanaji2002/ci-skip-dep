@@ -1,12 +1,13 @@
 """
-results.csv を3段階でフィルタリングするスクリプト
+ps1_filtered.csv を3段階でフィルタリングするスクリプト
 
-PS2: 2024/3/1〜2026/3/1 に 10コミット以上 → results_ps2.csv
-PS3: .github/workflows/*.yml が存在       → results_ps3.csv
-PS4: GitHub Actions 実行履歴が 10件以上   → results_ps4.csv
+PS2: 2024/3/1〜2026/3/1 に 10コミット以上 → ps2/ps2_filtered.csv
+PS3: .github/workflows/*.yml が存在       → ps3/ps3_filtered.csv
+PS4: GitHub Actions 実行履歴が 10件以上   → ps4/ps4_filtered.csv
 """
 
 import csv
+import itertools
 import time
 import requests
 import os
@@ -17,15 +18,32 @@ load_dotenv(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..",
 # ============================================================
 # 設定
 # ============================================================
-GITHUB_TOKEN = os.environ["GITHUB_TOKEN_1"]
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-_input_arg = os.environ.get("INPUT_CSV", "results/results_1-50k.csv")
-INPUT_CSV = os.path.join(BASE_DIR, _input_arg) if not os.path.isabs(_input_arg) else _input_arg
-_stem = os.path.splitext(os.path.basename(INPUT_CSV))[0]
-PS2_CSV = os.path.join(BASE_DIR, "ps2", f"{_stem}_ps2.csv")
-PS3_CSV = os.path.join(BASE_DIR, "ps3", f"{_stem}_ps3.csv")
-PS4_CSV = os.path.join(BASE_DIR, "ps4", f"{_stem}_ps4.csv")
+GITHUB_TOKENS = []
+i = 1
+while True:
+    t = os.environ.get(f"GITHUB_TOKEN_{i}", "").strip()
+    if not t:
+        break
+    GITHUB_TOKENS.append(t)
+    i += 1
+
+if not GITHUB_TOKENS:
+    t = os.environ.get("GITHUB_TOKEN", "").strip()
+    if t:
+        GITHUB_TOKENS.append(t)
+
+if not GITHUB_TOKENS:
+    raise RuntimeError("GITHUB_TOKEN または GITHUB_TOKEN_1 が .env に見つかりません")
+
+_token_cycle = itertools.cycle(GITHUB_TOKENS)
+
+_input_arg = os.environ.get("PS1_CSV", "ps1/ps1_filtered.csv")
+PS1_CSV = os.path.join(BASE_DIR, _input_arg) if not os.path.isabs(_input_arg) else _input_arg
+PS2_CSV = os.path.join(BASE_DIR, "ps2", "ps2_filtered.csv")
+PS3_CSV = os.path.join(BASE_DIR, "ps3", "ps3_filtered.csv")
+PS4_CSV = os.path.join(BASE_DIR, "ps4", "ps4_filtered.csv")
 
 DATE_SINCE = "2024-03-01T00:00:00Z"
 DATE_UNTIL = "2026-03-01T00:00:00Z"
@@ -42,11 +60,12 @@ RETRY_DELAY = 3
 def github_get(url: str, params: dict = None):
     """
     GitHub API に GET リクエストを送る。
-    レート制限対応・リトライ付き。
+    レート制限対応・リトライ付き。トークンをラウンドロビンで使用。
     戻り値: (data, status_code)
     """
+    token = next(_token_cycle)
     headers = {
-        "Authorization": f"token {GITHUB_TOKEN}",
+        "Authorization": f"token {token}",
         "Accept": "application/vnd.github.v3+json",
     }
     for attempt in range(RETRY_MAX):
@@ -233,9 +252,10 @@ def main():
     print("="*60)
     print("repo-list フィルタリング パイプライン (PS2 -> PS3 -> PS4)")
     print("="*60)
-    print(f"入力: {INPUT_CSV}")
+    print(f"[初期化] トークン {len(GITHUB_TOKENS)} 件")
+    print(f"入力: {PS1_CSV}")
 
-    ps2_filter_commits(INPUT_CSV, PS2_CSV)
+    ps2_filter_commits(PS1_CSV, PS2_CSV)
     ps3_filter_workflows(PS2_CSV, PS3_CSV)
     ps4_filter_ci_runs(PS3_CSV, PS4_CSV)
 

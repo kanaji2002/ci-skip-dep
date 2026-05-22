@@ -28,7 +28,6 @@ from typing import Any, Dict, List, Optional, Tuple
 
 import pandas as pd
 from dotenv import load_dotenv
-from git import Repo
 
 _ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))))
 load_dotenv(os.path.join(_ROOT, ".env"))
@@ -121,14 +120,22 @@ def pip_install_project(repo_path: str, venv_dir: str) -> bool:
         )
         if proc.returncode == 0:
             return True
-        # さらにフォールバック: requirements.txt
-        req_file = os.path.join(repo_path, "requirements.txt")
-        if os.path.exists(req_file):
-            proc = subprocess.run(
-                [pip, "install", "-r", req_file],
-                cwd=repo_path, capture_output=True, timeout=INSTALL_TIMEOUT,
-            )
-            return proc.returncode == 0
+        # さらにフォールバック: requirements*.txt
+        for req_name in [
+            "requirements.txt",
+            "requirements-dev.txt",
+            "requirements-test.txt",
+            "requirements-devel.txt",
+            "test-requirements.txt",
+        ]:
+            req_file = os.path.join(repo_path, req_name)
+            if os.path.exists(req_file):
+                proc = subprocess.run(
+                    [pip, "install", "-r", req_file],
+                    cwd=repo_path, capture_output=True, timeout=INSTALL_TIMEOUT,
+                )
+                if proc.returncode == 0:
+                    break
         return False
     except subprocess.TimeoutExpired:
         print("  [pip install] timeout")
@@ -248,10 +255,11 @@ def iterative_removal(
         final_result, _, _ = run_pytest(repo_path, venv_dir)
         n_iter += 1
         print(f"  [iter] final ({len(safe)} safe deps): {final_result}")
+        pip_install_package(repo_path, venv_dir, safe)  # 次モデルのために venv を元に戻す
     else:
-        # 全部再インストールして環境を戻す
+        # 全部再インストールして環境を戻す (何も削除しないのでベースラインと同じ PASS)
         pip_install_package(repo_path, venv_dir, candidates)
-        final_result = "FAIL"
+        final_result = "PASS"
 
     return {
         "bulk_result":    bulk_result,
@@ -276,9 +284,15 @@ def verify_repo(owner: str, repo: str, step1_row: Dict) -> List[Dict[str, Any]]:
     # clone
     if os.path.exists(repo_path):
         shutil.rmtree(repo_path)
+    print("  Cloning ...")
     try:
-        print("  Cloning ...")
-        Repo.clone_from(f"https://github.com/{owner}/{repo}", repo_path)
+        r = subprocess.run(
+            ["git", "clone", "--depth=1",
+             f"https://github.com/{owner}/{repo}.git", repo_path],
+            capture_output=True, text=True, timeout=120,
+        )
+        if r.returncode != 0:
+            raise RuntimeError(r.stderr.strip() or "clone failed")
     except Exception as e:
         print(f"  [error] clone failed: {e}")
         return [_error_row(full_name, m, str(e)) for m in MODELS]
@@ -294,6 +308,8 @@ def verify_repo(owner: str, repo: str, step1_row: Dict) -> List[Dict[str, Any]]:
     print("  pip install ...")
     if not pip_install_project(repo_path, venv_dir):
         print("  [warn] pip install failed, proceeding anyway")
+    # pytest を確実にインストール (extras 名の違いで漏れるケースを補完)
+    pip_install_package(repo_path, venv_dir, ["pytest", "pytest-timeout"])
 
     # ベースライン pytest
     print("  Running baseline pytest ...")
