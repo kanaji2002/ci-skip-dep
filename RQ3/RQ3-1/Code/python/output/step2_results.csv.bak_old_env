@@ -1,0 +1,403 @@
+repo,model,candidates,removed_deps,must_keep_deps,baseline_result,baseline_duration_sec,bulk_result,post_removal_result,n_iterations,error
+conestack/plumber,llama,[],[],[],PASS,1.55,,SKIP,0,no deps to remove
+conestack/plumber,qwen,[],[],[],PASS,1.55,,SKIP,0,no deps to remove
+conestack/plumber,deepseek,[],[],[],PASS,1.55,,SKIP,0,no deps to remove
+plone/plone.reload,llama,[],[],[],PASS,2.56,,SKIP,0,no deps to remove
+plone/plone.reload,qwen,[],[],[],PASS,2.56,,SKIP,0,no deps to remove
+plone/plone.reload,deepseek,[],[],[],PASS,2.56,,SKIP,0,no deps to remove
+Pike/pygrep,llama,[],[],[],PASS,0.68,,SKIP,0,no deps to remove
+Pike/pygrep,qwen,[],[],[],PASS,0.68,,SKIP,0,no deps to remove
+Pike/pygrep,deepseek,[],[],[],PASS,0.68,,SKIP,0,no deps to remove
+hearsaycorp/richenum,llama,[],[],[],PASS,1.43,,SKIP,0,no deps to remove
+hearsaycorp/richenum,qwen,[],[],[],PASS,1.43,,SKIP,0,no deps to remove
+hearsaycorp/richenum,deepseek,[],[],[],PASS,1.43,,SKIP,0,no deps to remove
+release-engineering/productmd,llama,[],[],[],PASS,1.87,,SKIP,0,no deps to remove
+release-engineering/productmd,qwen,[],[],[],PASS,1.87,,SKIP,0,no deps to remove
+release-engineering/productmd,deepseek,[],[],[],PASS,1.87,,SKIP,0,no deps to remove
+ashkonf/hybrid-naive-bayes,llama,['requests'],['requests'],[],PASS,1.02,PASS,PASS,1,
+ashkonf/hybrid-naive-bayes,qwen,['requests'],['requests'],[],PASS,1.02,PASS,PASS,1,
+ashkonf/hybrid-naive-bayes,deepseek,"['ipykernel', 'pre-commit', 'pytest', 'requests']","['ipykernel', 'pre-commit', 'requests']",['pytest'],PASS,1.02,FAIL,PASS,6,
+sgallagher/systemdunitparser,llama,[],[],[],PASS,1.1,,SKIP,0,no deps to remove
+sgallagher/systemdunitparser,qwen,[],[],[],PASS,1.1,,SKIP,0,no deps to remove
+sgallagher/systemdunitparser,deepseek,[],[],[],PASS,1.1,,SKIP,0,no deps to remove
+titusz/onixcheck,llama,"['six', 'lxml', 'defusedxml', 'isbnlib', 'PyYAML', 'win-unicode-console']","['defusedxml', 'win-unicode-console']","['six', 'lxml', 'isbnlib', 'PyYAML']",PASS,5.61,FAIL,PASS,8,
+titusz/onixcheck,qwen,['defusedxml'],['defusedxml'],[],PASS,5.61,PASS,PASS,1,
+titusz/onixcheck,deepseek,"['six', 'lxml', 'defusedxml', 'isbnlib', 'PyYAML', 'win-unicode-console']","['defusedxml', 'win-unicode-console']","['six', 'lxml', 'isbnlib', 'PyYAML']",PASS,5.61,FAIL,PASS,8,
+hamnis/maven-artifact,llama,"['hatchling', 'hatch-vcs', 'build', 'twine']","['hatchling', 'hatch-vcs', 'build', 'twine']",[],PASS,3.14,PASS,PASS,1,
+hamnis/maven-artifact,qwen,"['lxml', 'requests']",[],"['lxml', 'requests']",PASS,3.14,FAIL,PASS,3,
+hamnis/maven-artifact,deepseek,"['lxml', 'requests']",[],"['lxml', 'requests']",PASS,3.14,FAIL,PASS,3,
+DOI-USGS/pyPRMS,llama,[],[],[],PASS,30.6,,SKIP,0,no deps to remove
+DOI-USGS/pyPRMS,qwen,"['dask', 'pyproj', 'rich', 'zarr']",['zarr'],"['dask', 'pyproj', 'rich']",PASS,30.6,FAIL,PASS,6,
+DOI-USGS/pyPRMS,deepseek,"['cartopy', 'dask', 'fsspec', 'geopandas', 'matplotlib', 'networkx', 'numpy', 'pandas', 'pyproj', 'rich', 'shapely', 'sphinx', 'sphinx-autodoc-typehints', 'sphinx-book-theme', 'xarray', 'zarr']","['sphinx', 'sphinx-autodoc-typehints', 'sphinx-book-theme', 'zarr']","['cartopy', 'dask', 'fsspec', 'geopandas', 'matplotlib', 'networkx', 'numpy', 'pandas', 'pyproj', 'rich', 'shapely', 'xarray']",PASS,30.6,FAIL,PASS,18,
+artefactual-labs/mets-reader-writer,llama,"['coverage', 'pip-tools', 'pytest-cov', 'pytest', 'ruff', 'sphinx-rtd-theme', 'sphinx']","['coverage', 'pip-tools', 'pytest-cov', 'ruff', 'sphinx-rtd-theme', 'sphinx']",['pytest'],PASS,1.87,FAIL,PASS,9,
+artefactual-labs/mets-reader-writer,qwen,[],[],[],PASS,1.87,,SKIP,0,no deps to remove
+artefactual-labs/mets-reader-writer,deepseek,['lxml'],[],['lxml'],PASS,1.87,FAIL,PASS,2,
+wireservice/agate-sql,llama,"['sqlalchemy-cratedb', 'geojson']",[],"['sqlalchemy-cratedb', 'geojson']",PASS,2.18,FAIL,PASS,3,
+wireservice/agate-sql,qwen,"['agate', 'sqlalchemy']",[],"['agate', 'sqlalchemy']",PASS,2.18,FAIL,PASS,3,
+wireservice/agate-sql,deepseek,['agate'],[],['agate'],PASS,2.18,FAIL,PASS,2,
+vEnhance/tsqx,llama,[],[],[],PASS,0.67,,SKIP,0,no deps to remove
+vEnhance/tsqx,qwen,[],[],[],PASS,0.67,,SKIP,0,no deps to remove
+vEnhance/tsqx,deepseek,[],[],[],PASS,0.67,,SKIP,0,no deps to remove
+daviskirk/climatecontrol,llama,['tomli-w'],[],[],ERROR,300.02,,SKIP,0,baseline=ERROR
+daviskirk/climatecontrol,qwen,[],[],[],ERROR,300.02,,SKIP,0,baseline=ERROR
+daviskirk/climatecontrol,deepseek,['wrapt'],[],[],ERROR,300.02,,SKIP,0,baseline=ERROR
+mareuter/pylunar,llama,['sphinx_rtd_theme'],['sphinx_rtd_theme'],[],PASS,0.93,PASS,PASS,1,
+mareuter/pylunar,qwen,['ephem'],[],['ephem'],PASS,0.93,FAIL,PASS,2,
+mareuter/pylunar,deepseek,['ephem'],[],['ephem'],PASS,0.93,FAIL,PASS,2,
+thombashi/sqliteschema,llama,[],[],[],PASS,2.42,,SKIP,0,no deps to remove
+thombashi/sqliteschema,qwen,[],[],[],PASS,2.42,,SKIP,0,no deps to remove
+thombashi/sqliteschema,deepseek,[],[],[],PASS,2.42,,SKIP,0,no deps to remove
+agude/SWITRS-to-SQLite,llama,[],[],[],PASS,0.85,,SKIP,0,no deps to remove
+agude/SWITRS-to-SQLite,qwen,[],[],[],PASS,0.85,,SKIP,0,no deps to remove
+agude/SWITRS-to-SQLite,deepseek,[],[],[],PASS,0.85,,SKIP,0,no deps to remove
+pokidovea/immobilus,llama,['pytz'],[],['pytz'],PASS,4.18,FAIL,PASS,2,
+pokidovea/immobilus,qwen,[],[],[],PASS,4.18,,SKIP,0,no deps to remove
+pokidovea/immobilus,deepseek,['python-dateutil'],[],['python-dateutil'],PASS,4.18,FAIL,PASS,2,
+sylhare/nprime,llama,['matplotlib'],['matplotlib'],[],PASS,1.13,PASS,PASS,1,
+sylhare/nprime,qwen,[],[],[],PASS,1.13,,SKIP,0,no deps to remove
+sylhare/nprime,deepseek,['matplotlib'],['matplotlib'],[],PASS,1.13,PASS,PASS,1,
+Syndace/python-x3dh,llama,['cryptography'],[],['cryptography'],PASS,10.64,FAIL,PASS,2,
+Syndace/python-x3dh,qwen,['cryptography'],[],['cryptography'],PASS,10.64,FAIL,PASS,2,
+Syndace/python-x3dh,deepseek,['typing-extensions'],[],['typing-extensions'],PASS,10.64,FAIL,PASS,2,
+Syndace/python-doubleratchet,llama,[],[],[],PASS,111.09,,SKIP,0,no deps to remove
+Syndace/python-doubleratchet,qwen,[],[],[],PASS,111.09,,SKIP,0,no deps to remove
+Syndace/python-doubleratchet,deepseek,['typing-extensions'],[],['typing-extensions'],PASS,111.09,FAIL,PASS,2,
+mideind/Tokenizer,llama,[],[],[],PASS,1.57,,SKIP,0,no deps to remove
+mideind/Tokenizer,qwen,[],[],[],PASS,1.57,,SKIP,0,no deps to remove
+mideind/Tokenizer,deepseek,[],[],[],PASS,1.57,,SKIP,0,no deps to remove
+boileaum/gitlab-users,llama,"['black', 'pytest', 'pytest-cov', 'build', 'pre-commit']","['black', 'build', 'pre-commit']","['pytest', 'pytest-cov']",PASS,2.51,FAIL,PASS,7,
+boileaum/gitlab-users,qwen,[],[],[],PASS,2.51,,SKIP,0,no deps to remove
+boileaum/gitlab-users,deepseek,['python-gitlab'],[],['python-gitlab'],PASS,2.51,FAIL,PASS,2,
+personnummer/python,llama,[],[],[],PASS,1.03,,SKIP,0,no deps to remove
+personnummer/python,qwen,[],[],[],PASS,1.03,,SKIP,0,no deps to remove
+personnummer/python,deepseek,[],[],[],PASS,1.03,,SKIP,0,no deps to remove
+City-of-Helsinki/django-orghierarchy,llama,"['django-mptt', 'djangorestframework', 'requests', 'swapper']",[],"['django-mptt', 'djangorestframework', 'requests', 'swapper']",PASS,7.24,FAIL,PASS,5,
+City-of-Helsinki/django-orghierarchy,qwen,['swapper'],[],['swapper'],PASS,7.24,FAIL,PASS,2,
+City-of-Helsinki/django-orghierarchy,deepseek,"['django-mptt', 'djangorestframework', 'requests', 'swapper']",[],"['django-mptt', 'djangorestframework', 'requests', 'swapper']",PASS,7.24,FAIL,PASS,5,
+satellogic/quaternions,llama,['numpy'],[],['numpy'],PASS,15.62,FAIL,PASS,2,
+satellogic/quaternions,qwen,[],[],[],PASS,15.62,,SKIP,0,no deps to remove
+satellogic/quaternions,deepseek,['numpy'],[],['numpy'],PASS,15.62,FAIL,PASS,2,
+Lykos153/AnnexRemote,llama,[],[],[],PASS,0.94,,SKIP,0,no deps to remove
+Lykos153/AnnexRemote,qwen,[],[],[],PASS,0.94,,SKIP,0,no deps to remove
+Lykos153/AnnexRemote,deepseek,[],[],[],PASS,0.94,,SKIP,0,no deps to remove
+zaibon/py-dmidecode,llama,[],[],[],PASS,0.55,,SKIP,0,no deps to remove
+zaibon/py-dmidecode,qwen,[],[],[],PASS,0.55,,SKIP,0,no deps to remove
+zaibon/py-dmidecode,deepseek,[],[],[],PASS,0.55,,SKIP,0,no deps to remove
+Nextdoor/gogo,llama,['oauth2client'],[],['oauth2client'],PASS,2.05,FAIL,PASS,2,
+Nextdoor/gogo,qwen,"['boto3', 'psycopg2-binary']","['boto3', 'psycopg2-binary']",[],PASS,2.05,PASS,PASS,1,
+Nextdoor/gogo,deepseek,"['flask-sqlalchemy', 'psycopg2-binary']",['psycopg2-binary'],['flask-sqlalchemy'],PASS,2.05,FAIL,PASS,4,
+PolicyEngine/microdf,llama,"['numpy', 'pandas']",[],"['numpy', 'pandas']",PASS,1.9,FAIL,PASS,3,
+PolicyEngine/microdf,qwen,[],[],[],PASS,1.9,,SKIP,0,no deps to remove
+PolicyEngine/microdf,deepseek,"['numpy', 'pandas']",[],"['numpy', 'pandas']",PASS,1.9,FAIL,PASS,3,
+guyingbo/iofree,llama,[],[],[],FAIL,0.49,,SKIP,0,baseline=FAIL
+guyingbo/iofree,qwen,[],[],[],FAIL,0.49,,SKIP,0,baseline=FAIL
+guyingbo/iofree,deepseek,[],[],[],FAIL,0.49,,SKIP,0,baseline=FAIL
+crd/faker_credit_score,llama,[],[],[],PASS,2.86,,SKIP,0,no deps to remove
+crd/faker_credit_score,qwen,[],[],[],PASS,2.86,,SKIP,0,no deps to remove
+crd/faker_credit_score,deepseek,['faker'],[],['faker'],PASS,2.86,FAIL,PASS,2,
+toonarmycaptain/dionysus,llama,['pillow'],[],['pillow'],PASS,18.62,FAIL,PASS,2,
+toonarmycaptain/dionysus,qwen,['pillow'],[],['pillow'],PASS,18.62,FAIL,PASS,2,
+toonarmycaptain/dionysus,deepseek,"['pillow', 'sqlalchemy']",[],"['pillow', 'sqlalchemy']",PASS,18.62,FAIL,PASS,3,
+ADTRAN/netconf_client,llama,['lxml'],[],[],FAIL,0.47,,SKIP,0,baseline=FAIL
+ADTRAN/netconf_client,qwen,"['lxml', 'paramiko']",[],[],FAIL,0.47,,SKIP,0,baseline=FAIL
+ADTRAN/netconf_client,deepseek,['paramiko'],[],[],FAIL,0.47,,SKIP,0,baseline=FAIL
+network-tools/shconfparser,llama,[],[],[],FAIL,0.44,,SKIP,0,baseline=FAIL
+network-tools/shconfparser,qwen,[],[],[],FAIL,0.44,,SKIP,0,baseline=FAIL
+network-tools/shconfparser,deepseek,[],[],[],FAIL,0.44,,SKIP,0,baseline=FAIL
+Septimus4/Chronogen,llama,[],[],[],PASS,1.25,,SKIP,0,no deps to remove
+Septimus4/Chronogen,qwen,[],[],[],PASS,1.25,,SKIP,0,no deps to remove
+Septimus4/Chronogen,deepseek,[],[],[],PASS,1.25,,SKIP,0,no deps to remove
+uwefladrich/scriptengine,llama,"['coverage', 'coveralls', 'pytest']","['coverage', 'coveralls']",['pytest'],PASS,4.72,FAIL,PASS,5,
+uwefladrich/scriptengine,qwen,['deepmerge'],[],['deepmerge'],PASS,4.72,FAIL,PASS,2,
+uwefladrich/scriptengine,deepseek,"['jinja2', 'PyYAML', 'python-dateutil', 'deepmerge']",[],"['jinja2', 'PyYAML', 'python-dateutil', 'deepmerge']",PASS,4.72,FAIL,PASS,5,
+unmade/thrift-pyi,llama,"['autoflake', 'black']",[],"['autoflake', 'black']",PASS,8.25,FAIL,PASS,3,
+unmade/thrift-pyi,qwen,"['autoflake', 'black']",[],"['autoflake', 'black']",PASS,8.25,FAIL,PASS,3,
+unmade/thrift-pyi,deepseek,"['autoflake', 'black', 'thriftpy2']",[],"['autoflake', 'black', 'thriftpy2']",PASS,8.25,FAIL,PASS,4,
+shenxiangzhuang/toydata,llama,[],[],[],PASS,2.68,,SKIP,0,no deps to remove
+shenxiangzhuang/toydata,qwen,[],[],[],PASS,2.68,,SKIP,0,no deps to remove
+shenxiangzhuang/toydata,deepseek,[],[],[],PASS,2.68,,SKIP,0,no deps to remove
+ilri/csv-metadata-quality,llama,"['python-stdnum', 'country-converter', 'pycountry', 'py3langid']",[],"['python-stdnum', 'country-converter', 'pycountry', 'py3langid']",PASS,4.51,FAIL,PASS,5,
+ilri/csv-metadata-quality,qwen,['ftfy'],[],['ftfy'],PASS,4.51,FAIL,PASS,2,
+ilri/csv-metadata-quality,deepseek,"['ftfy', 'country-converter', 'pycountry', 'py3langid']",[],"['ftfy', 'country-converter', 'pycountry', 'py3langid']",PASS,4.51,FAIL,PASS,5,
+anishathalye/bin2coe,llama,[],[],[],PASS,0.61,,SKIP,0,no deps to remove
+anishathalye/bin2coe,qwen,[],[],[],PASS,0.61,,SKIP,0,no deps to remove
+anishathalye/bin2coe,deepseek,[],[],[],PASS,0.61,,SKIP,0,no deps to remove
+SimonDelmas/hydrogr,llama,"['numpy', 'pandas']",[],"['numpy', 'pandas']",PASS,1.54,FAIL,PASS,3,
+SimonDelmas/hydrogr,qwen,[],[],[],PASS,1.54,,SKIP,0,no deps to remove
+SimonDelmas/hydrogr,deepseek,['pandas'],[],['pandas'],PASS,1.54,FAIL,PASS,2,
+conda-incubator/condastats,llama,"['s3fs', 'python-snappy']","['s3fs', 'python-snappy']",[],PASS,85.98,PASS,PASS,1,
+conda-incubator/condastats,qwen,"['pyarrow', 's3fs', 'python-snappy']","['s3fs', 'python-snappy']",['pyarrow'],PASS,85.98,FAIL,PASS,5,
+conda-incubator/condastats,deepseek,['python-snappy'],['python-snappy'],[],PASS,85.98,PASS,PASS,1,
+RKI027/ffxiv-huntmaps-maker,llama,"['fire', 'pyperclip', 'pyyaml', 'requests']","['fire', 'pyperclip']","['pyyaml', 'requests']",PASS,7.69,FAIL,PASS,6,
+RKI027/ffxiv-huntmaps-maker,qwen,['fire'],['fire'],[],PASS,7.69,PASS,PASS,1,
+RKI027/ffxiv-huntmaps-maker,deepseek,"['pyyaml', 'pyperclip']",['pyperclip'],['pyyaml'],PASS,7.69,FAIL,PASS,4,
+basnijholt/yaml2bib,llama,"['crossrefapi', 'pylatexenc']",[],[],FAIL,121.93,,SKIP,0,baseline=FAIL
+basnijholt/yaml2bib,qwen,['pylatexenc'],[],[],FAIL,121.93,,SKIP,0,baseline=FAIL
+basnijholt/yaml2bib,deepseek,"['pylatexenc', 'pyyaml', 'versioningit']",[],[],FAIL,121.93,,SKIP,0,baseline=FAIL
+pwwang/diot,llama,"['pyyaml', 'tomli']",[],[],FAIL,0.46,,SKIP,0,baseline=FAIL
+pwwang/diot,qwen,[],[],[],FAIL,0.46,,SKIP,0,baseline=FAIL
+pwwang/diot,deepseek,['inflection'],[],[],FAIL,0.46,,SKIP,0,baseline=FAIL
+lnbits/bolt11,llama,"['base58', 'coincurve', 'bech32', 'bitstring']",[],[],FAIL,0.47,,SKIP,0,baseline=FAIL
+lnbits/bolt11,qwen,[],[],[],FAIL,0.47,,SKIP,0,baseline=FAIL
+lnbits/bolt11,deepseek,"['bech32', 'bitstring']",[],[],FAIL,0.47,,SKIP,0,baseline=FAIL
+xiancg/vfxnaming,llama,[],[],[],PASS,0.84,,SKIP,0,no deps to remove
+xiancg/vfxnaming,qwen,[],[],[],PASS,0.84,,SKIP,0,no deps to remove
+xiancg/vfxnaming,deepseek,[],[],[],PASS,0.84,,SKIP,0,no deps to remove
+2Fake/devolo_home_control_api,llama,"['python-dateutil', 'websocket_client', 'zeroconf']",[],"['python-dateutil', 'websocket_client', 'zeroconf']",PASS,18.28,FAIL,PASS,4,
+2Fake/devolo_home_control_api,qwen,['websocket_client'],[],['websocket_client'],PASS,18.28,FAIL,PASS,2,
+2Fake/devolo_home_control_api,deepseek,"['websocket_client', 'zeroconf']",[],"['websocket_client', 'zeroconf']",PASS,18.28,FAIL,PASS,3,
+d-cogswell/MistrasDTA,llama,['hatchling'],['hatchling'],[],PASS,0.79,PASS,PASS,1,
+d-cogswell/MistrasDTA,qwen,[],[],[],PASS,0.79,,SKIP,0,no deps to remove
+d-cogswell/MistrasDTA,deepseek,['numpy'],[],['numpy'],PASS,0.79,FAIL,PASS,2,
+basnijholt/slurm-usage,llama,['rich'],[],['rich'],PASS,38.61,FAIL,PASS,2,
+basnijholt/slurm-usage,qwen,[],[],[],PASS,38.61,,SKIP,0,no deps to remove
+basnijholt/slurm-usage,deepseek,['rich'],[],['rich'],PASS,38.61,FAIL,PASS,2,
+aboutcode-org/debian-inspector,llama,[],[],[],PASS,4.09,,SKIP,0,no deps to remove
+aboutcode-org/debian-inspector,qwen,[],[],[],PASS,4.09,,SKIP,0,no deps to remove
+aboutcode-org/debian-inspector,deepseek,[],[],[],PASS,4.09,,SKIP,0,no deps to remove
+jnoortheen/arger,llama,[],[],[],PASS,1.37,,SKIP,0,no deps to remove
+jnoortheen/arger,qwen,[],[],[],PASS,1.37,,SKIP,0,no deps to remove
+jnoortheen/arger,deepseek,[],[],[],PASS,1.37,,SKIP,0,no deps to remove
+bytebat/gros,llama,"['colorlog', 'pandas', 'scipy']",[],"['colorlog', 'pandas', 'scipy']",PASS,3.25,FAIL,PASS,4,
+bytebat/gros,qwen,['pandas'],[],['pandas'],PASS,3.25,FAIL,PASS,2,
+bytebat/gros,deepseek,"['colorlog', 'numpy', 'pandas', 'scipy']",[],"['colorlog', 'numpy', 'pandas', 'scipy']",PASS,3.25,FAIL,PASS,5,
+oemof/oemof-network,llama,"['blinker', 'dill', 'networkx', 'oemof.tools']",[],"['blinker', 'dill', 'networkx', 'oemof.tools']",PASS,1.54,FAIL,PASS,5,
+oemof/oemof-network,qwen,"['pandas', 'blinker', 'dill', 'oemof.tools']",['pandas'],"['blinker', 'dill', 'oemof.tools']",PASS,1.54,FAIL,PASS,6,
+oemof/oemof-network,deepseek,"['pandas', 'blinker', 'dill', 'networkx', 'oemof.tools']",['pandas'],"['blinker', 'dill', 'networkx', 'oemof.tools']",PASS,1.54,FAIL,PASS,7,
+jdevera/pylabeador,llama,[],[],[],PASS,12.95,,SKIP,0,no deps to remove
+jdevera/pylabeador,qwen,[],[],[],PASS,12.95,,SKIP,0,no deps to remove
+jdevera/pylabeador,deepseek,[],[],[],PASS,12.95,,SKIP,0,no deps to remove
+zhubonan/airsspy,llama,['pymatgen'],[],['pymatgen'],PASS,2.08,FAIL,PASS,2,
+zhubonan/airsspy,qwen,['pymatgen'],[],['pymatgen'],PASS,2.08,FAIL,PASS,2,
+zhubonan/airsspy,deepseek,['pymatgen'],[],['pymatgen'],PASS,2.08,FAIL,PASS,2,
+roskakori/pimdb,llama,"['psycopg2-binary', 'requests', 'sqlalchemy']",[],"['psycopg2-binary', 'requests', 'sqlalchemy']",PASS,3.4,FAIL,PASS,4,
+roskakori/pimdb,qwen,[],[],[],PASS,3.4,,SKIP,0,no deps to remove
+roskakori/pimdb,deepseek,"['psycopg2-binary', 'sqlalchemy']",[],"['psycopg2-binary', 'sqlalchemy']",PASS,3.4,FAIL,PASS,3,
+ahojukka5/gmshparser,llama,[],[],[],FAIL,0.43,,SKIP,0,baseline=FAIL
+ahojukka5/gmshparser,qwen,[],[],[],FAIL,0.43,,SKIP,0,baseline=FAIL
+ahojukka5/gmshparser,deepseek,[],[],[],FAIL,0.43,,SKIP,0,baseline=FAIL
+rmlibre/aiootp,llama,[],[],[],PASS,18.48,,SKIP,0,no deps to remove
+rmlibre/aiootp,qwen,['cryptography'],[],['cryptography'],PASS,18.48,FAIL,PASS,2,
+rmlibre/aiootp,deepseek,"['aiofiles', 'cryptography']",[],"['aiofiles', 'cryptography']",PASS,18.48,FAIL,PASS,3,
+nbr23/ydl-podcast,llama,['Pillow'],[],['Pillow'],PASS,1.31,FAIL,PASS,2,
+nbr23/ydl-podcast,qwen,['yt-dlp'],[],['yt-dlp'],PASS,1.31,FAIL,PASS,2,
+nbr23/ydl-podcast,deepseek,"['PyYAML', 'Jinja2', 'Pillow']",[],"['PyYAML', 'Jinja2', 'Pillow']",PASS,1.31,FAIL,PASS,4,
+IBM/vpc-python-sdk,llama,['python_dateutil'],[],['python_dateutil'],PASS,103.39,FAIL,PASS,2,
+IBM/vpc-python-sdk,qwen,['python_dateutil'],[],['python_dateutil'],PASS,103.39,FAIL,PASS,2,
+IBM/vpc-python-sdk,deepseek,['python_dateutil'],[],['python_dateutil'],PASS,103.39,FAIL,PASS,2,
+antonagestam/abcattrs,llama,[],[],[],PASS,0.89,,SKIP,0,no deps to remove
+antonagestam/abcattrs,qwen,[],[],[],PASS,0.89,,SKIP,0,no deps to remove
+antonagestam/abcattrs,deepseek,[],[],[],PASS,0.89,,SKIP,0,no deps to remove
+purarue/autotui,llama,"['click', 'dateparser', 'prompt-toolkit']",['dateparser'],"['click', 'prompt-toolkit']",PASS,1.06,FAIL,PASS,5,
+purarue/autotui,qwen,['PyYAML'],[],['PyYAML'],PASS,1.06,FAIL,PASS,2,
+purarue/autotui,deepseek,"['PyYAML', 'dateparser', 'prompt-toolkit']",['dateparser'],"['PyYAML', 'prompt-toolkit']",PASS,1.06,FAIL,PASS,5,
+browniebroke/flake8-django-migrations,llama,"['flake8', 'importlib-metadata']",[],[],FAIL,0.44,,SKIP,0,baseline=FAIL
+browniebroke/flake8-django-migrations,qwen,['astor'],[],[],FAIL,0.44,,SKIP,0,baseline=FAIL
+browniebroke/flake8-django-migrations,deepseek,"['astor', 'importlib-metadata']",[],[],FAIL,0.44,,SKIP,0,baseline=FAIL
+OpheliaMiralles/pykelihood,llama,"['scipy-stubs', 'pre-commit', 'ruff', 'sphinx', 'pydata-sphinx-theme']","['scipy-stubs', 'pre-commit', 'ruff', 'sphinx', 'pydata-sphinx-theme']",[],PASS,21.92,PASS,PASS,1,
+OpheliaMiralles/pykelihood,qwen,[],[],[],PASS,21.92,,SKIP,0,no deps to remove
+OpheliaMiralles/pykelihood,deepseek,[],[],[],PASS,21.92,,SKIP,0,no deps to remove
+whalenpt/rkstiff,llama,"['matplotlib', 'jupyter']","['matplotlib', 'jupyter']",[],PASS,15.22,PASS,PASS,1,
+whalenpt/rkstiff,qwen,[],[],[],PASS,15.22,,SKIP,0,no deps to remove
+whalenpt/rkstiff,deepseek,"['numpy', 'scipy']",[],"['numpy', 'scipy']",PASS,15.22,FAIL,PASS,3,
+line/centraldogma-python,llama,[],[],[],PASS,23.13,,SKIP,0,no deps to remove
+line/centraldogma-python,qwen,['pydantic'],[],['pydantic'],PASS,23.13,FAIL,PASS,2,
+line/centraldogma-python,deepseek,['python-dateutil'],[],['python-dateutil'],PASS,23.13,FAIL,PASS,2,
+ziotom78/pytracer,llama,"['click', 'ruff']","['click', 'ruff']",[],PASS,0.98,PASS,PASS,1,
+ziotom78/pytracer,qwen,['pillow'],['pillow'],[],PASS,0.98,PASS,PASS,1,
+ziotom78/pytracer,deepseek,"['pytest', 'ruff']",['ruff'],['pytest'],PASS,0.98,FAIL,PASS,4,
+corteva/msal-requests-auth,llama,['pyperclip'],[],['pyperclip'],PASS,1.68,FAIL,PASS,2,
+corteva/msal-requests-auth,qwen,['pyperclip'],[],['pyperclip'],PASS,1.68,FAIL,PASS,2,
+corteva/msal-requests-auth,deepseek,"['platformdirs', 'pyperclip', 'requests']",[],"['platformdirs', 'pyperclip', 'requests']",PASS,1.68,FAIL,PASS,4,
+executablebooks/mdformat-myst,llama,[],[],[],PASS,3.29,,SKIP,0,no deps to remove
+executablebooks/mdformat-myst,qwen,[],[],[],PASS,3.29,,SKIP,0,no deps to remove
+executablebooks/mdformat-myst,deepseek,[],[],[],PASS,3.29,,SKIP,0,no deps to remove
+xnuinside/py-models-parser,llama,"['parsimonious', 'pyyaml']",[],"['parsimonious', 'pyyaml']",PASS,1.07,FAIL,PASS,3,
+xnuinside/py-models-parser,qwen,"['parsimonious', 'pyyaml']",[],"['parsimonious', 'pyyaml']",PASS,1.07,FAIL,PASS,3,
+xnuinside/py-models-parser,deepseek,"['parsimonious', 'pyyaml']",[],"['parsimonious', 'pyyaml']",PASS,1.07,FAIL,PASS,3,
+pvlib/twoaxistracking,llama,['pandas==2.2.3'],[],['pandas==2.2.3'],PASS,3.22,FAIL,PASS,2,
+pvlib/twoaxistracking,qwen,[],[],[],PASS,3.22,,SKIP,0,no deps to remove
+pvlib/twoaxistracking,deepseek,"['pandas', 'shapely']",[],"['pandas', 'shapely']",PASS,3.22,FAIL,PASS,3,
+osgeosuomi/flake8-qgis,llama,"['flake8-pyproject', 'mypy', 'pre-commit', 'ruff']","['flake8-pyproject', 'mypy', 'pre-commit', 'ruff']",[],PASS,0.62,PASS,PASS,1,
+osgeosuomi/flake8-qgis,qwen,[],[],[],PASS,0.62,,SKIP,0,no deps to remove
+osgeosuomi/flake8-qgis,deepseek,['flake8'],['flake8'],[],PASS,0.62,PASS,PASS,1,
+BlueObelisk/pybacting,llama,"['pandas', 'scyjava']",['pandas'],['scyjava'],PASS,14.77,FAIL,PASS,4,
+BlueObelisk/pybacting,qwen,"['numpy', 'pandas']","['numpy', 'pandas']",[],PASS,14.77,PASS,PASS,1,
+BlueObelisk/pybacting,deepseek,['scyjava'],[],['scyjava'],PASS,14.77,FAIL,PASS,2,
+napari/npe2,llama,[],[],[],PASS,15.27,,SKIP,0,no deps to remove
+napari/npe2,qwen,['PyYAML'],[],['PyYAML'],PASS,15.27,FAIL,PASS,2,
+napari/npe2,deepseek,"['build', 'psygnal', 'pydantic_extra_types', 'tomli-w', 'rich', 'typer']",['build'],"['psygnal', 'pydantic_extra_types', 'tomli-w', 'rich', 'typer']",PASS,15.27,FAIL,PASS,8,
+Lauszus/pyblhost,llama,['python-can'],[],['python-can'],PASS,1.34,FAIL,PASS,2,
+Lauszus/pyblhost,qwen,['tqdm'],[],['tqdm'],PASS,1.34,FAIL,PASS,2,
+Lauszus/pyblhost,deepseek,['pyserial'],[],['pyserial'],PASS,1.34,FAIL,PASS,2,
+fattureincloud/fattureincloud-python-sdk,llama,"['python-dateutil', 'pydantic', 'typing-extensions']",[],"['python-dateutil', 'pydantic', 'typing-extensions']",PASS,6.44,FAIL,PASS,4,
+fattureincloud/fattureincloud-python-sdk,qwen,"['urllib3', 'python-dateutil']",[],"['urllib3', 'python-dateutil']",PASS,6.44,FAIL,PASS,3,
+fattureincloud/fattureincloud-python-sdk,deepseek,"['urllib3', 'python-dateutil', 'typing-extensions']",[],"['urllib3', 'python-dateutil', 'typing-extensions']",PASS,6.44,FAIL,PASS,4,
+not-a-feature/blosum,llama,[],[],[],PASS,1.19,,SKIP,0,no deps to remove
+not-a-feature/blosum,qwen,[],[],[],PASS,1.19,,SKIP,0,no deps to remove
+not-a-feature/blosum,deepseek,[],[],[],PASS,1.19,,SKIP,0,no deps to remove
+denpamusic/PyPlumIO,llama,[],[],[],PASS,4.36,,SKIP,0,no deps to remove
+denpamusic/PyPlumIO,qwen,[],[],[],PASS,4.36,,SKIP,0,no deps to remove
+denpamusic/PyPlumIO,deepseek,['pyserial-asyncio-fast'],[],['pyserial-asyncio-fast'],PASS,4.36,FAIL,PASS,2,
+treeverse/dvc-task,llama,['pywin32'],['pywin32'],[],PASS,21.01,PASS,PASS,1,
+treeverse/dvc-task,qwen,['kombu'],[],['kombu'],PASS,21.01,FAIL,PASS,2,
+treeverse/dvc-task,deepseek,"['pywin32', 'shortuuid']",[],"['pywin32', 'shortuuid']",PASS,21.01,FAIL,PASS,3,
+ericoporto/agstoolbox,llama,[],[],[],PASS,2.04,,SKIP,0,no deps to remove
+ericoporto/agstoolbox,qwen,[],[],[],PASS,2.04,,SKIP,0,no deps to remove
+ericoporto/agstoolbox,deepseek,[],[],[],PASS,2.04,,SKIP,0,no deps to remove
+wemake-services/pytest-modified-env,llama,[],[],[],PASS,0.51,,SKIP,0,no deps to remove
+wemake-services/pytest-modified-env,qwen,[],[],[],PASS,0.51,,SKIP,0,no deps to remove
+wemake-services/pytest-modified-env,deepseek,[],[],[],PASS,0.51,,SKIP,0,no deps to remove
+mberr/torch-max-mem,llama,['typing_extensions'],[],['typing_extensions'],PASS,3.44,FAIL,PASS,2,
+mberr/torch-max-mem,qwen,[],[],[],PASS,3.44,,SKIP,0,no deps to remove
+mberr/torch-max-mem,deepseek,['typing_extensions'],[],['typing_extensions'],PASS,3.44,FAIL,PASS,2,
+adelosa/cardutil,llama,[],[],[],PASS,1.01,,SKIP,0,no deps to remove
+adelosa/cardutil,qwen,[],[],[],PASS,1.01,,SKIP,0,no deps to remove
+adelosa/cardutil,deepseek,[],[],[],PASS,1.01,,SKIP,0,no deps to remove
+jorenham/exports,llama,[],[],[],PASS,0.56,,SKIP,0,no deps to remove
+jorenham/exports,qwen,[],[],[],PASS,0.56,,SKIP,0,no deps to remove
+jorenham/exports,deepseek,[],[],[],PASS,0.56,,SKIP,0,no deps to remove
+zeek/zeekscript,llama,"['argcomplete', 'tree-sitter', 'tree-sitter-zeek']",[],"['argcomplete', 'tree-sitter', 'tree-sitter-zeek']",PASS,3.06,FAIL,PASS,4,
+zeek/zeekscript,qwen,['tree-sitter'],[],['tree-sitter'],PASS,3.06,FAIL,PASS,2,
+zeek/zeekscript,deepseek,"['argcomplete', 'tree-sitter', 'tree-sitter-zeek']",[],"['argcomplete', 'tree-sitter', 'tree-sitter-zeek']",PASS,3.06,FAIL,PASS,4,
+xonsh/xontrib-jedi,llama,['xonsh'],[],['xonsh'],PASS,3.49,FAIL,PASS,2,
+xonsh/xontrib-jedi,qwen,['xonsh'],[],['xonsh'],PASS,3.49,FAIL,PASS,2,
+xonsh/xontrib-jedi,deepseek,"['jedi', 'xonsh']",['jedi'],['xonsh'],PASS,3.49,FAIL,PASS,4,
+GatorEducator/gatorgrade,llama,['click'],[],[],FAIL,1.48,,SKIP,0,baseline=FAIL
+GatorEducator/gatorgrade,qwen,['click'],[],[],FAIL,1.48,,SKIP,0,baseline=FAIL
+GatorEducator/gatorgrade,deepseek,"['PyYAML', 'typer', 'rich', 'click']",[],[],FAIL,1.48,,SKIP,0,baseline=FAIL
+raphaelreme/expyrun,llama,['pyyaml'],[],['pyyaml'],PASS,4.22,FAIL,PASS,2,
+raphaelreme/expyrun,qwen,[],[],[],PASS,4.22,,SKIP,0,no deps to remove
+raphaelreme/expyrun,deepseek,['pyyaml'],[],['pyyaml'],PASS,4.22,FAIL,PASS,2,
+Kitware/trame-server,llama,"['trame-common', 'more-itertools']",[],"['trame-common', 'more-itertools']",PASS,7.92,FAIL,PASS,3,
+Kitware/trame-server,qwen,['trame-common'],[],['trame-common'],PASS,7.92,FAIL,PASS,2,
+Kitware/trame-server,deepseek,"['wslink', 'trame-common', 'more-itertools']",[],"['wslink', 'trame-common', 'more-itertools']",PASS,7.92,FAIL,PASS,4,
+galactic-forensics/CEREsFit,llama,['scipy'],[],[],FAIL,0.51,,SKIP,0,baseline=FAIL
+galactic-forensics/CEREsFit,qwen,[],[],[],FAIL,0.51,,SKIP,0,baseline=FAIL
+galactic-forensics/CEREsFit,deepseek,"['numpy', 'scipy']",[],[],FAIL,0.51,,SKIP,0,baseline=FAIL
+dariocurr/pytest-summary,llama,[],[],[],PASS,0.45,,SKIP,0,no deps to remove
+dariocurr/pytest-summary,qwen,[],[],[],PASS,0.45,,SKIP,0,no deps to remove
+dariocurr/pytest-summary,deepseek,[],[],[],PASS,0.45,,SKIP,0,no deps to remove
+nasa-gcn/gcn-kafka-python,llama,['confluent-kafka'],[],['confluent-kafka'],PASS,0.49,FAIL,PASS,2,
+nasa-gcn/gcn-kafka-python,qwen,['certifi'],[],['certifi'],PASS,0.49,FAIL,PASS,2,
+nasa-gcn/gcn-kafka-python,deepseek,['confluent-kafka'],[],['confluent-kafka'],PASS,0.49,FAIL,PASS,2,
+pyapp-kit/in-n-out,llama,[],[],[],PASS,1.25,,SKIP,0,no deps to remove
+pyapp-kit/in-n-out,qwen,[],[],[],PASS,1.25,,SKIP,0,no deps to remove
+pyapp-kit/in-n-out,deepseek,[],[],[],PASS,1.25,,SKIP,0,no deps to remove
+open-aviation/pitot,llama,"[""numpy>=2.1.3; python_version>='3.10'""]",[],"[""numpy>=2.1.3; python_version>='3.10'""]",PASS,2.86,FAIL,PASS,2,
+open-aviation/pitot,qwen,['pyproj'],[],['pyproj'],PASS,2.86,FAIL,PASS,2,
+open-aviation/pitot,deepseek,"['typing-extensions', 'pyproj']",[],"['typing-extensions', 'pyproj']",PASS,2.86,FAIL,PASS,3,
+tsbinns/mni_to_atlas,llama,"['nibabel', 'numpy']",[],"['nibabel', 'numpy']",PASS,8.88,FAIL,PASS,3,
+tsbinns/mni_to_atlas,qwen,[],[],[],PASS,8.88,,SKIP,0,no deps to remove
+tsbinns/mni_to_atlas,deepseek,"['matplotlib', 'nibabel', 'numpy']",[],"['matplotlib', 'nibabel', 'numpy']",PASS,8.88,FAIL,PASS,4,
+fox-it/dissect.ntfs,llama,['dissect.util'],[],['dissect.util'],PASS,88.47,FAIL,PASS,2,
+fox-it/dissect.ntfs,qwen,"['dissect.cstruct', 'dissect.util']",[],"['dissect.cstruct', 'dissect.util']",PASS,88.47,FAIL,PASS,3,
+fox-it/dissect.ntfs,deepseek,"['dissect.cstruct', 'dissect.util']",[],"['dissect.cstruct', 'dissect.util']",PASS,88.47,FAIL,PASS,3,
+SigmaHQ/pySigma-backend-opensearch,llama,['pysigma'],[],[],FAIL,0.38,,SKIP,0,baseline=FAIL
+SigmaHQ/pySigma-backend-opensearch,qwen,['pysigma-backend-elasticsearch'],[],[],FAIL,0.38,,SKIP,0,baseline=FAIL
+SigmaHQ/pySigma-backend-opensearch,deepseek,['pysigma-backend-elasticsearch'],[],[],FAIL,0.38,,SKIP,0,baseline=FAIL
+jatkinson1000/archeryutils,llama,[],[],[],PASS,16.75,,SKIP,0,no deps to remove
+jatkinson1000/archeryutils,qwen,['aenum'],[],['aenum'],PASS,16.75,FAIL,PASS,2,
+jatkinson1000/archeryutils,deepseek,['numpy'],[],['numpy'],PASS,16.75,FAIL,PASS,2,
+tandemdude/pysel,llama,[],[],[],PASS,0.68,,SKIP,0,no deps to remove
+tandemdude/pysel,qwen,[],[],[],PASS,0.68,,SKIP,0,no deps to remove
+tandemdude/pysel,deepseek,[],[],[],PASS,0.68,,SKIP,0,no deps to remove
+mwtoews/gridit,llama,"['fiona', 'flopy', 'geopandas', 'matplotlib', 'netCDF4', 'pandas', 'rasterio', 'scipy', 'shapely', 'xarray']","['fiona', 'flopy', 'geopandas', 'matplotlib', 'netCDF4', 'pandas', 'rasterio', 'scipy', 'shapely', 'xarray']",[],PASS,4.54,PASS,PASS,1,
+mwtoews/gridit,qwen,[],[],[],PASS,4.54,,SKIP,0,no deps to remove
+mwtoews/gridit,deepseek,['numpy'],[],['numpy'],PASS,4.54,FAIL,PASS,2,
+petersulyok/diskinfo,llama,"['alabaster', 'Sphinx', 'sphinx-rtd-theme', 'sphinx-copybutton']","['alabaster', 'Sphinx', 'sphinx-rtd-theme', 'sphinx-copybutton']",[],PASS,1.62,PASS,PASS,1,
+petersulyok/diskinfo,qwen,['pySMART'],[],['pySMART'],PASS,1.62,FAIL,PASS,2,
+petersulyok/diskinfo,deepseek,"['pySMART', 'pyudev']",[],"['pySMART', 'pyudev']",PASS,1.62,FAIL,PASS,3,
+lucasimi/tda-mapper-python,llama,[],[],[],PASS,135.78,,SKIP,0,no deps to remove
+lucasimi/tda-mapper-python,qwen,['pyvis'],[],['pyvis'],PASS,135.78,FAIL,PASS,2,
+lucasimi/tda-mapper-python,deepseek,"['igraph', 'numba', 'pyvis', 'plotly', 'joblib']",[],"['igraph', 'numba', 'pyvis', 'plotly', 'joblib']",PASS,135.78,FAIL,PASS,6,
+slackapi/manifest-schema,llama,"['flake8', 'black', 'pytest', 'jsonschema']","['flake8', 'black']","['pytest', 'jsonschema']",PASS,2.14,FAIL,PASS,6,
+slackapi/manifest-schema,qwen,"['flake8', 'black']","['flake8', 'black']",[],PASS,2.14,PASS,PASS,1,
+slackapi/manifest-schema,deepseek,"['flake8', 'black', 'pytest', 'jsonschema']","['flake8', 'black']","['pytest', 'jsonschema']",PASS,2.14,FAIL,PASS,6,
+lucasrcezimbra/bancointer,llama,"['myst-parser', 'Sphinx', 'sphinx-rtd-theme', 'bump2version', 'coverage', 'coveralls', 'faker', 'pre-commit', 'pytest', 'pytest-cov', 'pytest-mock', 'responses']","['myst-parser', 'Sphinx', 'sphinx-rtd-theme', 'bump2version', 'coverage', 'coveralls', 'pre-commit', 'pytest-cov']","['faker', 'pytest', 'pytest-mock', 'responses']",PASS,2.71,FAIL,PASS,14,
+lucasrcezimbra/bancointer,qwen,[],[],[],PASS,2.71,,SKIP,0,no deps to remove
+lucasrcezimbra/bancointer,deepseek,"['attrs', 'requests']",[],"['attrs', 'requests']",PASS,2.71,FAIL,PASS,3,
+wilfredinni/dinero,llama,"['pandas', 'coverage', 'pytest-cov', 'mkdocs', 'mkdocstrings', 'mkdocs-material']","['pandas', 'coverage', 'pytest-cov', 'mkdocs', 'mkdocstrings', 'mkdocs-material']",[],PASS,1.18,PASS,PASS,1,
+wilfredinni/dinero,qwen,[],[],[],PASS,1.18,,SKIP,0,no deps to remove
+wilfredinni/dinero,deepseek,['typing-extensions'],[],['typing-extensions'],PASS,1.18,FAIL,PASS,2,
+CagtayFabry/pytcs,llama,"['numpy', 'pandas', 'polars']",[],"['numpy', 'pandas', 'polars']",PASS,12.43,FAIL,PASS,4,
+CagtayFabry/pytcs,qwen,[],[],[],PASS,12.43,,SKIP,0,no deps to remove
+CagtayFabry/pytcs,deepseek,"['numpy', 'pandas', 'polars']",[],"['numpy', 'pandas', 'polars']",PASS,12.43,FAIL,PASS,4,
+mosquito/markdown-pytest,llama,[],[],[],PASS,19.68,,SKIP,0,no deps to remove
+mosquito/markdown-pytest,qwen,[],[],[],PASS,19.68,,SKIP,0,no deps to remove
+mosquito/markdown-pytest,deepseek,[],[],[],PASS,19.68,,SKIP,0,no deps to remove
+lucsorel/pydoctrace,llama,[],[],[],PASS,0.97,,SKIP,0,no deps to remove
+lucsorel/pydoctrace,qwen,[],[],[],PASS,0.97,,SKIP,0,no deps to remove
+lucsorel/pydoctrace,deepseek,[],[],[],PASS,0.97,,SKIP,0,no deps to remove
+nanvel/cipher-bt,llama,"['mplfinance', 'pydantic-settings', 'tabulate', 'typer', 'ujson']","['mplfinance', 'typer', 'ujson']","['pydantic-settings', 'tabulate']",PASS,3.65,FAIL,PASS,7,
+nanvel/cipher-bt,qwen,['ujson'],['ujson'],[],PASS,3.65,PASS,PASS,1,
+nanvel/cipher-bt,deepseek,"['mplfinance', 'tabulate', 'typer', 'ujson']","['mplfinance', 'typer', 'ujson']",['tabulate'],PASS,3.65,FAIL,PASS,6,
+froOzzy/pg_stage,llama,['typing-extensions'],[],['typing-extensions'],PASS,1.49,FAIL,PASS,2,
+froOzzy/pg_stage,qwen,[],[],[],PASS,1.49,,SKIP,0,no deps to remove
+froOzzy/pg_stage,deepseek,['typing-extensions'],[],['typing-extensions'],PASS,1.49,FAIL,PASS,2,
+scaleway/serverless-functions-python,llama,['typing-extensions'],[],['typing-extensions'],PASS,0.85,FAIL,PASS,2,
+scaleway/serverless-functions-python,qwen,[],[],[],PASS,0.85,,SKIP,0,no deps to remove
+scaleway/serverless-functions-python,deepseek,"['flask', 'typing-extensions']",[],"['flask', 'typing-extensions']",PASS,0.85,FAIL,PASS,3,
+di/id,llama,['urllib3'],[],['urllib3'],PASS,0.74,FAIL,PASS,2,
+di/id,qwen,[],[],[],PASS,0.74,,SKIP,0,no deps to remove
+di/id,deepseek,['urllib3'],[],['urllib3'],PASS,0.74,FAIL,PASS,2,
+pvlib/solarfactors,llama,"['matplotlib', 'pandas']",[],"['matplotlib', 'pandas']",PASS,6.81,FAIL,PASS,3,
+pvlib/solarfactors,qwen,['shapely'],[],['shapely'],PASS,6.81,FAIL,PASS,2,
+pvlib/solarfactors,deepseek,"['pvlib', 'shapely', 'matplotlib', 'numpy', 'pandas']",[],"['pvlib', 'shapely', 'matplotlib', 'numpy', 'pandas']",PASS,6.81,FAIL,PASS,6,
+open-stage/python-gdtf,llama,[],[],[],PASS,4.72,,SKIP,0,no deps to remove
+open-stage/python-gdtf,qwen,[],[],[],PASS,4.72,,SKIP,0,no deps to remove
+open-stage/python-gdtf,deepseek,[],[],[],PASS,4.72,,SKIP,0,no deps to remove
+Undertone0809/cushy-storage,llama,[],[],[],PASS,1.6,,SKIP,0,no deps to remove
+Undertone0809/cushy-storage,qwen,[],[],[],PASS,1.6,,SKIP,0,no deps to remove
+Undertone0809/cushy-storage,deepseek,[],[],[],PASS,1.6,,SKIP,0,no deps to remove
+bio-phys/asyncmd,llama,"['aiofiles', 'mdanalysis', 'numpy', 'scipy']",[],"['aiofiles', 'mdanalysis', 'numpy', 'scipy']",PASS,36.77,FAIL,PASS,5,
+bio-phys/asyncmd,qwen,['scipy'],[],['scipy'],PASS,36.77,FAIL,PASS,2,
+bio-phys/asyncmd,deepseek,"['mdanalysis', 'numpy', 'scipy']",[],"['mdanalysis', 'numpy', 'scipy']",PASS,36.77,FAIL,PASS,4,
+lasp/space_packet_parser,llama,[],[],[],PASS,52.47,,SKIP,0,no deps to remove
+lasp/space_packet_parser,qwen,[],[],[],PASS,52.47,,SKIP,0,no deps to remove
+lasp/space_packet_parser,deepseek,"['lxml', 'click', 'rich']",[],"['lxml', 'click', 'rich']",PASS,52.47,FAIL,PASS,4,
+lguibr/commitai,llama,"['langchain-community', 'langchain-core', 'langchain-google-genai', 'langgraph', 'pydantic', 'rich', 'questionary']",['langchain-community'],"['langchain-core', 'langchain-google-genai', 'langgraph', 'pydantic', 'rich', 'questionary']",PASS,5.74,FAIL,PASS,9,
+lguibr/commitai,qwen,"['langchain', 'langchain-community', 'langchain-core']","['langchain', 'langchain-community']",['langchain-core'],PASS,5.74,FAIL,PASS,5,
+lguibr/commitai,deepseek,"['langgraph', 'questionary']",[],"['langgraph', 'questionary']",PASS,5.74,FAIL,PASS,3,
+orsinium-labs/pydantic-translations,llama,['pydantic'],[],['pydantic'],PASS,1.59,FAIL,PASS,2,
+orsinium-labs/pydantic-translations,qwen,['l10n'],[],['l10n'],PASS,1.59,FAIL,PASS,2,
+orsinium-labs/pydantic-translations,deepseek,['l10n'],[],['l10n'],PASS,1.59,FAIL,PASS,2,
+rmargar/pymavlog,llama,['numpy'],[],['numpy'],PASS,1.09,FAIL,PASS,2,
+rmargar/pymavlog,qwen,[],[],[],PASS,1.09,,SKIP,0,no deps to remove
+rmargar/pymavlog,deepseek,['numpy'],[],['numpy'],PASS,1.09,FAIL,PASS,2,
+lightsparkdev/python-sdk,llama,[],[],[],PASS,5.85,,SKIP,0,no deps to remove
+lightsparkdev/python-sdk,qwen,['cryptography'],[],['cryptography'],PASS,5.85,FAIL,PASS,2,
+lightsparkdev/python-sdk,deepseek,"['lightspark-crypto-python', 'pyjwt', 'zstandard']",['zstandard'],"['lightspark-crypto-python', 'pyjwt']",PASS,5.85,FAIL,PASS,5,
+hille721/ansible-variables,llama,"['ansible-core', 'rich']",[],"['ansible-core', 'rich']",PASS,1.58,FAIL,PASS,3,
+hille721/ansible-variables,qwen,['rich'],[],['rich'],PASS,1.58,FAIL,PASS,2,
+hille721/ansible-variables,deepseek,"['ansible-core', 'rich']",[],"['ansible-core', 'rich']",PASS,1.58,FAIL,PASS,3,
+Cskorpion/vmprof-firefox-converter,llama,['flask-cors'],[],['flask-cors'],PASS,6.3,FAIL,PASS,2,
+Cskorpion/vmprof-firefox-converter,qwen,['flask-cors'],[],['flask-cors'],PASS,6.3,FAIL,PASS,2,
+Cskorpion/vmprof-firefox-converter,deepseek,"['flask', 'flask-cors']",[],"['flask', 'flask-cors']",PASS,6.3,FAIL,PASS,3,
+kurcontko/tia-portal-translator,llama,"['google-cloud-translate', 'googletrans', 'aiohttp', 'asyncio-throttle', 'python-dotenv', 'platformdirs']","['google-cloud-translate', 'googletrans', 'aiohttp']","['asyncio-throttle', 'python-dotenv', 'platformdirs']",PASS,3.37,FAIL,PASS,8,
+kurcontko/tia-portal-translator,qwen,['google-cloud-translate'],['google-cloud-translate'],[],PASS,3.37,PASS,PASS,1,
+kurcontko/tia-portal-translator,deepseek,"['aiohttp', 'asyncio-throttle', 'python-dotenv', 'platformdirs']",['aiohttp'],"['asyncio-throttle', 'python-dotenv', 'platformdirs']",PASS,3.37,FAIL,PASS,6,
+gabrielsoltz/aws-arn,llama,[],[],[],PASS,5.85,,SKIP,0,no deps to remove
+gabrielsoltz/aws-arn,qwen,[],[],[],PASS,5.85,,SKIP,0,no deps to remove
+gabrielsoltz/aws-arn,deepseek,[],[],[],PASS,5.85,,SKIP,0,no deps to remove
+canonical/gh-jira-sync-bot,llama,"['opentelemetry-exporter-otlp', 'opentelemetry-instrumentation-fastapi']","['opentelemetry-exporter-otlp', 'opentelemetry-instrumentation-fastapi']",[],PASS,3.84,PASS,PASS,1,
+canonical/gh-jira-sync-bot,qwen,"['mistletoe', 'types-PyYAML']",['types-PyYAML'],['mistletoe'],PASS,3.84,FAIL,PASS,4,
+canonical/gh-jira-sync-bot,deepseek,"['pyyaml', 'types-PyYAML', 'opentelemetry-exporter-prometheus', 'opentelemetry-sdk', 'opentelemetry-instrumentation-fastapi', 'opentelemetry-exporter-otlp']","['types-PyYAML', 'opentelemetry-instrumentation-fastapi', 'opentelemetry-exporter-otlp']","['pyyaml', 'opentelemetry-exporter-prometheus', 'opentelemetry-sdk']",PASS,3.84,FAIL,PASS,8,
+hdmquan/torch_activation,llama,"['plotly', 'scipy', 'kaleido', 'sphinx']","['scipy', 'kaleido', 'sphinx']",['plotly'],PASS,5.48,FAIL,PASS,6,
+hdmquan/torch_activation,qwen,"['scipy', 'kaleido']","['scipy', 'kaleido']",[],PASS,5.48,PASS,PASS,1,
+hdmquan/torch_activation,deepseek,"['plotly', 'pytest', 'scipy', 'kaleido', 'sphinx']","['scipy', 'kaleido', 'sphinx']","['plotly', 'pytest']",PASS,5.48,FAIL,PASS,7,
+iomz/dl-myo,llama,['influxdb-client'],['influxdb-client'],[],PASS,0.68,PASS,PASS,1,
+iomz/dl-myo,qwen,['aiohttp'],['aiohttp'],[],PASS,0.68,PASS,PASS,1,
+iomz/dl-myo,deepseek,"['bleak', 'aiohttp']",['aiohttp'],['bleak'],PASS,0.68,FAIL,PASS,4,
+jdum/asciinema-scene,llama,['coverage'],[],[],FAIL,7.49,,SKIP,0,baseline=FAIL
+jdum/asciinema-scene,qwen,[],[],[],FAIL,7.49,,SKIP,0,baseline=FAIL
+jdum/asciinema-scene,deepseek,['click'],[],[],FAIL,7.49,,SKIP,0,baseline=FAIL
+brainglobe/brainglobe-meta,llama,"['brainglobe-heatmap', 'brainglobe-napari-io', 'brainglobe-segmentation', 'brainglobe-space', 'brainglobe-utils', 'brainrender-napari']",[],[],FAIL,0.45,,SKIP,0,baseline=FAIL
+brainglobe/brainglobe-meta,qwen,"['brainglobe-atlasapi', 'brainglobe-heatmap', 'brainglobe-napari-io', 'brainglobe-segmentation', 'brainglobe-space', 'brainglobe-utils', 'brainreg', 'brainrender-napari', 'brainrender', 'cellfinder']",[],[],FAIL,0.45,,SKIP,0,baseline=FAIL
+brainglobe/brainglobe-meta,deepseek,"['brainglobe-atlasapi', 'brainglobe-heatmap', 'brainglobe-napari-io', 'brainglobe-segmentation', 'brainglobe-space', 'brainglobe-utils', 'brainreg', 'brainrender-napari', 'brainrender', 'cellfinder', 'napari[all]']",[],[],FAIL,0.45,,SKIP,0,baseline=FAIL
+kieran-ryan/pyprojectsort,llama,['tomli-w'],[],[],FAIL,0.45,,SKIP,0,baseline=FAIL
+kieran-ryan/pyprojectsort,qwen,"['natsort', 'tomli-w', 'tomli']",[],[],FAIL,0.45,,SKIP,0,baseline=FAIL
+kieran-ryan/pyprojectsort,deepseek,"['natsort', 'tomli-w', 'tomli']",[],[],FAIL,0.45,,SKIP,0,baseline=FAIL
+brunoarine/findlike,llama,['stop-words'],[],['stop-words'],PASS,3.07,FAIL,PASS,2,
+brunoarine/findlike,qwen,"['nltk', 'numpy', 'scikit-learn']",[],"['nltk', 'numpy', 'scikit-learn']",PASS,3.07,FAIL,PASS,4,
+brunoarine/findlike,deepseek,"['nltk', 'numpy', 'scikit-learn', 'rank-bm25', 'stop-words', 'click']",[],"['nltk', 'numpy', 'scikit-learn', 'rank-bm25', 'stop-words', 'click']",PASS,3.07,FAIL,PASS,7,

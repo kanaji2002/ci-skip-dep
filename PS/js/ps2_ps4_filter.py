@@ -234,10 +234,11 @@ def ps4_filter_ci_runs(input_csv: str, output_csv: str):
 # メイン
 # ============================================================
 def parse_args():
+    _ps1_csv = os.environ.get("PS1_CSV", "ps1/js-repo.csv")
     parser = argparse.ArgumentParser(description="PS2→PS3→PS4 フィルタリングパイプライン")
     parser.add_argument(
-        "--input", default="ps1/js-repo.csv",
-        help="入力 CSV ファイル (default: ps1/js-repo.csv)",
+        "--input", default=_ps1_csv,
+        help="入力 CSV ファイル (default: PS1_CSV env or ps1/js-repo.csv)",
     )
     parser.add_argument(
         "--offset", type=int, default=0,

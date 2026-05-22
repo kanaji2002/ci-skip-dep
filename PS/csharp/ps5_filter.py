@@ -6,12 +6,12 @@ PS5: .csproj ファイルの存在確認 (C# プロジェクト判定)
   1. ルートディレクトリ一覧から .csproj を探す
   2. 見つからない場合、Git Tree API (recursive) で全パスを検索
 
-Input:  ps4/csharp-repo_ps4.csv  (--input で変更可)
-Output: ps5/ps5_filtered.csv     (--output で変更可)
+Input:  ps4/ps4_filtered.csv (--input で変更可)
+Output: ps5/ps5_filtered.csv (--output で変更可)
 
 Usage:
     python3 ps5_filter.py
-    python3 ps5_filter.py --input ps4/csharp-repo_ps4.csv
+    python3 ps5_filter.py --input ps4/ps4_filtered.csv
     python3 ps5_filter.py --limit 10
 """
 
@@ -38,7 +38,7 @@ API_TIMEOUT = 30
 CHECKPOINT_INTERVAL = 50
 
 _SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-DEFAULT_INPUT = os.path.join(_SCRIPT_DIR, "ps4", "csharp-repo_ps4.csv")
+DEFAULT_INPUT = os.path.join(_SCRIPT_DIR, "ps4", "ps4_filtered.csv")
 DEFAULT_OUTPUT = os.path.join(_SCRIPT_DIR, "ps5", "ps5_filtered.csv")
 
 
@@ -169,7 +169,7 @@ def save_rows(output_path: str, rows: list, fieldnames: list):
 
 def main():
     parser = argparse.ArgumentParser(
-        description="PS5: Filter projects that have .csproj (C# projects)"
+        description="PS4: Filter projects that have .csproj (C# projects)"
     )
     parser.add_argument("--input", type=str, default=DEFAULT_INPUT)
     parser.add_argument("--output", type=str, default=DEFAULT_OUTPUT)

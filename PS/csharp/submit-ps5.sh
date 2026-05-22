@@ -49,7 +49,7 @@ echo "Args:        $*"
 echo "================"
 
 # ============================================
-# Run PS5 filter
+# Run PS4 filter
 # ============================================
 echo ""
 echo "=== Starting PS5 filter (C# / .csproj check) ==="

@@ -103,8 +103,8 @@ def analyze(df: pd.DataFrame) -> pd.DataFrame:
             (sub["post_removal_result"] == "SKIP") &
             (sub["error"].fillna("") != "no deps to remove")
         ])
-        n_pass  = len(sub[sub["post_removal_result"] == "PASS"])
-        n_fail  = len(sub[sub["post_removal_result"] == "FAIL"])
+        n_pass  = len(sub[sub["bulk_result"] == "PASS"])
+        n_fail  = len(sub[sub["bulk_result"] == "FAIL"])
         n_error = len(sub[sub["post_removal_result"] == "ERROR"])
 
         # リポジトリ単位 precision
@@ -114,7 +114,7 @@ def analyze(df: pd.DataFrame) -> pd.DataFrame:
         pkg_prec, n_safe_pkgs, n_must_pkgs = pkg_precision(df_pass, model)
 
         # 提案ありケースでの平均削除dep数 (safe_deps)
-        sub_proposed = sub[sub["post_removal_result"].isin(["PASS", "FAIL", "ERROR"])]
+        sub_proposed = sub[sub["bulk_result"].isin(["PASS", "FAIL"])]
         avg_removed = sub_proposed["n_removed"].mean() if len(sub_proposed) > 0 else float("nan")
 
         rows.append({
