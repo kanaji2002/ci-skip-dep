@@ -106,27 +106,21 @@ def pip_install_project(repo_path: str, venv_dir: str) -> bool:
             [pip, "install", "--upgrade", "pip"],
             cwd=repo_path, capture_output=True, timeout=60,
         )
-        # プロジェクトをインストール (pyproject.toml / setup.py 対応)
-        proc = subprocess.run(
-            [pip, "install", "-e", ".[dev,test]"],
-            cwd=repo_path, capture_output=True, timeout=INSTALL_TIMEOUT,
-        )
-        if proc.returncode == 0:
-            return True
-        # フォールバック: extras なしでインストール
-        proc = subprocess.run(
-            [pip, "install", "-e", "."],
-            cwd=repo_path, capture_output=True, timeout=INSTALL_TIMEOUT,
-        )
-        if proc.returncode == 0:
-            return True
-        # さらにフォールバック: requirements*.txt
+        # extras を複数パターンで試す (PS8 と同じ順序)
+        for extra in [".[test,dev]", ".[test]", ".[dev]", "."]:
+            proc = subprocess.run(
+                [pip, "install", "-e", extra],
+                cwd=repo_path, capture_output=True, timeout=INSTALL_TIMEOUT,
+            )
+            if proc.returncode == 0:
+                return True
+        # フォールバック: requirements*.txt (PS8 と同じ優先順)
         for req_name in [
-            "requirements.txt",
-            "requirements-dev.txt",
             "requirements-test.txt",
-            "requirements-devel.txt",
+            "requirements-dev.txt",
+            "requirements.txt",
             "test-requirements.txt",
+            "requirements-devel.txt",
         ]:
             req_file = os.path.join(repo_path, req_name)
             if os.path.exists(req_file):
@@ -135,7 +129,7 @@ def pip_install_project(repo_path: str, venv_dir: str) -> bool:
                     cwd=repo_path, capture_output=True, timeout=INSTALL_TIMEOUT,
                 )
                 if proc.returncode == 0:
-                    break
+                    return True
         return False
     except subprocess.TimeoutExpired:
         print("  [pip install] timeout")
@@ -180,7 +174,8 @@ def run_pytest(repo_path: str, venv_dir: str) -> Tuple[str, float, str]:
     t0 = time.time()
     try:
         proc = subprocess.run(
-            [python, "-m", "pytest", "--tb=no", "-q", "--timeout=120"],
+            [python, "-m", "pytest",
+             "--cov=.", "--cov-report=json", "--tb=no", "-q", "--no-header", "--timeout=120"],
             cwd=repo_path,
             capture_output=True,
             text=True,
@@ -295,21 +290,21 @@ def verify_repo(owner: str, repo: str, step1_row: Dict) -> List[Dict[str, Any]]:
             raise RuntimeError(r.stderr.strip() or "clone failed")
     except Exception as e:
         print(f"  [error] clone failed: {e}")
-        return [_error_row(full_name, m, str(e)) for m in MODELS]
+        return [_error_row(full_name, m, str(e), step1_row) for m in MODELS]
 
     # venv 作成
     print("  Creating venv ...")
     if not create_venv(venv_dir):
         err = "venv creation failed"
         shutil.rmtree(repo_path, ignore_errors=True)
-        return [_error_row(full_name, m, err) for m in MODELS]
+        return [_error_row(full_name, m, err, step1_row) for m in MODELS]
 
     # pip install
     print("  pip install ...")
     if not pip_install_project(repo_path, venv_dir):
         print("  [warn] pip install failed, proceeding anyway")
     # pytest を確実にインストール (extras 名の違いで漏れるケースを補完)
-    pip_install_package(repo_path, venv_dir, ["pytest", "pytest-timeout"])
+    pip_install_package(repo_path, venv_dir, ["pytest", "pytest-cov", "pytest-timeout"])
 
     # ベースライン pytest
     print("  Running baseline pytest ...")
@@ -319,10 +314,8 @@ def verify_repo(owner: str, repo: str, step1_row: Dict) -> List[Dict[str, Any]]:
     rows = []
 
     for model in MODELS:
-        unused_dep     = parse_list_col(step1_row.get(f"{model}_unused_dep"))
-        unused_dev_dep = parse_list_col(step1_row.get(f"{model}_unused_dev_dep"))
-        # runtime deps のみを対象 (dev deps は除外)
-        to_remove = list(dict.fromkeys(unused_dep))
+        unused_dep = parse_list_col(step1_row.get(f"{model}_unused_dep"))
+        to_remove  = list(dict.fromkeys(unused_dep))  # runtime deps のみ
 
         print(f"\n  --- model: {model} ---")
         print(f"  to_remove (runtime deps only): {to_remove}")
@@ -330,6 +323,9 @@ def verify_repo(owner: str, repo: str, step1_row: Dict) -> List[Dict[str, Any]]:
         row: Dict[str, Any] = {
             "repo":                  full_name,
             "model":                 model,
+            "all_dep":               parse_list_col(step1_row.get("all_dep")),
+            "all_dev_dep":           parse_list_col(step1_row.get("all_dev_dep")),
+            "missing_dep":           parse_list_col(step1_row.get(f"{model}_missing_dep")),
             "candidates":            to_remove,
             "removed_deps":          [],
             "must_keep_deps":        [],
@@ -375,9 +371,13 @@ def verify_repo(owner: str, repo: str, step1_row: Dict) -> List[Dict[str, Any]]:
     return rows
 
 
-def _error_row(full_name: str, model: str, error: str) -> Dict[str, Any]:
+def _error_row(full_name: str, model: str, error: str, step1_row: Dict = None) -> Dict[str, Any]:
+    step1_row = step1_row or {}
     return {
         "repo": full_name, "model": model,
+        "all_dep":     parse_list_col(step1_row.get("all_dep")),
+        "all_dev_dep": parse_list_col(step1_row.get("all_dev_dep")),
+        "missing_dep": parse_list_col(step1_row.get(f"{model}_missing_dep")),
         "candidates": [], "removed_deps": [], "must_keep_deps": [],
         "baseline_result": "ERROR", "baseline_duration_sec": None,
         "bulk_result": None, "post_removal_result": "ERROR",

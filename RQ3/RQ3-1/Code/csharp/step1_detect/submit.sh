@@ -89,7 +89,7 @@ echo "================"
 TOTAL_START=$(date +%s)
 
 cd /work/rintaro-k/research/RQ3/RQ3-1/Code/csharp/step1_detect
-python3 run.py --limit 5 ${PYTHON_ARGS}
+python3 run.py ${PYTHON_ARGS}
 
 TOTAL_END=$(date +%s)
 TOTAL_ELAPSED=$((TOTAL_END - TOTAL_START))

@@ -46,7 +46,7 @@ RESULTS_CSV  = os.path.join(OUTPUT_DIR, "step2_results.csv")
 # ---------------------------------------------------------------------------
 SIF_PATH    = "/work/rintaro-k/research/containers/rust-tarpaulin.sif"
 SINGULARITY = "/opt/singularity/3.9.6/bin/singularity"
-CARGO_HOME  = os.path.join(os.path.dirname(OUTPUT_DIR), "step2_verify", "cargo_cache")
+CARGO_HOME  = "/work/rintaro-k/.cargo"  # PS8 と同じ共有キャッシュ
 
 TEST_TIMEOUT    = 600
 REMOVE_TIMEOUT  = 120
@@ -148,10 +148,16 @@ def cargo_remove(repo_path: str, dep: str, cargo_tomls: List[str]) -> bool:
 
 
 def run_cargo_test(repo_path: str) -> Tuple[str, float, str]:
+    cov_dir = os.path.join(repo_path, "coverage")
+    os.makedirs(cov_dir, exist_ok=True)
     t0 = time.time()
     try:
         r = singularity_exec(
-            ["cargo", "test", "--all"],
+            ["cargo", "tarpaulin",
+             "--out", "Json",
+             "--output-dir", cov_dir,
+             "--timeout", "300",
+             "--skip-clean"],
             cwd=repo_path,
             timeout=TEST_TIMEOUT,
         )
@@ -160,7 +166,7 @@ def run_cargo_test(repo_path: str) -> Tuple[str, float, str]:
         tail = combined[-500:] if len(combined) > 500 else combined
         result = "PASS" if r.returncode == 0 else "FAIL"
         if result == "FAIL":
-            print(f"  [cargo test tail]\n{tail}")
+            print(f"  [cargo tarpaulin tail]\n{tail}")
         return result, duration, tail
     except subprocess.TimeoutExpired:
         return "ERROR", time.time() - t0, "timeout"
@@ -269,13 +275,13 @@ def verify_repo(owner: str, repo: str, step1_row: Dict) -> List[Dict[str, Any]]:
             raise RuntimeError(r.stderr.strip() or "clone failed")
     except Exception as e:
         print(f"  [error] clone failed: {e}")
-        return [_error_row(full_name, m, str(e)) for m in MODELS]
+        return [_error_row(full_name, m, str(e), step1_row) for m in MODELS]
 
     cargo_tomls = find_cargo_tomls(repo_path)
     if not cargo_tomls:
         err = "no Cargo.toml found"
         shutil.rmtree(repo_path, ignore_errors=True)
-        return [_error_row(full_name, m, err) for m in MODELS]
+        return [_error_row(full_name, m, err, step1_row) for m in MODELS]
 
     # ベースライン cargo test
     print("  Running baseline cargo test ...")
@@ -294,6 +300,9 @@ def verify_repo(owner: str, repo: str, step1_row: Dict) -> List[Dict[str, Any]]:
         row: Dict[str, Any] = {
             "repo":                  full_name,
             "model":                 model,
+            "all_dep":               parse_list_col(step1_row.get("all_dep")),
+            "all_dev_dep":           parse_list_col(step1_row.get("all_dev_dep")),
+            "missing_dep":           parse_list_col(step1_row.get(f"{model}_missing_dep")),
             "candidates":            to_remove,
             "removed_deps":          [],
             "must_keep_deps":        [],
@@ -336,9 +345,13 @@ def verify_repo(owner: str, repo: str, step1_row: Dict) -> List[Dict[str, Any]]:
     return rows
 
 
-def _error_row(full_name: str, model: str, error: str) -> Dict[str, Any]:
+def _error_row(full_name: str, model: str, error: str, step1_row: Dict = None) -> Dict[str, Any]:
+    step1_row = step1_row or {}
     return {
         "repo": full_name, "model": model,
+        "all_dep":     parse_list_col(step1_row.get("all_dep")),
+        "all_dev_dep": parse_list_col(step1_row.get("all_dev_dep")),
+        "missing_dep": parse_list_col(step1_row.get(f"{model}_missing_dep")),
         "candidates": [], "removed_deps": [], "must_keep_deps": [],
         "baseline_result": "ERROR", "baseline_duration_sec": None,
         "bulk_result": None, "post_removal_result": "ERROR",
@@ -387,11 +400,14 @@ def main():
 
     # 前回結果があれば再開
     if os.path.exists(args.output) and args.skip == 0:
-        prev_df = pd.read_csv(args.output)
-        done_repos = set(prev_df["repo"].unique().tolist())
-        all_rows = prev_df.to_dict("records")
-        repos = [r for r in repos if r not in done_repos]
-        print(f"Resuming: {len(done_repos)} repos already done, {len(repos)} remaining")
+        try:
+            prev_df = pd.read_csv(args.output)
+            done_repos = set(prev_df["repo"].unique().tolist())
+            all_rows = prev_df.to_dict("records")
+            repos = [r for r in repos if r not in done_repos]
+            print(f"Resuming: {len(done_repos)} repos already done, {len(repos)} remaining")
+        except pd.errors.EmptyDataError:
+            print("Output file is empty, starting fresh")
 
     print(f"Target: {len(repos)} repos  |  Output: {args.output}")
 

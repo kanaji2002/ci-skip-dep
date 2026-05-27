@@ -55,6 +55,11 @@ TEST_TIMEOUT    = 600
 
 MODELS = ["llama", "qwen", "deepseek"]
 
+TEST_PKG_RE = re.compile(
+    r'xunit|nunit|mstest\.testframework|microsoft\.net\.test\.sdk',
+    re.IGNORECASE,
+)
+
 # ---------------------------------------------------------------------------
 # ユーティリティ
 # ---------------------------------------------------------------------------
@@ -90,6 +95,40 @@ def find_solution_file(repo_path: str) -> Optional[str]:
     return str(min(slns, key=lambda p: len(p.relative_to(repo_path).parts)))
 
 
+def find_test_csproj_files(repo_path: str) -> List[str]:
+    """xUnit/NUnit/MSTest を参照しているテスト .csproj を返す"""
+    EXCLUDE = {'.git', 'bin', 'obj', 'node_modules', 'packages'}
+    result = []
+    for dirpath, dirnames, filenames in os.walk(repo_path):
+        dirnames[:] = [d for d in dirnames if d not in EXCLUDE]
+        for f in filenames:
+            if not f.endswith('.csproj'):
+                continue
+            fpath = os.path.join(dirpath, f)
+            try:
+                with open(fpath, encoding='utf-8', errors='replace') as fh:
+                    if TEST_PKG_RE.search(fh.read()):
+                        result.append(fpath)
+            except Exception:
+                pass
+    return result
+
+
+def ensure_coverlet(csproj_path: str, repo_path: str):
+    """coverlet.collector が未参照のテスト .csproj に動的に追加する (PS8 と同じ)"""
+    try:
+        with open(csproj_path, encoding='utf-8', errors='replace') as f:
+            content = f.read()
+    except Exception:
+        return
+    if 'coverlet.collector' in content.lower():
+        return
+    singularity_exec(
+        ["dotnet", "add", csproj_path, "package", "coverlet.collector", "--no-restore"],
+        cwd=repo_path, timeout=60,
+    )
+
+
 def find_csproj_files(repo_path: str) -> List[str]:
     EXCLUDE = {'.git', 'bin', 'obj', 'node_modules', 'packages'}
     result = []
@@ -118,12 +157,15 @@ def dotnet_restore(repo_path: str, sln: Optional[str]) -> bool:
 def run_dotnet_test(repo_path: str, sln: Optional[str]) -> Tuple[str, float, str]:
     """dotnet test を実行して (PASS/FAIL/ERROR, 秒, 出力末尾) を返す"""
     target = [sln] if sln else []
+    results_dir = os.path.join(repo_path, "TestResults")
     t0 = time.time()
     try:
         r = singularity_exec(
             ["dotnet", "test"] + target + [
              "--no-restore", "--nologo", "-v", "q",
-             "-maxcpucount:1"],
+             "-maxcpucount:1",
+             "--collect", "XPlat Code Coverage",
+             "--results-directory", results_dir],
             cwd=repo_path, timeout=TEST_TIMEOUT,
         )
         duration = time.time() - t0
@@ -289,10 +331,14 @@ def verify_repo(owner: str, repo: str, step1_row: Dict) -> List[Dict[str, Any]]:
             raise RuntimeError(r.stderr.strip() or "clone failed")
     except Exception as e:
         print(f"  [error] clone failed: {e}")
-        return [_error_row(full_name, m, str(e)) for m in MODELS]
+        return [_error_row(full_name, m, str(e), step1_row) for m in MODELS]
 
     sln          = find_solution_file(repo_path)
     csproj_files = find_csproj_files(repo_path)
+
+    # PS8 と同じく coverlet.collector が未参照のテストプロジェクトに追加
+    for csproj in find_test_csproj_files(repo_path):
+        ensure_coverlet(csproj, repo_path)
 
     # dotnet restore
     print("  dotnet restore ...")
@@ -300,7 +346,7 @@ def verify_repo(owner: str, repo: str, step1_row: Dict) -> List[Dict[str, Any]]:
         err = "restore failed"
         print(f"  [error] {err}")
         shutil.rmtree(repo_path, ignore_errors=True)
-        return [_error_row(full_name, m, err) for m in MODELS]
+        return [_error_row(full_name, m, err, step1_row) for m in MODELS]
 
     # ベースライン dotnet test
     print("  Running baseline dotnet test ...")
@@ -321,6 +367,9 @@ def verify_repo(owner: str, repo: str, step1_row: Dict) -> List[Dict[str, Any]]:
         row: Dict[str, Any] = {
             "repo":                  full_name,
             "model":                 model,
+            "all_dep":               parse_list_col(step1_row.get("all_dep")),
+            "all_dev_dep":           parse_list_col(step1_row.get("all_dev_dep")),
+            "missing_dep":           parse_list_col(step1_row.get(f"{model}_missing_dep")),
             "candidates":            to_remove,
             "removed_deps":          [],
             "must_keep_deps":        [],
@@ -363,9 +412,13 @@ def verify_repo(owner: str, repo: str, step1_row: Dict) -> List[Dict[str, Any]]:
     return rows
 
 
-def _error_row(full_name: str, model: str, error: str) -> Dict[str, Any]:
+def _error_row(full_name: str, model: str, error: str, step1_row: Dict = None) -> Dict[str, Any]:
+    step1_row = step1_row or {}
     return {
         "repo": full_name, "model": model,
+        "all_dep":     parse_list_col(step1_row.get("all_dep")),
+        "all_dev_dep": parse_list_col(step1_row.get("all_dev_dep")),
+        "missing_dep": parse_list_col(step1_row.get(f"{model}_missing_dep")),
         "candidates": [], "removed_deps": [], "must_keep_deps": [],
         "baseline_result": "ERROR", "baseline_duration_sec": None,
         "bulk_result": None, "post_removal_result": "ERROR",

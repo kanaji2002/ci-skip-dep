@@ -16,7 +16,6 @@ import re
 import shutil
 import sys
 import time
-import xml.etree.ElementTree as ET
 from typing import Any, Dict, List, Tuple
 
 import pandas as pd
@@ -276,18 +275,11 @@ def _build_prompt(template: str, variables: Dict) -> str:
     return re.sub(r"\{(\w+)\}", rep, template)
 
 
-def run_llm(repo_path: str, model: str) -> Tuple[List[str], List[str], List[str], bool]:
-    pkg = parse_pyproject_toml(repo_path)
-    if not pkg:
-        return [], [], [], False
+def run_llm(repo_path: str, model: str, pkg: Dict) -> Tuple[List[str], List[str], bool]:
+    deps = pkg.get('dependencies', {})
 
-    deps       = pkg.get('dependencies', {})
-    dev_deps   = pkg.get('dev_dependencies', {})
-    extra_deps = pkg.get('extra_dependencies', {})
-    scripts    = pkg.get('scripts', {})
-
-    if not deps and not dev_deps:
-        return [], [], [], False
+    if not deps:
+        return [], [], False
 
     template, params = _load_prompt_template()
 
@@ -302,14 +294,14 @@ def run_llm(repo_path: str, model: str) -> Tuple[List[str], List[str], List[str]
 
     variables = {
         **params,
-        "dependencies":      "\n".join(f"- {k}: {v}" for k, v in deps.items()) or "(none)",
-        "dev_dependencies":  "\n".join(f"- {k}: {v}" for k, v in dev_deps.items()) or "(none)",
-        "extra_dependencies":"\n".join(f"- {k}: {v}" for k, v in extra_deps.items()) or "(none)",
-        "scripts":           "\n".join(f'  "{k}": "{v}"' for k, v in scripts.items()) or "(none)",
-        "project_tree":      _project_tree(repo_path),
-        "source_code":       _import_lines(repo_path),
-        "config_references": _config_refs(repo_path),
-        "language_rules":    "\n".join(fmt_rule(r) for r in params.get("language_rules", [])),
+        "dependencies":       "\n".join(f"- {k}: {v}" for k, v in deps.items()),
+        "dev_dependencies":   "(none)",
+        "extra_dependencies": "(none)",
+        "scripts":            "(none)",
+        "project_tree":       _project_tree(repo_path),
+        "source_code":        _import_lines(repo_path),
+        "config_references":  _config_refs(repo_path),
+        "language_rules":     "\n".join(fmt_rule(r) for r in params.get("language_rules", [])),
     }
     prompt = _build_prompt(template, variables)
 
@@ -342,22 +334,21 @@ def run_llm(repo_path: str, model: str) -> Tuple[List[str], List[str], List[str]
             if attempt < 2:
                 time.sleep(15)
     else:
-        return [], [], [], False
+        return [], [], False
 
     text = re.sub(r"<think>.*?</think>", "", text, flags=re.DOTALL)
     s, e = text.find("{"), text.rfind("}")
     if s == -1 or e == -1 or e <= s:
         print(f"  [llm:{model}] no JSON found | response={repr(text[:300])}")
-        return [], [], [], False
+        return [], [], False
     try:
         r = json.loads(text[s:e+1])
     except json.JSONDecodeError as ex:
         print(f"  [llm:{model}] JSON parse error: {ex}")
-        return [], [], [], False
+        return [], [], False
 
     return (
         r.get("unused_dependencies", []),
-        r.get("unused_dev_dependencies", []),
         r.get("missing_dependencies", []),
         True,
     )
@@ -370,9 +361,10 @@ def run_llm(repo_path: str, model: str) -> Tuple[List[str], List[str], List[str]
 def _empty(owner: str, repo: str, error: str = None) -> Dict[str, Any]:
     return {
         "repo": f"{owner}/{repo}", "error": error,
-        "llama_unused_dep":    [], "llama_unused_dev_dep":    [], "llama_missing_dep":    [], "llama_success":    False,
-        "qwen_unused_dep":     [], "qwen_unused_dev_dep":     [], "qwen_missing_dep":     [], "qwen_success":     False,
-        "deepseek_unused_dep": [], "deepseek_unused_dev_dep": [], "deepseek_missing_dep": [], "deepseek_success": False,
+        "all_dep": [], "all_dev_dep": [],
+        "llama_unused_dep":    [], "llama_missing_dep":    [], "llama_success":    False,
+        "qwen_unused_dep":     [], "qwen_missing_dep":     [], "qwen_success":     False,
+        "deepseek_unused_dep": [], "deepseek_missing_dep": [], "deepseek_success": False,
     }
 
 
@@ -390,7 +382,16 @@ def analyze_repo(owner: str, repo: str) -> Dict[str, Any]:
         print(f"  [error] clone failed: {e}")
         return _empty(owner, repo, error=str(e))
 
-    row: Dict[str, Any] = {"repo": f"{owner}/{repo}", "error": None}
+    pkg      = parse_pyproject_toml(repo_path)
+    deps     = pkg.get('dependencies', {})
+    dev_deps = pkg.get('dev_dependencies', {})
+
+    row: Dict[str, Any] = {
+        "repo": f"{owner}/{repo}",
+        "error": None,
+        "all_dep":     list(deps.keys()),
+        "all_dev_dep": list(dev_deps.keys()),
+    }
 
     for label, model in [
         ("llama",    OLLAMA_MODEL_LLAMA),
@@ -398,13 +399,12 @@ def analyze_repo(owner: str, repo: str) -> Dict[str, Any]:
         ("deepseek", OLLAMA_MODEL_DEEPSEEK),
     ]:
         t0 = time.time()
-        dep, dev_dep, missing, ok = run_llm(repo_path, model)
+        unused_dep, missing, ok = run_llm(repo_path, model, pkg)
         elapsed = time.time() - t0
-        print(f"  {label:<10}: {len(dep)} unused_dep, {len(dev_dep)} unused_dev_dep  ({elapsed:.1f}s) ok={ok}")
-        row[f"{label}_unused_dep"]     = dep
-        row[f"{label}_unused_dev_dep"] = dev_dep
-        row[f"{label}_missing_dep"]    = missing
-        row[f"{label}_success"]        = ok
+        print(f"  {label:<10}: {len(unused_dep)} unused_dep  ({elapsed:.1f}s) ok={ok}")
+        row[f"{label}_unused_dep"]  = unused_dep
+        row[f"{label}_missing_dep"] = missing
+        row[f"{label}_success"]     = ok
 
     try:
         shutil.rmtree(repo_path)
@@ -442,10 +442,13 @@ def main():
 
     # 前回の途中結果を読み込んで再開
     if os.path.exists(args.output) and args.skip == 0:
-        prev_df = pd.read_csv(args.output)
-        done = set(prev_df["repo"].tolist())
-        rows = prev_df.to_dict("records")
-        print(f"Resuming: {len(done)} repos already done")
+        try:
+            prev_df = pd.read_csv(args.output)
+            done = set(prev_df["repo"].tolist())
+            rows = prev_df.to_dict("records")
+            print(f"Resuming: {len(done)} repos already done")
+        except pd.errors.EmptyDataError:
+            print("Output file is empty, starting fresh")
 
     print(f"Target: {len(repos)} repos  |  Output: {args.output}")
 
