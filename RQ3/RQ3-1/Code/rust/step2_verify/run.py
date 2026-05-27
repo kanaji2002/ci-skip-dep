@@ -38,7 +38,7 @@ load_dotenv(os.path.join(_ROOT, ".env"))
 LANG_DIR     = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUTPUT_DIR   = os.path.join(LANG_DIR, "output")
 CLONES_DIR   = os.path.join(OUTPUT_DIR, "clones")
-STEP1_CSV    = os.path.join(OUTPUT_DIR, "step1_result.csv")
+STEP1_CSV    = os.path.join(OUTPUT_DIR, "step1_results.csv")
 RESULTS_CSV  = os.path.join(OUTPUT_DIR, "step2_results.csv")
 
 # ---------------------------------------------------------------------------

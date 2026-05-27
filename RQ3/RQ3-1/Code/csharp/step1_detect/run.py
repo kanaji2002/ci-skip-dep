@@ -57,14 +57,28 @@ LANGUAGE = "csharp"
 # .csproj パース
 # ---------------------------------------------------------------------------
 
+EXCLUDE_NAME_PATTERNS = ('test',)
+
+
+def _is_non_production_csproj(repo_path: str, csproj_path: str) -> bool:
+    rel = os.path.relpath(csproj_path, repo_path)
+    return any(
+        any(pat in part.lower() for pat in EXCLUDE_NAME_PATTERNS)
+        for part in rel.split(os.sep)
+    )
+
+
 def parse_csproj(repo_path: str) -> Dict:
     csproj_files = []
     EXCLUDE_DIRS = {'.git', 'bin', 'obj', 'node_modules', 'packages'}
     for dirpath, dirnames, filenames in os.walk(repo_path):
         dirnames[:] = [d for d in dirnames if d not in EXCLUDE_DIRS]
         for fname in filenames:
-            if fname.endswith('.csproj'):
-                csproj_files.append(os.path.join(dirpath, fname))
+            if not fname.endswith('.csproj'):
+                continue
+            fpath = os.path.join(dirpath, fname)
+            if not _is_non_production_csproj(repo_path, fpath):
+                csproj_files.append(fpath)
 
     deps: Dict[str, str] = {}
     dev_deps: Dict[str, str] = {}
