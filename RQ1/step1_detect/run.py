@@ -223,13 +223,11 @@ def _import_lines(repo_path: str) -> str:
             if fc >= 200 or total >= 600: break
     return "\n\n".join(parts) or "(no import statements found)"
 
-def run_llm(repo_path: str, model: str) -> Tuple[List[str], List[str], List[str], bool]:
+def run_llm(repo_path: str, model: str) -> Tuple[List[str], List[str], bool]:
     pkg = parse_package_json(repo_path)
     runtime_deps = pkg.get("dependencies", {})
-    dev_deps     = pkg.get("devDependencies", {})
-    peer_deps    = pkg.get("peerDependencies", {})
-    if not runtime_deps and not dev_deps:
-        return [], [], [], False
+    if not runtime_deps:
+        return [], [], False
 
     template, params = _load_prompt_template()
 
@@ -242,14 +240,14 @@ def run_llm(repo_path: str, model: str) -> Tuple[List[str], List[str], List[str]
 
     variables = {
         **params,
-        "dependencies":     "\n".join(f"- {k}: {v}" for k, v in runtime_deps.items()) or "(none)",
-        "dev_dependencies": "\n".join(f"- {k}: {v}" for k, v in dev_deps.items()) or "(none)",
-        "extra_dependencies": "\n".join(f"- {k}: {v}" for k, v in peer_deps.items()) or "(none)",
-        "scripts":          "\n".join(f'  "{k}": "{v}"' for k, v in pkg.get("scripts", {}).items()) or "(none)",
-        "project_tree":     _project_tree(repo_path),
-        "source_code":      _import_lines(repo_path),
-        "config_references": _config_refs(repo_path),
-        "language_rules":   "\n".join(fmt_rule(r) for r in params.get("language_rules", [])),
+        "dependencies":       "\n".join(f"- {k}: {v}" for k, v in runtime_deps.items()),
+        "dev_dependencies":   "(not provided — runtime dependencies only are evaluated in this analysis)",
+        "extra_dependencies": "(not provided — runtime dependencies only are evaluated in this analysis)",
+        "scripts":            "\n".join(f'  "{k}": "{v}"' for k, v in pkg.get("scripts", {}).items()) or "(none)",
+        "project_tree":       _project_tree(repo_path),
+        "source_code":        _import_lines(repo_path),
+        "config_references":  _config_refs(repo_path),
+        "language_rules":     "\n".join(fmt_rule(r) for r in params.get("language_rules", [])),
     }
     prompt = _build_prompt(template, variables)
     try:
@@ -271,21 +269,20 @@ def run_llm(repo_path: str, model: str) -> Tuple[List[str], List[str], List[str]
         text = raw_resp.get("message", {}).get("content", "")
         print(f"  [llm:{model}] eval_count={raw_resp.get('eval_count')} prompt_eval_count={raw_resp.get('prompt_eval_count')}")
     except Exception as e:
-        print(f"  [llm:{model}] API error: {e}"); return [], [], [], False
+        print(f"  [llm:{model}] API error: {e}"); return [], [], False
 
     text = re.sub(r"<think>.*?</think>", "", text, flags=re.DOTALL)
     s, e = text.find("{"), text.rfind("}")
     if s == -1 or e == -1 or e <= s:
         print(f"  [llm:{model}] no JSON found | full_response={repr(text[:500])}")
-        return [], [], [], False
+        return [], [], False
     try:
         r = json.loads(text[s:e+1])
     except json.JSONDecodeError as ex:
-        print(f"  [llm:{model}] JSON parse error: {ex}"); return [], [], [], False
+        print(f"  [llm:{model}] JSON parse error: {ex}"); return [], [], False
 
     return (
         r.get("unused_dependencies", []),
-        r.get("unused_dev_dependencies", []),
         r.get("missing_dependencies", []),
         True,
     )
@@ -297,11 +294,12 @@ def run_llm(repo_path: str, model: str) -> Tuple[List[str], List[str], List[str]
 def _empty(owner: str, repo: str, error: str = None) -> Dict[str, Any]:
     return {
         "repo": f"{owner}/{repo}", "error": error,
+        "all_dep": [], "all_dev_dep": [],
         "depcheck_unused_dep": [], "depcheck_unused_dev_dep": [], "depcheck_success": False,
         "knip_unused_dep":     [], "knip_unused_dev_dep":     [], "knip_success":     False,
-        "llama_unused_dep":    [], "llama_unused_dev_dep":    [], "llama_missing_dep":    [], "llama_success":    False,
-        "qwen_unused_dep":     [], "qwen_unused_dev_dep":     [], "qwen_missing_dep":     [], "qwen_success":     False,
-        "deepseek_unused_dep": [], "deepseek_unused_dev_dep": [], "deepseek_missing_dep": [], "deepseek_success": False,
+        "llama_unused_dep":    [], "llama_missing_dep":    [], "llama_success":    False,
+        "qwen_unused_dep":     [], "qwen_missing_dep":     [], "qwen_success":     False,
+        "deepseek_unused_dep": [], "deepseek_missing_dep": [], "deepseek_success": False,
     }
 
 def analyze_repo(owner: str, repo: str) -> Dict[str, Any]:
@@ -319,14 +317,20 @@ def analyze_repo(owner: str, repo: str) -> Dict[str, Any]:
         print(f"  [error] clone failed: {e}")
         return _empty(owner, repo, error=str(e))
 
-    row: Dict[str, Any] = {"repo": f"{owner}/{repo}", "error": None}
+    pkg = parse_package_json(repo_path)
+    row: Dict[str, Any] = {
+        "repo": f"{owner}/{repo}",
+        "error": None,
+        "all_dep":     list(pkg.get("dependencies", {}).keys()),
+        "all_dev_dep": list(pkg.get("devDependencies", {}).keys()),
+    }
 
-    for label, fn, model_arg in [
-        ("depcheck", lambda: run_depcheck(repo_path),                  None),
-        ("knip",     lambda: run_knip(repo_path),                      None),
-        ("llama",    lambda: run_llm(repo_path, OLLAMA_MODEL_LLAMA),   None),
-        ("qwen",     lambda: run_llm(repo_path, OLLAMA_MODEL_QWEN),    None),
-        ("deepseek", lambda: run_llm(repo_path, OLLAMA_MODEL_DEEPSEEK),None),
+    for label, fn in [
+        ("depcheck", lambda: run_depcheck(repo_path)),
+        ("knip",     lambda: run_knip(repo_path)),
+        ("llama",    lambda: run_llm(repo_path, OLLAMA_MODEL_LLAMA)),
+        ("qwen",     lambda: run_llm(repo_path, OLLAMA_MODEL_QWEN)),
+        ("deepseek", lambda: run_llm(repo_path, OLLAMA_MODEL_DEEPSEEK)),
     ]:
         t0 = time.time()
         ret = fn()
@@ -334,16 +338,16 @@ def analyze_repo(owner: str, repo: str) -> Dict[str, Any]:
 
         if label in ("depcheck", "knip"):
             dep, dev_dep, ok = ret
-            missing = []
+            print(f"  {label:<10}: {len(dep)} unused_dep, {len(dev_dep)} unused_dev_dep  ({elapsed:.1f}s) ok={ok}")
+            row[f"{label}_unused_dep"]     = dep
+            row[f"{label}_unused_dev_dep"] = dev_dep
+            row[f"{label}_success"]        = ok
         else:
-            dep, dev_dep, missing, ok = ret
-
-        print(f"  {label:<10}: {len(dep)} unused_dep, {len(dev_dep)} unused_dev_dep  ({elapsed:.1f}s) ok={ok}")
-        row[f"{label}_unused_dep"]     = dep
-        row[f"{label}_unused_dev_dep"] = dev_dep
-        row[f"{label}_success"]        = ok
-        if label not in ("depcheck", "knip"):
+            dep, missing, ok = ret
+            print(f"  {label:<10}: {len(dep)} unused_dep  ({elapsed:.1f}s) ok={ok}")
+            row[f"{label}_unused_dep"]  = dep
             row[f"{label}_missing_dep"] = missing
+            row[f"{label}_success"]     = ok
 
     # clone 削除
     try:

@@ -129,14 +129,28 @@ def ensure_coverlet(csproj_path: str, repo_path: str):
     )
 
 
+_EXCLUDE_NAME_PATTERNS = ('test',)
+
+
+def _is_non_production_csproj(repo_path: str, csproj_path: str) -> bool:
+    """step1 と同じ判定: パス名に 'test' を含む csproj はテストプロジェクトとして除外"""
+    rel = os.path.relpath(csproj_path, repo_path)
+    return any(
+        any(pat in part.lower() for pat in _EXCLUDE_NAME_PATTERNS)
+        for part in rel.split(os.sep)
+    )
+
+
 def find_csproj_files(repo_path: str) -> List[str]:
+    """プロダクション csproj のみを返す (テストプロジェクトは除外)"""
     EXCLUDE = {'.git', 'bin', 'obj', 'node_modules', 'packages'}
     result = []
     for dirpath, dirnames, filenames in os.walk(repo_path):
         dirnames[:] = [d for d in dirnames if d not in EXCLUDE]
         for f in filenames:
-            if f.endswith('.csproj'):
-                result.append(os.path.join(dirpath, f))
+            fpath = os.path.join(dirpath, f)
+            if f.endswith('.csproj') and not _is_non_production_csproj(repo_path, fpath):
+                result.append(fpath)
     return result
 
 

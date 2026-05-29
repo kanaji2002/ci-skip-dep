@@ -219,6 +219,7 @@ def iterative_removal(
     print(f"  [iter] bulk ({len(candidates)} deps): {bulk_result}")
 
     if bulk_result == "PASS":
+        pip_install_package(repo_path, venv_dir, candidates)  # 次モデルのために venv を元に戻す
         return {
             "bulk_result":    bulk_result,
             "safe_deps":      candidates,
@@ -351,8 +352,9 @@ def verify_repo(owner: str, repo: str, step1_row: Dict) -> List[Dict[str, Any]]:
             print("  post_removal: SKIP (no deps to remove)")
             continue
 
-        # 環境をベースライン状態に戻してから反復削除
-        pip_install_package(repo_path, venv_dir, to_remove)
+        # 環境をベースライン状態に完全復元してから反復削除 (前モデルの削除が残らないように)
+        pip_install_project(repo_path, venv_dir)
+        pip_install_package(repo_path, venv_dir, ["pytest", "pytest-cov", "pytest-timeout"])
 
         ir = iterative_removal(repo_path, venv_dir, to_remove)
 

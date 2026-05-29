@@ -33,9 +33,10 @@ load_dotenv(os.path.join(_ROOT, ".env"))
 LANG_DIR    = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUTPUT_DIR  = os.path.join(LANG_DIR, "output")
 CLONES_DIR  = os.path.join(OUTPUT_DIR, "clones")
-RESULTS_CSV = os.path.join(OUTPUT_DIR, "step1_results-2.csv")
+RESULTS_CSV = os.path.join(OUTPUT_DIR, "step1_results.csv")
 
-PS8_CSV = os.path.join(_ROOT, "PS", "python", "ps8", "ps8_filtered-2.csv")
+PS8_CSV = os.path.join(_ROOT, "PS", "python", "ps8", "ps8_filtered.csv")
+BATCH_SIZE = 100
 
 # RQ3 共通プロンプト (path指定でアクセス)
 PROMPTS_BASE = "/work/rintaro-k/research/RQ3/RQ3-2/common/prompts"
@@ -421,10 +422,21 @@ def analyze_repo(owner: str, repo: str) -> Dict[str, Any]:
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--repo-list", default=PS8_CSV)
+    parser.add_argument("--index", type=int, default=None,
+                        help=f"バッチインデックス (各{BATCH_SIZE}件). --skip/--limit より優先")
     parser.add_argument("--limit", type=int, default=None)
     parser.add_argument("--skip",  type=int, default=0)
-    parser.add_argument("--output", default=RESULTS_CSV)
+    parser.add_argument("--output", default=None)
     args = parser.parse_args()
+
+    if args.index is not None:
+        args.skip  = args.index * BATCH_SIZE
+        args.limit = BATCH_SIZE
+        if args.output is None:
+            args.output = os.path.join(OUTPUT_DIR, f"step1_results-{args.index}.csv")
+    else:
+        if args.output is None:
+            args.output = RESULTS_CSV
 
     os.makedirs(OUTPUT_DIR, exist_ok=True)
     os.makedirs(CLONES_DIR, exist_ok=True)
@@ -440,13 +452,18 @@ def main():
     done: set = set()
     rows: List[Dict] = []
 
-    # 前回の途中結果を読み込んで再開
-    if os.path.exists(args.output) and args.skip == 0:
+    # 前回の途中結果を読み込んで再開 (全LLMがFalseの行は再実行)
+    if os.path.exists(args.output):
         try:
             prev_df = pd.read_csv(args.output)
-            done = set(prev_df["repo"].tolist())
-            rows = prev_df.to_dict("records")
-            print(f"Resuming: {len(done)} repos already done")
+            success_mask = (
+                prev_df[["llama_success", "qwen_success", "deepseek_success"]].any(axis=1)
+                | prev_df["error"].notna()
+            )
+            done = set(prev_df.loc[success_mask, "repo"].tolist())
+            rows = prev_df.loc[success_mask].to_dict("records")
+            failed_count = int((~success_mask).sum())
+            print(f"Resuming: {len(done)} repos already done, {failed_count} all-failed repos will be re-run")
         except pd.errors.EmptyDataError:
             print("Output file is empty, starting fresh")
 
