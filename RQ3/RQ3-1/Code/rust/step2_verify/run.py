@@ -74,30 +74,20 @@ def singularity_exec(cmd: list, cwd: str, timeout: int) -> subprocess.CompletedP
     full_cmd = [
         SINGULARITY, "exec",
         "--bind", "/work/rintaro-k:/work/rintaro-k",
-        "--pwd", cwd,
         "--env", f"CARGO_HOME={CARGO_HOME}",
-        "--env", "RUST_TEST_THREADS=1",
         SIF_PATH,
     ] + cmd
-    return subprocess.run(full_cmd, capture_output=True, text=True, timeout=timeout)
+    return subprocess.run(full_cmd, cwd=cwd, capture_output=True, text=True, timeout=timeout)
 
 
 def find_cargo_tomls(repo_path: str) -> List[str]:
-    result = []
-    for dirpath, dirnames, filenames in os.walk(repo_path):
-        dirnames[:] = [d for d in dirnames if d not in {".git", "target"}]
-        if "Cargo.toml" in filenames:
-            result.append(os.path.join(dirpath, "Cargo.toml"))
-    return result
+    p = os.path.join(repo_path, "Cargo.toml")
+    return [p] if os.path.exists(p) else []
 
 
 def find_cargo_locks(repo_path: str) -> List[str]:
-    result = []
-    for dirpath, dirnames, filenames in os.walk(repo_path):
-        dirnames[:] = [d for d in dirnames if d not in {".git", "target"}]
-        if "Cargo.lock" in filenames:
-            result.append(os.path.join(dirpath, "Cargo.lock"))
-    return result
+    p = os.path.join(repo_path, "Cargo.lock")
+    return [p] if os.path.exists(p) else []
 
 
 def backup_files(paths: List[str]) -> Dict[str, str]:
@@ -118,33 +108,12 @@ def restore_files(backups: Dict[str, str]):
             print(f"  [restore] error ({path}): {e}")
 
 
-def cargo_remove(repo_path: str, dep: str, cargo_tomls: List[str]) -> bool:
-    """
-    cargo remove で dep を削除する。
-    workspace ルートから試み、失敗した場合は各メンバーディレクトリから試みる。
-    """
-    # workspace ルートから試みる
+def cargo_remove(repo_path: str, dep: str) -> bool:
     try:
         r = singularity_exec(["cargo", "remove", dep], cwd=repo_path, timeout=REMOVE_TIMEOUT)
-        if r.returncode == 0:
-            return True
+        return r.returncode == 0
     except Exception:
-        pass
-
-    # 各メンバーディレクトリから試みる (ワークスペース構成)
-    found = False
-    for toml_path in cargo_tomls:
-        member_dir = str(Path(toml_path).parent)
-        if member_dir == repo_path:
-            continue
-        try:
-            r = singularity_exec(["cargo", "remove", dep], cwd=member_dir, timeout=REMOVE_TIMEOUT)
-            if r.returncode == 0:
-                found = True
-        except Exception:
-            pass
-
-    return found
+        return False
 
 
 def run_cargo_test(repo_path: str) -> Tuple[str, float, str]:
@@ -198,7 +167,7 @@ def iterative_removal(
     # Step 1: 一括削除
     backups = backup_files(cargo_tomls + cargo_locks)
     for dep in candidates:
-        cargo_remove(repo_path, dep, cargo_tomls)
+        cargo_remove(repo_path, dep)
     bulk_result, _, _ = run_cargo_test(repo_path)
     n_iter += 1
     print(f"  [iter] bulk ({len(candidates)} deps): {bulk_result}")
@@ -219,7 +188,7 @@ def iterative_removal(
 
     for dep in candidates:
         restore_files(backups)
-        cargo_remove(repo_path, dep, cargo_tomls)
+        cargo_remove(repo_path, dep)
         result, _, _ = run_cargo_test(repo_path)
         n_iter += 1
         print(f"  [iter]   {dep}: {result}")
@@ -232,7 +201,7 @@ def iterative_removal(
     restore_files(backups)
     if safe:
         for dep in safe:
-            cargo_remove(repo_path, dep, cargo_tomls)
+            cargo_remove(repo_path, dep)
         final_result, _, _ = run_cargo_test(repo_path)
         n_iter += 1
         print(f"  [iter] final ({len(safe)} safe deps): {final_result}")
@@ -369,6 +338,8 @@ def main():
     parser.add_argument("--limit",  type=int, default=None)
     parser.add_argument("--skip",   type=int, default=0)
     parser.add_argument("--output", default=RESULTS_CSV)
+    parser.add_argument("--rerun-baseline-fails", action="store_true",
+                        help="baseline=FAIL/ERROR のリポジトリを再実行する")
     args = parser.parse_args()
 
     os.makedirs(OUTPUT_DIR, exist_ok=True)
@@ -402,10 +373,18 @@ def main():
     if os.path.exists(args.output) and args.skip == 0:
         try:
             prev_df = pd.read_csv(args.output)
-            done_repos = set(prev_df["repo"].unique().tolist())
-            all_rows = prev_df.to_dict("records")
+            if args.rerun_baseline_fails:
+                # baseline=FAIL/ERROR のリポジトリは再実行対象とする
+                pass_mask = prev_df["baseline_result"] == "PASS"
+                done_repos = set(prev_df.loc[pass_mask, "repo"].unique().tolist())
+                all_rows = prev_df.loc[pass_mask].to_dict("records")
+                rerun_count = prev_df[~pass_mask]["repo"].nunique()
+                print(f"Resuming (--rerun-baseline-fails): {len(done_repos)} PASS repos kept, {rerun_count} FAIL/ERROR repos will be re-run, {len(repos) - len(done_repos)} remaining")
+            else:
+                done_repos = set(prev_df["repo"].unique().tolist())
+                all_rows = prev_df.to_dict("records")
+                print(f"Resuming: {len(done_repos)} repos already done, {len(repos) - len(done_repos)} remaining")
             repos = [r for r in repos if r not in done_repos]
-            print(f"Resuming: {len(done_repos)} repos already done, {len(repos)} remaining")
         except pd.errors.EmptyDataError:
             print("Output file is empty, starting fresh")
 
