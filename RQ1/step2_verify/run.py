@@ -68,6 +68,31 @@ def parse_list_col(val) -> List[str]:
     except Exception:
         return []
 
+def parse_package_json(repo_path: str) -> Dict:
+    try:
+        with open(os.path.join(repo_path, "package.json"), "r", encoding="utf-8") as f:
+            content = f.read().replace("//", "")
+        return json.loads(content)
+    except Exception as e:
+        print(f"  [warn] parse_package_json: {e}")
+        return {}
+
+
+def detect_nyc_cmd(pkg: Dict) -> str:
+    scripts = pkg.get("scripts") or {}
+    for key in ["coverage", "test:coverage", "test-coverage", "cov"]:
+        if "nyc" in scripts.get(key, ""):
+            return f"npm run {key}"
+    if "nyc" in scripts.get("test", ""):
+        return "npm test"
+    deps: Dict = {}
+    deps.update(pkg.get("dependencies") or {})
+    deps.update(pkg.get("devDependencies") or {})
+    if "nyc" in deps:
+        return "npx nyc --reporter=json-summary npm test"
+    return "npm test"
+
+
 def run_test(repo_path: str, test_cmd: Optional[str] = None) -> Tuple[str, float, str]:
     """
     テストを実行して結果を返す
@@ -230,7 +255,6 @@ def verify_repo(
     owner: str,
     repo: str,
     step1_row: Dict,
-    test_cmd: Optional[str],
 ) -> List[Dict[str, Any]]:
     """
     1リポジトリに対して全モデルの検証を行い、結果行のリストを返す。
@@ -241,7 +265,7 @@ def verify_repo(
     repo_path = os.path.join(CLONES_DIR, f"{owner}-{repo}")
     full_name = f"{owner}/{repo}"
     print(f"\n{'='*60}")
-    print(f"[{full_name}]  test_cmd: {test_cmd or 'npm test'}")
+    print(f"[{full_name}]")
 
     # ---- clone ----
     if os.path.exists(repo_path):
@@ -252,6 +276,11 @@ def verify_repo(
     except Exception as e:
         print(f"  [error] clone failed: {e}")
         return [_error_row(full_name, m, str(e)) for m in MODELS]
+
+    # ---- PS8 と同じ方法でテストコマンドを検出 ----
+    pkg = parse_package_json(repo_path)
+    test_cmd = detect_nyc_cmd(pkg)
+    print(f"  test_cmd: {test_cmd}")
 
     # ---- npm install (ベースライン用) ----
     print("  npm install (baseline) ...")
@@ -391,9 +420,8 @@ def main():
         owner, repo = parts
 
         step1_row = step1_map.get(full_name, {})
-        test_cmd  = "npm test"
 
-        new_rows = verify_repo(owner, repo, step1_row, test_cmd)
+        new_rows = verify_repo(owner, repo, step1_row)
         all_rows.extend(new_rows)
         done_repos.add(full_name)
 
