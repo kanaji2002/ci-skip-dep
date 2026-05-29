@@ -175,7 +175,7 @@ def run_pytest(repo_path: str, venv_dir: str) -> Tuple[str, float, str]:
     try:
         proc = subprocess.run(
             [python, "-m", "pytest",
-             "--cov=.", "--cov-report=json", "--tb=no", "-q", "--no-header", "--timeout=120"],
+             "--cov=.", "--cov-report=json", "--tb=no", "-q", "--no-header"],
             cwd=repo_path,
             capture_output=True,
             text=True,
@@ -305,7 +305,7 @@ def verify_repo(owner: str, repo: str, step1_row: Dict) -> List[Dict[str, Any]]:
     if not pip_install_project(repo_path, venv_dir):
         print("  [warn] pip install failed, proceeding anyway")
     # pytest を確実にインストール (extras 名の違いで漏れるケースを補完)
-    pip_install_package(repo_path, venv_dir, ["pytest", "pytest-cov", "pytest-timeout"])
+    pip_install_package(repo_path, venv_dir, ["pytest", "pytest-cov"])
 
     # ベースライン pytest
     print("  Running baseline pytest ...")
@@ -315,8 +315,9 @@ def verify_repo(owner: str, repo: str, step1_row: Dict) -> List[Dict[str, Any]]:
     rows = []
 
     for model in MODELS:
+        all_dep    = set(parse_list_col(step1_row.get("all_dep")))
         unused_dep = parse_list_col(step1_row.get(f"{model}_unused_dep"))
-        to_remove  = list(dict.fromkeys(unused_dep))  # runtime deps のみ
+        to_remove  = list(dict.fromkeys(d for d in unused_dep if d in all_dep))
 
         print(f"\n  --- model: {model} ---")
         print(f"  to_remove (runtime deps only): {to_remove}")
@@ -354,7 +355,7 @@ def verify_repo(owner: str, repo: str, step1_row: Dict) -> List[Dict[str, Any]]:
 
         # 環境をベースライン状態に完全復元してから反復削除 (前モデルの削除が残らないように)
         pip_install_project(repo_path, venv_dir)
-        pip_install_package(repo_path, venv_dir, ["pytest", "pytest-cov", "pytest-timeout"])
+        pip_install_package(repo_path, venv_dir, ["pytest", "pytest-cov"])
 
         ir = iterative_removal(repo_path, venv_dir, to_remove)
 

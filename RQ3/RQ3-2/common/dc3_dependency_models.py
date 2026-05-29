@@ -241,9 +241,6 @@ def _extract_python_import_lines(repo_path: str) -> str:
     EXTENSIONS = {'.py'}
     EXCLUDE_DIRS = {'.git', '__pycache__', '.venv', 'venv', 'env',
                     'node_modules', 'dist', 'build', '.tox', '.mypy_cache'}
-    MAX_FILES = 200
-    MAX_LINES_TOTAL = 600
-
     # 相対 import (from . or from ..) を除外
     import_re = re.compile(
         r"^[ \t]*(?:import\s+[a-zA-Z_]\w*|from\s+[a-zA-Z_]\w*\s+import).*$",
@@ -251,12 +248,8 @@ def _extract_python_import_lines(repo_path: str) -> str:
     )
 
     parts = []
-    total_lines = 0
-    file_count = 0
 
     for dirpath, dirnames, filenames in os.walk(repo_path):
-        if file_count >= MAX_FILES or total_lines >= MAX_LINES_TOTAL:
-            break
         dirnames[:] = [d for d in dirnames if d not in EXCLUDE_DIRS]
         for filename in filenames:
             if os.path.splitext(filename)[1] not in EXTENSIONS:
@@ -271,13 +264,8 @@ def _extract_python_import_lines(repo_path: str) -> str:
             matches = import_re.findall(content)
             if not matches:
                 continue
-            remaining = MAX_LINES_TOTAL - total_lines
-            lines = [m.strip() for m in matches[:remaining]]
+            lines = [m.strip() for m in matches]
             parts.append(f"### {rel_path}\n" + "\n".join(lines))
-            total_lines += len(lines)
-            file_count += 1
-            if file_count >= MAX_FILES or total_lines >= MAX_LINES_TOTAL:
-                break
 
     return "\n\n".join(parts) or "(no import statements found)"
 
@@ -285,21 +273,14 @@ def _extract_python_import_lines(repo_path: str) -> str:
 def _extract_rust_import_lines(repo_path: str) -> str:
     EXTENSIONS = {'.rs'}
     EXCLUDE_DIRS = {'.git', 'target'}
-    MAX_FILES = 200
-    MAX_LINES_TOTAL = 600
-
     import_re = re.compile(
         r"^[ \t]*(?:use\s+\w|extern\s+crate\s+\w).*$",
         re.MULTILINE,
     )
 
     parts = []
-    total_lines = 0
-    file_count = 0
 
     for dirpath, dirnames, filenames in os.walk(repo_path):
-        if file_count >= MAX_FILES or total_lines >= MAX_LINES_TOTAL:
-            break
         dirnames[:] = [d for d in dirnames if d not in EXCLUDE_DIRS]
         for filename in filenames:
             if os.path.splitext(filename)[1] not in EXTENSIONS:
@@ -314,13 +295,8 @@ def _extract_rust_import_lines(repo_path: str) -> str:
             matches = import_re.findall(content)
             if not matches:
                 continue
-            remaining = MAX_LINES_TOTAL - total_lines
-            lines = [m.strip() for m in matches[:remaining]]
+            lines = [m.strip() for m in matches]
             parts.append(f"### {rel_path}\n" + "\n".join(lines))
-            total_lines += len(lines)
-            file_count += 1
-            if file_count >= MAX_FILES or total_lines >= MAX_LINES_TOTAL:
-                break
 
     return "\n\n".join(parts) or "(no use statements found)"
 
@@ -328,21 +304,14 @@ def _extract_rust_import_lines(repo_path: str) -> str:
 def _extract_csharp_import_lines(repo_path: str) -> str:
     EXTENSIONS = {'.cs'}
     EXCLUDE_DIRS = {'.git', 'bin', 'obj', 'node_modules'}
-    MAX_FILES = 200
-    MAX_LINES_TOTAL = 600
-
     import_re = re.compile(
         r"^[ \t]*using\s+[\w.]+\s*;.*$",
         re.MULTILINE,
     )
 
     parts = []
-    total_lines = 0
-    file_count = 0
 
     for dirpath, dirnames, filenames in os.walk(repo_path):
-        if file_count >= MAX_FILES or total_lines >= MAX_LINES_TOTAL:
-            break
         dirnames[:] = [d for d in dirnames if d not in EXCLUDE_DIRS]
         for filename in filenames:
             if os.path.splitext(filename)[1] not in EXTENSIONS:
@@ -357,13 +326,8 @@ def _extract_csharp_import_lines(repo_path: str) -> str:
             matches = import_re.findall(content)
             if not matches:
                 continue
-            remaining = MAX_LINES_TOTAL - total_lines
-            lines = [m.strip() for m in matches[:remaining]]
+            lines = [m.strip() for m in matches]
             parts.append(f"### {rel_path}\n" + "\n".join(lines))
-            total_lines += len(lines)
-            file_count += 1
-            if file_count >= MAX_FILES or total_lines >= MAX_LINES_TOTAL:
-                break
 
     return "\n\n".join(parts) or "(no using statements found)"
 

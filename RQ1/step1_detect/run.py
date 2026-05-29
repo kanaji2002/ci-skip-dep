@@ -52,6 +52,14 @@ OLLAMA_MODEL_DEEPSEEK = "deepseek-coder:6.7b-instruct"
 TOOL_TIMEOUT = 120   # depcheck / knip (秒)
 LLM_TIMEOUT  = 300   # Ollama API (秒)
 
+# テスト系ライブラリは削除対象から除外する
+TEST_LIB_BLOCKLIST: set = {
+    "mocha", "chai", "should", "sinon", "sinon-chai",
+    "supertest", "nock", "nyc", "tap", "tape",
+    "fast-check", "chai-http", "grunt-mocha-test",
+    "eslint-plugin-mocha", "tsd", "@tapjs/sinon", "sentry-testkit",
+}
+
 # ---------------------------------------------------------------------------
 # package.json
 # ---------------------------------------------------------------------------
@@ -202,9 +210,8 @@ def _import_lines(repo_path: str) -> str:
         r"|require\s*\(|.*=\s*await\s+import\s*\().*$",
         re.MULTILINE,
     )
-    parts, total, fc = [], 0, 0
+    parts = []
     for dp, dirs, files in os.walk(repo_path):
-        if fc >= 200 or total >= 600: break
         dirs[:] = [d for d in dirs if d not in EXCL]
         for fn in files:
             if os.path.splitext(fn)[1] not in EXT: continue
@@ -216,16 +223,14 @@ def _import_lines(repo_path: str) -> str:
                 continue
             ms = pat.findall(src)
             if not ms: continue
-            rem = 600 - total
-            lines = [m.strip() for m in ms[:rem]]
+            lines = [m.strip() for m in ms]
             parts.append(f"### {os.path.relpath(fp, repo_path)}\n" + "\n".join(lines))
-            total += len(lines); fc += 1
-            if fc >= 200 or total >= 600: break
     return "\n\n".join(parts) or "(no import statements found)"
 
 def run_llm(repo_path: str, model: str) -> Tuple[List[str], List[str], bool]:
     pkg = parse_package_json(repo_path)
-    runtime_deps = pkg.get("dependencies", {})
+    runtime_deps = {k: v for k, v in pkg.get("dependencies", {}).items()
+                    if k not in TEST_LIB_BLOCKLIST}
     if not runtime_deps:
         return [], [], False
 
@@ -338,6 +343,8 @@ def analyze_repo(owner: str, repo: str) -> Dict[str, Any]:
 
         if label in ("depcheck", "knip"):
             dep, dev_dep, ok = ret
+            dep     = [d for d in dep     if d not in TEST_LIB_BLOCKLIST]
+            dev_dep = [d for d in dev_dep if d not in TEST_LIB_BLOCKLIST]
             print(f"  {label:<10}: {len(dep)} unused_dep, {len(dev_dep)} unused_dev_dep  ({elapsed:.1f}s) ok={ok}")
             row[f"{label}_unused_dep"]     = dep
             row[f"{label}_unused_dev_dep"] = dev_dep

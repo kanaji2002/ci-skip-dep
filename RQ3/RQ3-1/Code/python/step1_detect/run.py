@@ -53,6 +53,11 @@ LLM_TIMEOUT = 300
 
 LANGUAGE = "python"
 
+# テスト系ライブラリは削除対象から除外する
+TEST_LIB_BLOCKLIST: set = {
+    "pytest", "pytest-cov", "faker", "jsonschema",
+}
+
 # ---------------------------------------------------------------------------
 # TOML ローダー (Python 3.10 対応)
 # ---------------------------------------------------------------------------
@@ -187,21 +192,14 @@ def _import_lines(repo_path: str) -> str:
     EXTENSIONS = {'.py'}
     EXCLUDE_DIRS = {'.git', '__pycache__', '.venv', 'venv', 'env',
                     'node_modules', 'dist', 'build', '.tox', '.mypy_cache'}
-    MAX_FILES = 200
-    MAX_LINES_TOTAL = 600
-
     import_re = re.compile(
         r"^[ \t]*(?:import\s+[a-zA-Z_]\w*|from\s+[a-zA-Z_]\w*\s+import).*$",
         re.MULTILINE,
     )
 
     parts = []
-    total_lines = 0
-    file_count = 0
 
     for dirpath, dirnames, filenames in os.walk(repo_path):
-        if file_count >= MAX_FILES or total_lines >= MAX_LINES_TOTAL:
-            break
         dirnames[:] = [d for d in dirnames if d not in EXCLUDE_DIRS]
         for filename in filenames:
             if os.path.splitext(filename)[1] not in EXTENSIONS:
@@ -216,13 +214,8 @@ def _import_lines(repo_path: str) -> str:
             matches = import_re.findall(content)
             if not matches:
                 continue
-            remaining = MAX_LINES_TOTAL - total_lines
-            lines = [m.strip() for m in matches[:remaining]]
+            lines = [m.strip() for m in matches]
             parts.append(f"### {rel_path}\n" + "\n".join(lines))
-            total_lines += len(lines)
-            file_count += 1
-            if file_count >= MAX_FILES or total_lines >= MAX_LINES_TOTAL:
-                break
 
     return "\n\n".join(parts) or "(no import statements found)"
 
@@ -277,7 +270,8 @@ def _build_prompt(template: str, variables: Dict) -> str:
 
 
 def run_llm(repo_path: str, model: str, pkg: Dict) -> Tuple[List[str], List[str], bool]:
-    deps = pkg.get('dependencies', {})
+    deps = {k: v for k, v in pkg.get('dependencies', {}).items()
+            if k not in TEST_LIB_BLOCKLIST}
 
     if not deps:
         return [], [], False

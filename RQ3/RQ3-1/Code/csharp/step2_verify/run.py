@@ -372,8 +372,9 @@ def verify_repo(owner: str, repo: str, step1_row: Dict) -> List[Dict[str, Any]]:
     rows = []
 
     for model in MODELS:
+        all_dep    = set(parse_list_col(step1_row.get("all_dep")))
         unused_dep = parse_list_col(step1_row.get(f"{model}_unused_dep"))
-        to_remove  = list(dict.fromkeys(unused_dep))  # runtime deps のみ
+        to_remove  = list(dict.fromkeys(d for d in unused_dep if d in all_dep))
 
         print(f"\n  --- model: {model} ---")
         print(f"  to_remove: {to_remove}")
