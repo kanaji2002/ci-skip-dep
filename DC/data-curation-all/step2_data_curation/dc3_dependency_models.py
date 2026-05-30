@@ -287,9 +287,6 @@ def _extract_import_lines(repo_path: str) -> str:
     """ソースファイルから import/require 行をファイルパス付きで抽出して返す"""
     EXTENSIONS = {".js", ".ts", ".jsx", ".tsx", ".mjs", ".cjs"}
     EXCLUDE_DIRS = {"node_modules", ".git", "dist", "build", ".next", "coverage"}
-    MAX_FILES = 200
-    MAX_LINES_TOTAL = 600
-
     import_line_re = re.compile(
         r"^[ \t]*(?:"
         r"import\s"                                        # import foo / import 'pkg'
@@ -302,12 +299,8 @@ def _extract_import_lines(repo_path: str) -> str:
     )
 
     parts = []
-    total_lines = 0
-    file_count = 0
 
     for dirpath, dirnames, filenames in os.walk(repo_path):
-        if file_count >= MAX_FILES or total_lines >= MAX_LINES_TOTAL:
-            break
         dirnames[:] = [d for d in dirnames if d not in EXCLUDE_DIRS]
         for filename in filenames:
             if os.path.splitext(filename)[1] not in EXTENSIONS:
@@ -322,13 +315,8 @@ def _extract_import_lines(repo_path: str) -> str:
             matches = import_line_re.findall(content)
             if not matches:
                 continue
-            remaining = MAX_LINES_TOTAL - total_lines
-            lines = [m.strip() for m in matches[:remaining]]
+            lines = [m.strip() for m in matches]
             parts.append(f"### {rel_path}\n" + "\n".join(lines))
-            total_lines += len(lines)
-            file_count += 1
-            if file_count >= MAX_FILES or total_lines >= MAX_LINES_TOTAL:
-                break
 
     return "\n\n".join(parts) or "(no import statements found)"
 
